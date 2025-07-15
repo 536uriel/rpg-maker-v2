@@ -1,0 +1,223 @@
+html,
+body {
+  margin: 0;
+  padding: 10px;
+  background-color: aliceblue;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+}
+
+h1 {
+  text-align: center;
+  font-family: 'Courier New', Courier, monospace;
+  color: rgb(96, 117, 156);
+}
+
+.main-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+
+canvas {
+  display: block;
+}
+
+#output-canvas {
+  margin-top: 20px;
+  border: 0.5rem solid slategray;
+}
+
+.output-contaner {
+  display: inline-block;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 25% 25% 25% 25%;
+  gap: 5px;
+
+}
+
+li {
+  position: relative;
+  padding: 10px 20px;
+  font-size: 18px;
+  color: white;
+  background: #222;
+  margin: 5px 0;
+  border-radius: 5px;
+  transition: 0.3s;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+li::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+  transition: 0.5s;
+}
+
+li:hover::before {
+  left: 100%;
+}
+
+li:hover {
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+}
+
+.CodeMirror * {
+  /*          ^
+  */
+  font-family: Arial, monospace;
+  font-size: 1.2rem;
+}
+
+
+/* Optional: Styling for the editor */
+.CodeMirror {
+  border: 1px solid #ddd;
+  height: 300px;
+}
+
+button {
+  margin-top: 10px;
+  padding: 8px 16px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+button.run-btn {
+  background-color: rgb(127, 244, 255);
+  font: 1.3rem bold;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+button.run-btn:hover {
+  animation: run 1s forwards;
+}
+
+#output {
+  margin-top: 20px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  background: #f9f9f9;
+  min-height: 50px;
+}
+
+.navbar {
+  overflow: hidden;
+  background-color: #333;
+}
+
+.navbar a {
+  float: left;
+  font-size: 16px;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.dropdown {
+  float: left;
+  overflow: hidden;
+}
+
+.dropdown .dropbtn {
+  font-size: 16px;
+  border: none;
+  outline: none;
+  color: white;
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: inherit;
+  margin: 0;
+}
+
+.navbar a:hover,
+.dropdown:hover .dropbtn {
+  background-color: rgb(88, 222, 148);
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+
+#clean-btn:hover {
+  animation-name: clean;
+  animation-duration: 3s;
+}
+
+#commends-btn{
+    background-color: #333;
+    color: rgb(186, 113, 254);
+    font-size: large;
+}
+
+#commends-btn:hover{
+    background-color: rgb(146, 34, 251);
+    color: azure;
+    font-size: large;
+}
+
+
+#commends-drop-a:hover{
+  color: rgb(146, 34, 251);
+}
+
+@keyframes clean {
+  50% {
+    font-size: 1.3rem;
+    background-color: red;
+  }
+}
+
+@keyframes run {
+
+  0%{
+  background-color: rgb(127, 244, 255);
+  font: 1.3rem bold;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+  }
+
+  100% {
+    font: 1.5rem bold;
+    background-color: rgb(127, 255, 204);
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+  }
+}

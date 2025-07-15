@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <!-- for google search engine -->
+    <meta name="robots" content="index, follow">
+    <meta name="description" content="תרגול עם ספריית פ5 בית ספר ארנון">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>  יצירת משחק תרגול V1</title>
+
+
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+    <!-- CodeMirror CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.14/codemirror.min.css">
+
+    <!-- CodeMirror JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.14/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.14/addon/comment/comment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.14/mode/javascript/javascript.min.js"></script>
+
+    <script type="module" src="test.js" defer></script>
+
+</head>
+
+<body>
+
+    <div class="navbar">
+        <a href="#" id="clean-btn">נקה קןד</a>
+
+        <div class="dropdown">
+            <button id="commends-btn" class="dropbtn">פקודות
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div id="commends-drop-down" class="dropdown-content">
+
+            </div>
+        </div>
+
+        <a style="float: right;color: rgb(138, 130, 243);" href="https://536uriel.github.io/p5-integrated-assistant/"
+            target="_blank" rel="noopener noreferrer">p5בחזרה לדף התרגול ב</a>
+      
+
+    </div>
+
+    <h1 style="color: rgb(126, 134, 250);">  תכנות משחק </h1>
+
+    <div class="main-container">
+
+        <div class="editors-container">
+            <!-- CodeMirror Editor -->
+            <h3 style="color: rgb(145, 92, 251);">קורה פעם אחת</h3>
+
+            <textarea id="editor1">// Type JavaScript code here and click Run</textarea>
+
+            <h3 style="color: rgb(145, 92, 251);">קורה לעולמים</h3>
+            <h3>function draw(){ </h3>
+            <textarea id="editor2">// Type JavaScript code here and click Run</textarea>
+
+        </div>
+
+
+        <div class="output-contaner">
+            <!-- Run Button -->
+            <div>
+                <button id="run-btn" class="run-btn">הפעל קוד</button>
+
+                <div id="canvas-size-text">
+
+                </div>
+
+                <div id="show-mouse-pos">
+
+                </div>
+
+                <img id="btns-img" style="float: right;" src="" width="80" height="50" alt="" srcset="">
+
+            </div>
+
+            <canvas style="margin-top: 20px;border: 0.5rem solid slategray;" id="screen" width="400"
+                height="400"></canvas>
+
+
+        </div>
+
+    </div>
+
+
+    <!-- commands list -->
+    <ul id="commands">
+
+    </ul>
+
+
+
+    <!-- Output Display -->
+    <h3>Output:</h3>
+    <div id="output"></div>
+
+
+
+
+
+</body>
+
+</html>
