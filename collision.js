@@ -71,4 +71,65 @@ export function stopMoveWhenCollide(subject, obstacles, x, y, camera, canvas, sp
 }
 
 
+export function stopNpcsMoveWhenCollide(subject, obstacles, x, y, sprite) {
+
+
+    subject.pos.x += x
+
+    const water = sprite.sprites.get('water');
+
+    intersection(subject, obstacles, obstacle => {
+
+        if (obstacle.sprite != water) {
+            //if subject move to right
+            if (x > 0) {
+
+                if (subject.rp > obstacle.lp) {
+                    //תקן לסוף השמאל
+                    subject.rp = obstacle.lp;
+                }
+
+            } else if (x < 0) {
+                //תקן לסוף הימין
+                subject.lp = obstacle.rp;
+            }
+        }
+
+    });
+
+    subject.x = subject.pos.x
+
+    subject.pos.y += y
+
+
+
+    intersection(subject, obstacles, obstacle => {
+
+        if (obstacle.sprite != water) {
+
+            if (y > 0) {
+
+                if (subject.bp > obstacle.tp) {
+                    //תקן לסוף הלמעלה
+                    subject.bp = obstacle.tp;
+                    subject.jump = false;
+                }
+
+            } else if (y < 0) {
+                if (subject.tp < obstacle.bp) {
+                    //תקן לסוף הלמטה
+                    subject.tp = obstacle.bp;
+                }
+            }
+        }
+
+        subject.y = subject.pos.y
+
+    });
+
+
+}
+
+
+
 

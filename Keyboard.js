@@ -22,7 +22,7 @@ export default class keyboard {
         })
     }
 
-    static set_player(keyboard, entity, board) {
+    static set_player(keyboard, entity) {
         //right
         keyboard.addKey(68, function (state) {
             if (state == 'keydown') {

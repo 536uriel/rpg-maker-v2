@@ -6,6 +6,8 @@ export default class Board {
         this.h = canvas.height
         this.unitSize = unitSize
         this.grid = [];
+        this.backgroundWidth = 0;
+        this.backgroundHeight = 0;
 
         //initiate grid:
         for (let y = 0; y < Math.round(this.h / this.unitSize) * 4; y++) {
@@ -17,7 +19,6 @@ export default class Board {
     }
 
     setGrid(x, y, val, playerpos) {
-        console.log(val, playerpos)
         this.grid[y][x] = val;
     }
 
@@ -60,7 +61,15 @@ export default class Board {
 
 
         for (let row = 0; row < this.grid.length; row++) {
+
+            //sum the rect unit suze to figuer the bg size
+            this.backgroundHeight += rh;
+            this.backgroundWidth += rw;
+
             for (let col = 0; col < this.grid[row].length; col++) {
+
+                
+
                 for (let i = 0; i < rects.length; i++) {
                     if (rects[i][0] == row && rects[i][1] == col) {
                         this.setGrid(col, row, new Rect(col * rw + canvas.width / 2, row * rh + canvas.height / 2, rw, rh, sprite, camera))

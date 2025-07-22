@@ -3,10 +3,11 @@ import SITE_URL from "./production-config.js";
 import Timer from "./timer.js";
 import Rect from "./Rect.js";
 import Keyboard from "./Keyboard.js";
-import { stopMoveWhenCollide } from "./collision.js";
+import { stopMoveWhenCollide, stopNpcsMoveWhenCollide } from "./collision.js";
 import Board from "./Board.js";
 import { Sprite } from "./Sprite.js";
 import Camera from "./Camera.js";
+import Npc from "./Npc.js";
 
 // Initialize CodeMirror
 //editors for the precode 
@@ -186,6 +187,10 @@ var water_sprite;
 
 var squere_sprite;
 
+var npcs = new Npc();
+
+
+
 
 
 sprite.set_sprites().then(() => {
@@ -196,20 +201,18 @@ sprite.set_sprites().then(() => {
 
     squere_sprite = ground_sprite;
 
-
-
     var player = new Rect(camera.x, camera.y, 50, 50, sprite.sprites.get('player-run-4'), camera);
     player.velocity = { x: 0, y: 0 };
     player.pos = { x: 200, y: 200 };
     player.gravity = 0;
-    
+
     //!?is usable?
     player.slower = 0;
 
     window.player = player;
 
     //set player input movement
-    Keyboard.set_player(keyboard, player, board);
+    Keyboard.set_player(keyboard, player);
 
 
     var rects = [
@@ -227,6 +230,9 @@ sprite.set_sprites().then(() => {
 
     let drawBackground = board.createBackground(ground_sprite, rects_pos, rectW, rectH, camera, canvas, levelSizeWidth, levelSizeHeight);
 
+    npcs.addNpc(sprite, "1player-run-1", 100, 250);
+    var drawNpcsLayer = npcs.createNpcsLayer(board.backgroundWidth, board.backgroundHeight);
+    npcs.rects[0].velocity.x = 1;
 
     document.addEventListener("mousemove", (e) => {
 
@@ -284,7 +290,10 @@ sprite.set_sprites().then(() => {
         ctx.clearRect(0, 0, canvas.width * 4, canvas.height * 4)
 
 
-        drawBackground(ctx)
+        drawBackground(ctx);
+
+        npcs.update();
+        drawNpcsLayer(ctx, npcs.rects, camera, sprite);
 
         player.velocity.y += player.gravity / 60;
 
@@ -292,11 +301,20 @@ sprite.set_sprites().then(() => {
 
 
 
-        player.draw_preciclly_sprite(ctx, sprite.getSpriteAnimation(costume + 'player-run-', player, 10, 4))
+        player.draw_preciclly_sprite(ctx, sprite.getSpriteAnimation(costume + 'player-run-', player, 10, 4));
+
 
         div_show_mouse.innerText = "x: " + player.pos.x + ", y: " + player.pos.y;
 
-        callback()
+        callback();
+
+
+
+        npcs.iterateNpcs(npcRect => {
+            stopNpcsMoveWhenCollide(npcRect, board.getAllSubjectsFromGrid(), npcRect.velocity.x, npcRect.velocity.y, sprite);
+
+        })
+
     }
 
     timer.start()
