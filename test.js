@@ -3,7 +3,7 @@ import SITE_URL from "./production-config.js";
 import Timer from "./timer.js";
 import Rect from "./Rect.js";
 import Keyboard from "./Keyboard.js";
-import { stopMoveWhenCollide, stopNpcsMoveWhenCollide } from "./collision.js";
+import { stopMoveWhenCollide, stopNpcsMoveWhenCollide, overlap } from "./collision.js";
 import Board from "./Board.js";
 import { Sprite } from "./Sprite.js";
 import Camera from "./Camera.js";
@@ -82,8 +82,12 @@ var commands = [
     "nextBlock()",
     "addNpc(x, y, speedx, speedy)",
     "setNpc(npcNumber, x, y, speedx, speedy)",
+    "getNpcPosX(npcNumber)",
+    "getNpcPosY(npcNumber)",
+    "isCollideWithNpc(npcNumber)",
     "player.pos.x = 200",
-    "player.pos.y = 200"
+    "player.pos.y = 200",
+    "print(text, x, y, fontSize, color)"
 ]
 
 var clist = document.getElementById("commands");
@@ -241,6 +245,14 @@ sprite.set_sprites().then(() => {
 
     });
 
+
+    window.print = function (text, x, y, fontSize = 20, color = "black") {
+        ctx.font = fontSize + "px Arial";
+        ctx.fillStyle = color;
+        ctx.fillText(text, x, y);
+    }
+
+
     window.addNpc = function (x, y, speedx, speedy) {
         npcs.addNpc(sprite, "1player-run-1", x, y, speedx, speedy);
     }
@@ -251,6 +263,14 @@ sprite.set_sprites().then(() => {
         npcs.rects[npcNumber].velocity.x = speedx;
         npcs.rects[npcNumber].velocity.y = speedy;
 
+    }
+
+    window.getNpcPosX = function (npcNumber) {
+        return npcs.rects[npcNumber].x;
+    }
+
+    window.getNpcPosY = function (npcNumber) {
+        return npcs.rects[npcNumber].y;
     }
 
     window.nextCustume = function nextCustume() {
@@ -325,7 +345,17 @@ sprite.set_sprites().then(() => {
         npcs.iterateNpcs(npcRect => {
             stopNpcsMoveWhenCollide(npcRect, board.getAllSubjectsFromGrid(), npcRect.velocity.x, npcRect.velocity.y, sprite);
 
-        })
+
+            window.isCollideWithNpc = function (npcNumber) {
+                if (overlap(player, npcRect)) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+
+
+        });
 
     }
 
