@@ -80,6 +80,8 @@ var commands = [
     "player.gravity = 3",
     "nextCustume()",
     "nextBlock()",
+    "addNpc(x, y, speedx, speedy)",
+    "setNpc(npcNumber, x, y, speedx, speedy)",
     "player.pos.x = 200",
     "player.pos.y = 200"
 ]
@@ -191,8 +193,6 @@ var npcs = new Npc();
 
 
 
-
-
 sprite.set_sprites().then(() => {
 
     ground_sprite = sprite.sprites.get('ground');
@@ -230,9 +230,9 @@ sprite.set_sprites().then(() => {
 
     let drawBackground = board.createBackground(ground_sprite, rects_pos, rectW, rectH, camera, canvas, levelSizeWidth, levelSizeHeight);
 
-    npcs.addNpc(sprite, "1player-run-1", 100, 250);
+    npcs.addNpc(sprite, "1player-run-1", 100, 250, 1, 0);
     var drawNpcsLayer = npcs.createNpcsLayer(board.backgroundWidth, board.backgroundHeight);
-    npcs.rects[0].velocity.x = 1;
+
 
     document.addEventListener("mousemove", (e) => {
 
@@ -240,6 +240,18 @@ sprite.set_sprites().then(() => {
         mousePos.y = e.clientY - screenRect.top
 
     });
+
+    window.addNpc = function (x, y, speedx, speedy) {
+        npcs.addNpc(sprite, "1player-run-1", x, y, speedx, speedy);
+    }
+
+    window.setNpc = function (npcNumber, x, y, speedx, speedy) {
+        npcs.rects[npcNumber].x = x;
+        npcs.rects[npcNumber].y = y;
+        npcs.rects[npcNumber].velocity.x = speedx;
+        npcs.rects[npcNumber].velocity.y = speedy;
+
+    }
 
     window.nextCustume = function nextCustume() {
         if (costume == 2) {

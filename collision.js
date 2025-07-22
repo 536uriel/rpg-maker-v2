@@ -123,10 +123,10 @@ export function stopNpcsMoveWhenCollide(subject, obstacles, x, y, sprite) {
             }
         }
 
-        subject.y = subject.pos.y
 
     });
 
+    subject.y = subject.pos.y
 
 }
 

@@ -30,14 +30,14 @@ export default class Npc {
         }
     }
 
-    addNpc(spriteSheet, spriteName, x = 0, y = 0) {
+    addNpc(spriteSheet, spriteName, x = 0, y = 0, velx = 0, vely = 0) {
         let npc = new Rect(x, y, 50, 50, spriteSheet.sprites.get(spriteName));
         //pos - for the functionallity and not for the actual drawing
         npc.pos.x = x;
         npc.pos.y = y;
 
         //create velocity to npc
-        npc.velocity = { x: 0, y: 0 }
+        npc.velocity = { x: velx, y: vely }
 
         this.rects.push(npc);
     }
