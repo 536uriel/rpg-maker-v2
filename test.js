@@ -85,6 +85,7 @@ var commands = [
     "getNpcPosX(npcNumber)",
     "getNpcPosY(npcNumber)",
     "isCollideWithNpc(npcNumber)",
+    "isCollideWithAnyNpcs()",
     "player.pos.x = 200",
     "player.pos.y = 200",
     "print(text, x, y, fontSize, color)"
@@ -344,18 +345,27 @@ sprite.set_sprites().then(() => {
 
         npcs.iterateNpcs(npcRect => {
             stopNpcsMoveWhenCollide(npcRect, board.getAllSubjectsFromGrid(), npcRect.velocity.x, npcRect.velocity.y, sprite);
+        });
 
+        window.isCollideWithNpc = function (npcNumber) {
+            if (overlap(player, npcs.rects[npcNumber])) {
+                return true;
+            } else {
+                return false;
+            }
+        }
 
-            window.isCollideWithNpc = function (npcNumber) {
-                if (overlap(player, npcRect)) {
+        window.isCollideWithAnyNpcs = function () {
+
+            for (let i = 0; i < npcs.rects.length; i++) {
+                if (overlap(player, npcs.rects[i])) {
                     return true;
-                } else {
-                    return false;
                 }
             }
 
+            return false;
 
-        });
+        }
 
     }
 
