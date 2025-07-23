@@ -40,6 +40,12 @@ export class Sprite {
         }
 
         try {
+            await this.set_player_sprites3();
+        } catch (err) {
+            console.log(err);
+        }
+
+        try {
             await this.set_sword_sprite();
         } catch (err) {
             console.log(err);
@@ -91,12 +97,35 @@ export class Sprite {
     }
 
 
+    async set_player_sprites3() {
+
+
+        const player_run_1 = await this.loadSprite_preciclly(SITE_URL + '/assets/PC Computer - Braid - Princess.png',
+            970, 160, 120, 140);
+
+        const player_run_2 = await this.loadSprite_preciclly(SITE_URL + '/assets/PC Computer - Braid - Princess.png',
+            1090, 160, 120, 140);
+
+        const player_run_3 = await this.loadSprite_preciclly(SITE_URL + '/assets/PC Computer - Braid - Princess.png',
+            1220, 160, 120, 140);
+
+        const player_run_4 = await this.loadSprite_preciclly(SITE_URL + '/assets/PC Computer - Braid - Princess.png',
+            1350, 160, 120, 140);
+
+
+        this.sprites.set('3player-run-1', player_run_1);
+        this.sprites.set('3player-run-2', player_run_2);
+        this.sprites.set('3player-run-3', player_run_3);
+        this.sprites.set('3player-run-4', player_run_4);
+    }
+
+
     async set_player_sprites2() {
         //tile size..
         let tsize = 16
         const space_between = tsize * 30;
         const player_run_1 = await this.loadSprite_preciclly(SITE_URL + '/assets/—Pngtree—sprite sheet of the flash_5268150.png',
-            20 * tsize, 15 * tsize, tsize * 42, tsize * 42);
+            16 * tsize, 15 * tsize, tsize * 42, tsize * 42);
 
         const player_run_2 = await this.loadSprite_preciclly(SITE_URL + '/assets/—Pngtree—sprite sheet of the flash_5268150.png',
             space_between + (tsize * 42), 15 * tsize, tsize * 42, tsize * 50);

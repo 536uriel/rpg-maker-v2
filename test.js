@@ -299,11 +299,24 @@ sprite.set_sprites().then(() => {
     }
 
     window.nextCustume = function nextCustume() {
-        if (costume == 2) {
-            costume = 1;
-        } else {
-            costume = 2;
+        switch (costume) {
+            case 1:
+                costume = 2;
+                break;
+
+            case 2:
+                costume = 3;
+                break;
+
+            case 3:
+                costume = 1;
+                break;
+
+            default:
+                costume = 1;
+                break;
         }
+
     }
 
     window.nextBlock = function nextBlock() {
