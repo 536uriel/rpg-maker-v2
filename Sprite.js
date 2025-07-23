@@ -39,6 +39,12 @@ export class Sprite {
             console.log(err);
         }
 
+        try {
+            await this.set_sword_sprite();
+        } catch (err) {
+            console.log(err);
+        }
+
     }
 
     async set_ground_sprite() {

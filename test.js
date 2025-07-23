@@ -8,6 +8,7 @@ import Board from "./Board.js";
 import { Sprite } from "./Sprite.js";
 import Camera from "./Camera.js";
 import Npc from "./Npc.js";
+import { rotate_in_center } from "./helpers.js";
 
 // Initialize CodeMirror
 //editors for the precode 
@@ -86,9 +87,17 @@ var commands = [
     "getNpcPosY(npcNumber)",
     "isCollideWithNpc(npcNumber)",
     "isCollideWithAnyNpcs()",
+    "isSworAttcksNpcs()",
+    "deleteNpc(npcNumber)",
     "player.pos.x = 200",
     "player.pos.y = 200",
-    "print(text, x, y, fontSize, color)"
+    "print(text, x, y, fontSize, color)",
+    `
+num = isSworAttcksNpcs()
+if(num != -1){
+  deleteNpc(num)
+}
+    `
 ]
 
 var clist = document.getElementById("commands");
@@ -192,6 +201,8 @@ var ground_sprite;
 var grass_sprite;
 var water_sprite;
 
+var sword_sprite;
+
 var squere_sprite;
 
 var npcs = new Npc();
@@ -203,6 +214,13 @@ sprite.set_sprites().then(() => {
     ground_sprite = sprite.sprites.get('ground');
     grass_sprite = sprite.sprites.get('grass');
     water_sprite = sprite.sprites.get('water');
+    sword_sprite = sprite.sprites.get('sword');
+
+    var sword = new Rect(0, 0, 48, 32, sword_sprite, camera);
+    sword.attackDuration = 0;
+    sword.attack = false;
+    sword.deg = 0;
+    sword.pos = { x: 0, y: 0 }
 
     squere_sprite = ground_sprite;
 
@@ -210,6 +228,12 @@ sprite.set_sprites().then(() => {
     player.velocity = { x: 0, y: 0 };
     player.pos = { x: 200, y: 200 };
     player.gravity = 0;
+
+    player.attack = function () {
+        sword.x = this.r;
+        sword.y = this.t;
+        sword.attackDuration = 2;
+    }
 
     //!?is usable?
     player.slower = 0;
@@ -330,12 +354,26 @@ sprite.set_sprites().then(() => {
 
         player.velocity.y += player.gravity / 60;
 
+        if (sword.attackDuration > 0) {
+            sword.deg += 7;
+            //draw sword with rotation
+            rotate_in_center(ctx, sword, sword.deg)
+            sword.attackDuration -= 0.1;
+            sword.attack = true;
+        } else {
+            sword.deg = 0;
+            sword.attack = false;
+        }
+
+
         stopMoveWhenCollide(player, board.getAllSubjectsFromGrid(), player.velocity.x, player.velocity.y, camera, canvas, sprite);
 
 
 
         player.draw_preciclly_sprite(ctx, sprite.getSpriteAnimation(costume + 'player-run-', player, 10, 4));
 
+        sword.pos.x = player.rp;
+        sword.pos.y = player.tp;
 
         div_show_mouse.innerText = "x: " + player.pos.x + ", y: " + player.pos.y;
 
@@ -365,6 +403,25 @@ sprite.set_sprites().then(() => {
 
             return false;
 
+        }
+
+
+        window.isSworAttcksNpcs = function () {
+
+            for (let i = 0; i < npcs.rects.length; i++) {
+                if (overlap(sword, npcs.rects[i]) && sword.attack) {
+                    return i;
+                }
+            }
+
+            return -1;
+
+        }
+
+        window.deleteNpc = function (npcNumber) {
+            if (npcs.rects.length >= 1) {
+                npcs.rects.splice(npcNumber, 1);
+            }
         }
 
     }
