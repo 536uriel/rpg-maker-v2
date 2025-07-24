@@ -32,6 +32,8 @@ export class Sprite {
                 this.set_grass_sprite(img);
                 this.set_water_sprite(img);
                 this.set_waterPool_sprite(img);
+                this.set_blueHouse_sprite(img);
+                this.set_bridge_sprite(img);
 
             });
 
@@ -102,6 +104,27 @@ export class Sprite {
                 let blocks = this.sprites.get('waterPool');
                 blocks.push(can_img);
                 this.sprites.set('waterPool', blocks);
+            }
+        }
+
+    }
+
+    set_bridge_sprite(img) {
+        const can_img = this.loadSprite(img, 13, 8, this.size_w, this.size_h);
+        this.sprites.set('bridge', can_img);
+    }
+
+    set_blueHouse_sprite(img) {
+
+        this.sprites.set('blueHouse', []);
+
+        for (let y = 6; y < 8; y++) {
+            for (let x = 33; x < 35; x++) {
+                const can_img = this.loadSprite(img, x, y, this.size_w, this.size_h);
+
+                let blocks = this.sprites.get('blueHouse');
+                blocks.push(can_img);
+                this.sprites.set('blueHouse', blocks);
             }
         }
 

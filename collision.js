@@ -21,10 +21,12 @@ export function stopMoveWhenCollide(subject, obstacles, x, y, camera, canvas, sp
     subject.pos.x += x
 
     const water = sprite.sprites.get('water');
+    const bridge = sprite.sprites.get('bridge');
+
 
     intersection(subject, obstacles, obstacle => {
 
-        if (obstacle.sprite != water) {
+        if (obstacle.sprite != water && obstacle.sprite != bridge) {
             //if subject move to right
             if (x > 0) {
 
@@ -46,7 +48,7 @@ export function stopMoveWhenCollide(subject, obstacles, x, y, camera, canvas, sp
 
     intersection(subject, obstacles, obstacle => {
 
-        if (obstacle.sprite != water) {
+        if (obstacle.sprite != water && obstacle.sprite != bridge) {
 
             if (y > 0) {
 
@@ -77,10 +79,12 @@ export function stopNpcsMoveWhenCollide(subject, obstacles, x, y, sprite) {
     subject.pos.x += x
 
     const water = sprite.sprites.get('water');
+    const bridge = sprite.sprites.get('bridge');
+
 
     intersection(subject, obstacles, obstacle => {
 
-        if (obstacle.sprite != water) {
+        if (obstacle.sprite != water && obstacle.sprite != bridge) {
             //if subject move to right
             if (x > 0) {
 
@@ -105,7 +109,7 @@ export function stopNpcsMoveWhenCollide(subject, obstacles, x, y, sprite) {
 
     intersection(subject, obstacles, obstacle => {
 
-        if (obstacle.sprite != water) {
+        if (obstacle.sprite != water && obstacle.sprite != bridge) {
 
             if (y > 0) {
 

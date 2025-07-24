@@ -8,7 +8,8 @@ import Board from "./Board.js";
 import { Sprite } from "./Sprite.js";
 import Camera from "./Camera.js";
 import Npc from "./Npc.js";
-import { rotate_in_center, createPoolBg } from "./helpers.js";
+import { rotate_in_center, createPoolBg, createBlueHouse } from "./helpers.js";
+import { poolWithBridge } from "./examples.js";
 
 // Initialize CodeMirror
 //editors for the precode 
@@ -86,6 +87,8 @@ var commands = [
     "whenAttackDeleteNpc()",
     "print(text, x, y, fontSize, color)",
     "createPool(x, y)",
+    "createBlueHouse(x, y)",
+    "addBridge(x, y)",
     "getNpcPosX(npcNumber)",
     "getNpcPosY(npcNumber)",
     "isCollideWithNpc(npcNumber)",
@@ -127,6 +130,9 @@ commands.forEach(command => {
 });
 
 
+document.getElementById("e1").addEventListener("click",()=>{
+    poolWithBridge(editor1);
+});
 
 
 function cleanCode() {
@@ -210,6 +216,7 @@ sprite.set_sprites().then(() => {
     ground_sprite = sprite.sprites.get('ground');
     grass_sprite = sprite.sprites.get('grass');
     water_sprite = sprite.sprites.get('water');
+
     sword_sprite = sprite.sprites.get('sword');
 
     var sword = new Rect(0, 0, 48, 32, sword_sprite, camera);
@@ -257,6 +264,28 @@ sprite.set_sprites().then(() => {
 
     window.createPool = function (x, y) {
         createPoolBg(sprite, rectW, rectH, x, y, camera, board, player);
+    }
+
+    window.createBlueHouse = function (x, y) {
+        createBlueHouse(sprite, rectW, rectH, x, y, camera, board, player)
+    }
+
+    window.addBridge = function (x, y) {
+
+        x = Math.round(x / rectW);
+        y = Math.round(y / rectH);
+
+        if (x < 0) {
+            x = 0
+        }
+
+        if (y < 0) {
+            y = 0
+        }
+
+        let bridge_sprite = sprite.sprites.get('bridge');
+        board.setGrid(x, y, (new Rect(x * rectW, y * rectH, rectW, rectH, bridge_sprite, camera)), player.pos);
+
     }
 
     npcs.addNpc(sprite, "1player-run-1", 100, 250, 1, 0);
