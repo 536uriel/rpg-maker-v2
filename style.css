@@ -181,20 +181,32 @@ button.run-btn:hover {
   animation-duration: 3s;
 }
 
-#commends-btn{
-    background-color: #333;
-    color: rgb(186, 113, 254);
-    font-size: large;
+#commends-btn {
+  background-color: #333;
+  color: rgb(186, 113, 254);
+  font-size: large;
 }
 
-#commends-btn:hover{
-    background-color: rgb(146, 34, 251);
-    color: azure;
-    font-size: large;
+#commends-btn:hover {
+  background-color: rgb(146, 34, 251);
+  color: azure;
+  font-size: large;
+}
+
+#examples-btn {
+  background-color: #333;
+  color: rgb(139, 129, 249);
+  font-size: large;
+}
+
+#examples-btn:hover {
+  background-color: rgb(114, 102, 248);
+  color: azure;
+  font-size: large;
 }
 
 
-#commends-drop-a:hover{
+#commends-drop-a:hover {
   color: rgb(146, 34, 251);
 }
 
@@ -207,10 +219,10 @@ button.run-btn:hover {
 
 @keyframes run {
 
-  0%{
-  background-color: rgb(127, 244, 255);
-  font: 1.3rem bold;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  0% {
+    background-color: rgb(127, 244, 255);
+    font: 1.3rem bold;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 
   }
 

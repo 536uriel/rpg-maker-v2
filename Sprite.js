@@ -23,50 +23,82 @@ export class Sprite {
 
     //$this func is mainly for outer class
     async set_sprites() {
-        await this.set_ground_sprite();
-        await this.set_grass_sprite();
-        await this.set_water_sprite();
-        try {
-            await this.set_player_sprites();
 
-        } catch (error) {
-            console.log(err);
-        }
         try {
-            await this.set_player_sprites2();
+
+            await load_image(50, 50, SITE_URL + '/assets/sprites.png').then((img) => {
+
+                this.set_ground_sprite(img);
+                this.set_grass_sprite(img);
+                this.set_water_sprite(img);
+                this.set_waterPool_sprite(img);
+
+            });
+
+        } catch (err) {
+            console.log(err)
+        }
+
+
+
+        try {
+
+            await load_image(50, 50, SITE_URL + "/assets/wepons_16.png").then((img) => {
+                this.set_sword_sprite(img);
+            });
+
+        } catch (err) {
+            console.log(err)
+        }
+
+        try {
+
+            await load_image(50, 50, SITE_URL + '/assets/spr_run_strip8.png').then((img) => {
+
+                this.set_player_sprites(img);
+
+            });
+
+        } catch (err) {
+            console.log(err)
+        }
+
+        try {
+
+            await load_image(50, 50, SITE_URL + '/assets/PC Computer - Braid - Princess.png').then((img) => {
+                this.set_player_sprites3(img);
+            });
 
         } catch (err) {
             console.log(err);
         }
 
-        try {
-            await this.set_player_sprites3();
-        } catch (err) {
-            console.log(err);
-        }
+
 
         try {
-            await this.set_sword_sprite();
-        } catch (err) {
-            console.log(err);
-        }
 
-        try {
-            await this.set_waterPool_sprite();
+            await load_image(50, 50, SITE_URL + '/assets/—Pngtree—sprite sheet of the flash_5268150.png'
+            ).then((img) => {
+
+                this.set_player_sprites2(img);
+            });
+
         } catch (err) {
-            console.log(err);
+            console.log(err)
         }
 
     }
 
-    async set_waterPool_sprite() {
+
+
+    set_waterPool_sprite(img) {
 
         this.sprites.set('waterPool', []);
 
         for (let y = 8; y < 12; y++) {
             for (let x = 6; x < 9; x++) {
-                const can_img = await this.loadSprite(SITE_URL + '/assets/sprites.png', x, y, this.size_w, this.size_h);
-                
+                const can_img = this.loadSprite(img, x, y, this.size_w, this.size_h);
+
                 let blocks = this.sprites.get('waterPool');
                 blocks.push(can_img);
                 this.sprites.set('waterPool', blocks);
@@ -75,40 +107,40 @@ export class Sprite {
 
     }
 
-    async set_ground_sprite() {
-        const can_img = await this.loadSprite(SITE_URL + '/assets/sprites.png', 3, 1, this.size_w, this.size_h);
+    set_ground_sprite(img) {
+        const can_img = this.loadSprite(img, 3, 1, this.size_w, this.size_h);
         this.sprites.set('ground', can_img);
     }
 
-    async set_grass_sprite() {
-        const can_img = await this.loadSprite(SITE_URL + '/assets/sprites.png', 0, 2, this.size_w, this.size_h);
+    set_grass_sprite(img) {
+        const can_img = this.loadSprite(img, 0, 2, this.size_w, this.size_h);
         this.sprites.set('grass', can_img);
     }
 
-    async set_water_sprite() {
-        const can_img = await this.loadSprite(SITE_URL + '/assets/sprites.png', 4, 1, this.size_w, this.size_h);
+    set_water_sprite(img) {
+        const can_img = this.loadSprite(img, 4, 1, this.size_w, this.size_h);
         this.sprites.set('water', can_img);
     }
 
-    async set_sword_sprite() {
-        const sword_img = await this.loadSprite(SITE_URL + "/assets/wepons_16.png", 0, 21, this.size_w, this.size_h);
+    set_sword_sprite(img) {
+        const sword_img = this.loadSprite(img, 0, 21, this.size_w, this.size_h);
         this.sprites.set("sword", sword_img);
     }
 
 
-    async set_player_sprites() {
+    set_player_sprites(img) {
         //tile size..
         let tsize = 8
-        const player_run_1 = await this.loadSprite_preciclly(SITE_URL + '/assets/spr_run_strip8.png',
+        const player_run_1 = this.loadSprite_preciclly(img,
             5 * tsize - 1, 3 * tsize - 1, tsize * 2 + 2, tsize * 2);
 
-        const player_run_2 = await this.loadSprite_preciclly(SITE_URL + '/assets/spr_run_strip8.png',
+        const player_run_2 = this.loadSprite_preciclly(img,
             17 * tsize - 1, 3 * tsize - 1, tsize * 2 + 2, tsize * 2);
 
-        const player_run_3 = await this.loadSprite_preciclly(SITE_URL + '/assets/spr_run_strip8.png',
+        const player_run_3 = this.loadSprite_preciclly(img,
             29 * tsize - 1, 3 * tsize - 1, tsize * 2 + 2, tsize * 2);
 
-        const player_run_4 = await this.loadSprite_preciclly(SITE_URL + '/assets/spr_run_strip8.png',
+        const player_run_4 = this.loadSprite_preciclly(img,
             41 * tsize, 3 * tsize - 3, tsize * 2, tsize * 2);
 
 
@@ -119,19 +151,45 @@ export class Sprite {
     }
 
 
-    async set_player_sprites3() {
 
 
-        const player_run_1 = await this.loadSprite_preciclly(SITE_URL + '/assets/PC Computer - Braid - Princess.png',
+    set_player_sprites2(img) {
+        //tile size..
+        let tsize = 16
+        const space_between = tsize * 30;
+        const player_run_1 = this.loadSprite_preciclly(img,
+            16 * tsize, 15 * tsize, tsize * 42, tsize * 42);
+
+        const player_run_2 = this.loadSprite_preciclly(img,
+            space_between + (tsize * 42), 15 * tsize, tsize * 42, tsize * 50);
+
+        const player_run_3 = this.loadSprite_preciclly(img,
+            space_between * 2 + (tsize * 42) * 1.5, 15 * tsize, tsize * 42, tsize * 48);
+
+        const player_run_4 = this.loadSprite_preciclly(img,
+            20 * tsize, 25 * tsize + (tsize * 42), tsize * 42, tsize * 46);
+
+
+        this.sprites.set('2player-run-1', player_run_1);
+        this.sprites.set('2player-run-2', player_run_2);
+        this.sprites.set('2player-run-3', player_run_3);
+        this.sprites.set('2player-run-4', player_run_4);
+    }
+
+
+    set_player_sprites3(img) {
+
+
+        const player_run_1 = this.loadSprite_preciclly(img,
             970, 160, 120, 140);
 
-        const player_run_2 = await this.loadSprite_preciclly(SITE_URL + '/assets/PC Computer - Braid - Princess.png',
+        const player_run_2 = this.loadSprite_preciclly(img,
             1090, 160, 120, 140);
 
-        const player_run_3 = await this.loadSprite_preciclly(SITE_URL + '/assets/PC Computer - Braid - Princess.png',
+        const player_run_3 = this.loadSprite_preciclly(img,
             1220, 160, 120, 140);
 
-        const player_run_4 = await this.loadSprite_preciclly(SITE_URL + '/assets/PC Computer - Braid - Princess.png',
+        const player_run_4 = this.loadSprite_preciclly(img,
             1350, 160, 120, 140);
 
 
@@ -141,29 +199,6 @@ export class Sprite {
         this.sprites.set('3player-run-4', player_run_4);
     }
 
-
-    async set_player_sprites2() {
-        //tile size..
-        let tsize = 16
-        const space_between = tsize * 30;
-        const player_run_1 = await this.loadSprite_preciclly(SITE_URL + '/assets/—Pngtree—sprite sheet of the flash_5268150.png',
-            16 * tsize, 15 * tsize, tsize * 42, tsize * 42);
-
-        const player_run_2 = await this.loadSprite_preciclly(SITE_URL + '/assets/—Pngtree—sprite sheet of the flash_5268150.png',
-            space_between + (tsize * 42), 15 * tsize, tsize * 42, tsize * 50);
-
-        const player_run_3 = await this.loadSprite_preciclly(SITE_URL + '/assets/—Pngtree—sprite sheet of the flash_5268150.png',
-            space_between * 2 + (tsize * 42) * 1.5, 15 * tsize, tsize * 42, tsize * 48);
-
-        const player_run_4 = await this.loadSprite_preciclly(SITE_URL + '/assets/—Pngtree—sprite sheet of the flash_5268150.png',
-            20 * tsize, 25 * tsize + (tsize * 42), tsize * 42, tsize * 46);
-
-
-        this.sprites.set('2player-run-1', player_run_1);
-        this.sprites.set('2player-run-2', player_run_2);
-        this.sprites.set('2player-run-3', player_run_3);
-        this.sprites.set('2player-run-4', player_run_4);
-    }
 
 
     //$this func is mainly for outer class
@@ -195,43 +230,36 @@ export class Sprite {
         return routeFrames(characterStr, this.sprites, dist, frame_dist, frames_len);
     }
 
-    loadSprite_preciclly(src, cut_from_x, cut_from_y,
+    loadSprite_preciclly(img, cut_from_x, cut_from_y,
         tile_size_w, tile_size_h) {
-        return new Promise((res, rej) => {
-            load_image(50, 50, src).then((img) => {
 
-                let newCanvasElement = document.createElement("canvas");
-                newCanvasElement.width = tile_size_w;
-                newCanvasElement.height = tile_size_h;
-                let temp_ctx = newCanvasElement.getContext("2d");
-                temp_ctx.drawImage(img, cut_from_x,
-                    cut_from_y, tile_size_w, tile_size_h,
-                    0, 0, tile_size_w, tile_size_h);
 
-                res(newCanvasElement);
 
-            });
-        })
+        let newCanvasElement = document.createElement("canvas");
+        newCanvasElement.width = tile_size_w;
+        newCanvasElement.height = tile_size_h;
+        let temp_ctx = newCanvasElement.getContext("2d");
+        temp_ctx.drawImage(img, cut_from_x,
+            cut_from_y, tile_size_w, tile_size_h,
+            0, 0, tile_size_w, tile_size_h);
+
+        return newCanvasElement;
 
     }
 
-    loadSprite(src, cut_from_tile_x, cut_from_tile_y, canvas_w, canvas_h,
+    loadSprite(img, cut_from_tile_x, cut_from_tile_y, canvas_w, canvas_h,
         tile_size_w = this.tile_size_w, tile_size_h = this.tile_size_h) {
-        return new Promise((res, rej) => {
-            load_image(50, 50, src).then((img) => {
 
-                let newCanvasElement = document.createElement("canvas");
-                newCanvasElement.width = canvas_w;
-                newCanvasElement.height = canvas_h;
-                let temp_ctx = newCanvasElement.getContext("2d");
-                temp_ctx.drawImage(img, cut_from_tile_x * tile_size_w,
-                    cut_from_tile_y * tile_size_h, tile_size_w, tile_size_h,
-                    0, 0, canvas_w, canvas_h);
 
-                res(newCanvasElement);
+        let newCanvasElement = document.createElement("canvas");
+        newCanvasElement.width = canvas_w;
+        newCanvasElement.height = canvas_h;
+        let temp_ctx = newCanvasElement.getContext("2d");
+        temp_ctx.drawImage(img, cut_from_tile_x * tile_size_w,
+            cut_from_tile_y * tile_size_h, tile_size_w, tile_size_h,
+            0, 0, canvas_w, canvas_h);
 
-            });
-        })
+        return newCanvasElement;
 
     }
 

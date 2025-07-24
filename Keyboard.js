@@ -23,8 +23,15 @@ export default class keyboard {
     }
 
     static set_player(keyboard, entity) {
-        //ENTER -> attack
+        //(key): ENTER -> attack
         keyboard.addKey(13, function (state) {
+            if (state == 'keydown') {
+                entity.attack();
+            }
+        })
+
+        //(key): 0 -> attack
+        keyboard.addKey(48, function (state) {
             if (state == 'keydown') {
                 entity.attack();
             }
