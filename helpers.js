@@ -1,3 +1,5 @@
+import Rect from "./Rect.js";
+
 //rotate object in his center
 export function rotate_in_center(ctx, rect, deg) {
 
@@ -38,7 +40,29 @@ export function dist(ob1, ob2) {
     return Math.sqrt((ob1.x - ob2.x) ^ 2 + (ob1.y - ob2.y) ^ 2);
 }
 
-export function frame_ivvesabilty_animation(rect){
+export function createPoolBg(spriteSheet, blockWidth, blockHeight, poolX, poolY, camera, board, player) {
+    const sprites = spriteSheet.sprites.get('waterPool');
+
+    poolX = Math.round(poolX / blockWidth);
+    poolY = Math.round(poolY / blockHeight);
+
+    if (poolX < 0) {
+        poolX = 0
+    }
+
+    if (poolY < 0) {
+        poolY = 0
+    }
+
+    let i = 0;
+
+
+    for (let y = poolY; y < poolY + 4; y++) {
+        for (let x = poolX; x < poolX + 3; x++) {
+            board.setGrid(x, y, (new Rect(x * blockWidth, y * blockHeight, blockWidth, blockHeight, sprites[i], camera)), player.pos);
+
+            i++;
+        }
+    }
 
 }
-

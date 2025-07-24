@@ -8,7 +8,7 @@ import Board from "./Board.js";
 import { Sprite } from "./Sprite.js";
 import Camera from "./Camera.js";
 import Npc from "./Npc.js";
-import { rotate_in_center } from "./helpers.js";
+import { rotate_in_center, createPoolBg } from "./helpers.js";
 
 // Initialize CodeMirror
 //editors for the precode 
@@ -83,21 +83,17 @@ var commands = [
     "nextBlock()",
     "addNpc(x, y, speedx, speedy)",
     "setNpc(npcNumber, x, y, speedx, speedy)",
+    "whenAttackDeleteNpc()",
+    "print(text, x, y, fontSize, color)",
+    "createPool(x, y)",
     "getNpcPosX(npcNumber)",
     "getNpcPosY(npcNumber)",
     "isCollideWithNpc(npcNumber)",
     "isCollideWithAnyNpcs()",
-    "isSworAttcksNpcs()",
+    "isSwordAttcksNpcs()",
     "deleteNpc(npcNumber)",
     "player.pos.x = 200",
-    "player.pos.y = 200",
-    "print(text, x, y, fontSize, color)",
-    `
-num = isSworAttcksNpcs()
-if(num != -1){
-  deleteNpc(num)
-}
-    `
+    "player.pos.y = 200"
 ]
 
 var clist = document.getElementById("commands");
@@ -259,6 +255,10 @@ sprite.set_sprites().then(() => {
 
     let drawBackground = board.createBackground(ground_sprite, rects_pos, rectW, rectH, camera, canvas, levelSizeWidth, levelSizeHeight);
 
+    window.createPool = function (x, y) {
+        createPoolBg(sprite, rectW, rectH, x, y, camera, board, player);
+    }
+
     npcs.addNpc(sprite, "1player-run-1", 100, 250, 1, 0);
     var drawNpcsLayer = npcs.createNpcsLayer(board.backgroundWidth, board.backgroundHeight);
 
@@ -355,6 +355,13 @@ sprite.set_sprites().then(() => {
         board.setGrid(x, y, (new Rect(x * rectW, y * rectH, rectW, rectH, squere_sprite, camera)), player.pos);
     }
 
+    window.whenAttackDeleteNpc = function () {
+        let num = window.isSwordAttcksNpcs()
+        if (num != -1) {
+            window.deleteNpc(num)
+        }
+    }
+
 
     timer.update = function (deltaTime) {
         ctx.clearRect(0, 0, canvas.width * 4, canvas.height * 4)
@@ -419,7 +426,7 @@ sprite.set_sprites().then(() => {
         }
 
 
-        window.isSworAttcksNpcs = function () {
+        window.isSwordAttcksNpcs = function () {
 
             for (let i = 0; i < npcs.rects.length; i++) {
                 if (overlap(sword, npcs.rects[i]) && sword.attack) {

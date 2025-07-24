@@ -51,6 +51,28 @@ export class Sprite {
             console.log(err);
         }
 
+        try {
+            await this.set_waterPool_sprite();
+        } catch (err) {
+            console.log(err);
+        }
+
+    }
+
+    async set_waterPool_sprite() {
+
+        this.sprites.set('waterPool', []);
+
+        for (let y = 8; y < 12; y++) {
+            for (let x = 6; x < 9; x++) {
+                const can_img = await this.loadSprite(SITE_URL + '/assets/sprites.png', x, y, this.size_w, this.size_h);
+                
+                let blocks = this.sprites.get('waterPool');
+                blocks.push(can_img);
+                this.sprites.set('waterPool', blocks);
+            }
+        }
+
     }
 
     async set_ground_sprite() {
