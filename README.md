@@ -1,10 +1,6 @@
-
-
-A tool app to help young age studants to learn code easally and get them to enter the world of programming with javascript language.
+A tool app (V2) to help young age studants to learn code easally and get them to enter the world of programming with javascript language.
 
 this app is a client side only and mainly contains prapered commands to build rpg game with js with ease.
-
-
 
 Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)
 
