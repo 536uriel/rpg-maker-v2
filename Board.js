@@ -26,6 +26,16 @@ export default class Board {
         return this.grid[y][x];
     }
 
+    clearGrid() {
+
+        this.grid.forEach(row => {
+            row.length = 0;
+        });
+
+        this.ctxBackground.clearRect(0, 0, this.backgroundWidth, this.backgroundHeight);
+
+    }
+
     iterateGrid(func) {
         this.grid.forEach(row => {
             row.forEach(col => {
@@ -59,6 +69,8 @@ export default class Board {
         backgroundSprite.height = levelSizeHeight;
         let ctxBackground = backgroundSprite.getContext('2d');
 
+        this.ctxBackground = ctxBackground;
+
 
         for (let row = 0; row < this.grid.length; row++) {
 
@@ -68,7 +80,7 @@ export default class Board {
 
             for (let col = 0; col < this.grid[row].length; col++) {
 
-                
+
 
                 for (let i = 0; i < rects.length; i++) {
                     if (rects[i][0] == row && rects[i][1] == col) {

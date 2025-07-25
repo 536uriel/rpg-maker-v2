@@ -89,6 +89,7 @@ var commands = [
     "createPool(x, y)",
     "createBlueHouse(x, y)",
     "addBridge(x, y)",
+    "clearBackground()",
     "getNpcPosX(npcNumber)",
     "getNpcPosY(npcNumber)",
     "isCollideWithNpc(npcNumber)",
@@ -130,7 +131,7 @@ commands.forEach(command => {
 });
 
 
-document.getElementById("e1").addEventListener("click",()=>{
+document.getElementById("e1").addEventListener("click", () => {
     poolWithBridge(editor1);
 });
 
@@ -261,6 +262,10 @@ sprite.set_sprites().then(() => {
     ]
 
     let drawBackground = board.createBackground(ground_sprite, rects_pos, rectW, rectH, camera, canvas, levelSizeWidth, levelSizeHeight);
+
+    window.clearBackground = function () {
+        board.clearGrid();
+    }
 
     window.createPool = function (x, y) {
         createPoolBg(sprite, rectW, rectH, x, y, camera, board, player);
