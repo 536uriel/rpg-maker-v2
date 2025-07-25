@@ -1,0 +1,9 @@
+Copyright (c) 2025 AHARON URIEL BRAVERMAN
+
+Permission is hereby granted to any person to use, copy, modify, or distribute this software for non-commercial and non-financial purposes only, under the following conditions:
+
+1. The software may not be sold or used in any product or service that is monetized.
+2. The software may not be used in any financial or fintech application.
+3. Proper credit must be given to the original author.
+
+Any commercial or financial use of this software without explicit written permission is prohibited.
