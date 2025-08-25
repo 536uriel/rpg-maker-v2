@@ -90,6 +90,7 @@ var commands = [
     "createBlueHouse(x, y)",
     "addBridge(x, y)",
     "clearBackground()",
+    "bg(color)",
     "getNpcPosX(npcNumber)",
     "getNpcPosY(npcNumber)",
     "isCollideWithNpc(npcNumber)",
@@ -262,6 +263,10 @@ sprite.set_sprites().then(() => {
     ]
 
     let drawBackground = board.createBackground(ground_sprite, rects_pos, rectW, rectH, camera, canvas, levelSizeWidth, levelSizeHeight);
+
+    window.bg = function (color) {
+        document.getElementById("screen").style.backgroundColor = color;
+    }
 
     window.clearBackground = function () {
         board.clearGrid();
