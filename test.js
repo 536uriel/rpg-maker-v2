@@ -9,7 +9,7 @@ import { Sprite } from "./Sprite.js";
 import Camera from "./Camera.js";
 import Npc from "./Npc.js";
 import { rotate_in_center, createPoolBg, createBlueHouse } from "./helpers.js";
-import { poolWithBridge } from "./examples.js";
+import { poolWithBridge, example2 } from "./examples.js";
 
 // Initialize CodeMirror
 //editors for the precode 
@@ -91,6 +91,7 @@ var commands = [
     "addBridge(x, y)",
     "clearBackground()",
     "bg(color)",
+    "getNpcsLen()",
     "getNpcPosX(npcNumber)",
     "getNpcPosY(npcNumber)",
     "isCollideWithNpc(npcNumber)",
@@ -134,6 +135,10 @@ commands.forEach(command => {
 
 document.getElementById("e1").addEventListener("click", () => {
     poolWithBridge(editor1);
+});
+
+document.getElementById("e2").addEventListener("click", () => {
+    example2(editor1, editor2);
 });
 
 
@@ -298,6 +303,7 @@ sprite.set_sprites().then(() => {
 
     }
 
+
     npcs.addNpc(sprite, "1player-run-1", 100, 250, 1, 0);
     var drawNpcsLayer = npcs.createNpcsLayer(board.backgroundWidth, board.backgroundHeight);
 
@@ -316,6 +322,8 @@ sprite.set_sprites().then(() => {
         ctx.fillText(text, x, y);
     }
 
+
+    window.getNpcsLen = function () { return npcs.rects.length; }
 
     window.addNpc = function (x, y, speedx, speedy) {
         npcs.addNpc(sprite, "1player-run-1", x, y, speedx, speedy);
