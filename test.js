@@ -275,6 +275,12 @@ sprite.set_sprites().then(() => {
 
     window.clearBackground = function () {
         board.clearGrid();
+        if (window.deleteNpc && npcs.rects.length > 0) {
+            npcs.rects.forEach((n, i) => {
+                window.deleteNpc(i);
+            });
+
+        }
     }
 
     window.createPool = function (x, y) {
