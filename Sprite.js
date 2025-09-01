@@ -33,6 +33,8 @@ export class Sprite {
                 this.set_water_sprite(img);
                 this.set_waterPool_sprite(img);
                 this.set_blueHouse_sprite(img);
+                this.set_orangeHouse_sprite(img);
+                this.set_redHouse_sprite(img);
                 this.set_bridge_sprite(img);
 
             });
@@ -125,6 +127,38 @@ export class Sprite {
                 let blocks = this.sprites.get('blueHouse');
                 blocks.push(can_img);
                 this.sprites.set('blueHouse', blocks);
+            }
+        }
+
+    }
+
+    set_orangeHouse_sprite(img) {
+
+        this.sprites.set('orangeHouse', []);
+
+        for (let y = 6; y < 8; y++) {
+            for (let x = 51; x < 53; x++) {
+                const can_img = this.loadSprite(img, x, y, this.size_w, this.size_h);
+
+                let blocks = this.sprites.get('orangeHouse');
+                blocks.push(can_img);
+                this.sprites.set('orangeHouse', blocks);
+            }
+        }
+
+    }
+
+    set_redHouse_sprite(img) {
+
+        this.sprites.set('redHouse', []);
+
+        for (let y = 16; y < 18; y++) {
+            for (let x = 51; x < 53; x++) {
+                const can_img = this.loadSprite(img, x, y, this.size_w, this.size_h);
+
+                let blocks = this.sprites.get('redHouse');
+                blocks.push(can_img);
+                this.sprites.set('redHouse', blocks);
             }
         }
 

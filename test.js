@@ -8,7 +8,7 @@ import Board from "./Board.js";
 import { Sprite } from "./Sprite.js";
 import Camera from "./Camera.js";
 import Npc from "./Npc.js";
-import { rotate_in_center, createPoolBg, createBlueHouse } from "./helpers.js";
+import { rotate_in_center, createPoolBg, createBlueHouse, createOrangeHouse, createRedHouse } from "./helpers.js";
 import { poolWithBridge, example2, example3 } from "./examples.js";
 
 // Initialize CodeMirror
@@ -89,6 +89,8 @@ var commands = [
     "print(text, x, y, fontSize, color)",
     "createPool(x, y)",
     "createBlueHouse(x, y)",
+    "createOrangeHouse(x, y)",
+    "createRedHouse(x, y)",
     "addBridge(x, y)",
     "clearBackground()",
     "bg(color)",
@@ -295,6 +297,15 @@ sprite.set_sprites().then(() => {
     window.createBlueHouse = function (x, y) {
         createBlueHouse(sprite, rectW, rectH, x, y, camera, board, player)
     }
+
+    window.createOrangeHouse = function (x, y) {
+        createOrangeHouse(sprite, rectW, rectH, x, y, camera, board, player)
+    }
+
+    window.createRedHouse = function (x, y) {
+        createRedHouse(sprite, rectW, rectH, x, y, camera, board, player)
+    }
+
 
     window.addBridge = function (x, y) {
 

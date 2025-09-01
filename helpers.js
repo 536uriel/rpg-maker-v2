@@ -95,3 +95,57 @@ export function createBlueHouse(spriteSheet, blockWidth, blockHeight, hx, hy, ca
 
 }
 
+export function createOrangeHouse(spriteSheet, blockWidth, blockHeight, hx, hy, camera, board, player) {
+    const sprites = spriteSheet.sprites.get('orangeHouse');
+
+    hx = Math.round(hx / blockWidth);
+    hy = Math.round(hy / blockHeight);
+
+    if (hx < 0) {
+        hx = 0
+    }
+
+    if (hy < 0) {
+        hy = 0
+    }
+
+    let i = 0;
+
+
+    for (let y = hy; y < hy + 2; y++) {
+        for (let x = hx; x < hx + 2; x++) {
+            board.setGrid(x, y, (new Rect(x * blockWidth, y * blockHeight, blockWidth, blockHeight, sprites[i], camera)), player.pos);
+
+            i++;
+        }
+    }
+
+}
+
+export function createRedHouse(spriteSheet, blockWidth, blockHeight, hx, hy, camera, board, player) {
+    const sprites = spriteSheet.sprites.get('redHouse');
+
+    hx = Math.round(hx / blockWidth);
+    hy = Math.round(hy / blockHeight);
+
+    if (hx < 0) {
+        hx = 0
+    }
+
+    if (hy < 0) {
+        hy = 0
+    }
+
+    let i = 0;
+
+
+    for (let y = hy; y < hy + 2; y++) {
+        for (let x = hx; x < hx + 2; x++) {
+            board.setGrid(x, y, (new Rect(x * blockWidth, y * blockHeight, blockWidth, blockHeight, sprites[i], camera)), player.pos);
+
+            i++;
+        }
+    }
+
+}
+
