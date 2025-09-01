@@ -19,9 +19,26 @@ addNpc(x, y, 0, 0)
 addNpc(100, 100, 2, 0)
 
 createPool(350, 100)
+createPool(500, 100)
+
 addBridge(350, 200)
 addBridge(400, 200)
 addBridge(450, 200)
+
+addBridge(500, 200)
+addBridge(550, 200)
+addBridge(550, 250)
+addBridge(600, 200)
+
+
+createBlueHouse(350,300)
+createOrangeHouse(450,300)
+createRedHouse(600,300)
+
+addBridge(550, 300)
+addBridge(550, 350)
+
+bg("LightGreen")
 
 `
   editor1.setValue(editor1.getValue() + "\n" + c1);
