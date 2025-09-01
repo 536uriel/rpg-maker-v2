@@ -84,6 +84,7 @@ var commands = [
     "nextBlock()",
     "addNpc(x, y, speedx, speedy)",
     "setNpc(npcNumber, x, y, speedx, speedy)",
+    "setNpcCostume(npcNumber, costumeNum)",
     "whenAttackDeleteNpc()",
     "print(text, x, y, fontSize, color)",
     "createPool(x, y)",
@@ -335,8 +336,15 @@ sprite.set_sprites().then(() => {
 
     window.getNpcsLen = function () { return npcs.rects.length; }
 
-    window.addNpc = function (x, y, speedx, speedy) {
-        npcs.addNpc(sprite, "1player-run-1", x, y, speedx, speedy);
+    window.addNpc = function (x, y, speedx, speedy, npcCostume = 1) {
+        npcs.addNpc(sprite, npcCostume + "player-run-1", x, y, speedx, speedy, npcCostume);
+    }
+
+    window.setNpcCostume = function (npcNumber, costumeNum) {
+        //to prevent errors -> for new there is only 3 costumes!!
+        if (costumeNum >= 1 && costumeNum <= 3) {
+            npcs.rects[npcNumber].costume = costumeNum;
+        }
     }
 
     window.setNpc = function (npcNumber, x, y, speedx, speedy) {
