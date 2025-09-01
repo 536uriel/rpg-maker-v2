@@ -9,7 +9,7 @@ import { Sprite } from "./Sprite.js";
 import Camera from "./Camera.js";
 import Npc from "./Npc.js";
 import { rotate_in_center, createPoolBg, createBlueHouse } from "./helpers.js";
-import { poolWithBridge, example2 } from "./examples.js";
+import { poolWithBridge, example2, example3 } from "./examples.js";
 
 // Initialize CodeMirror
 //editors for the precode 
@@ -139,6 +139,10 @@ document.getElementById("e1").addEventListener("click", () => {
 
 document.getElementById("e2").addEventListener("click", () => {
     example2(editor1, editor2);
+});
+
+document.getElementById("e3").addEventListener("click", () => {
+    example3(editor1, editor2);
 });
 
 
@@ -336,19 +340,19 @@ sprite.set_sprites().then(() => {
     }
 
     window.setNpc = function (npcNumber, x, y, speedx, speedy) {
-        npcs.rects[npcNumber].x = x;
-        npcs.rects[npcNumber].y = y;
+        npcs.rects[npcNumber].pos.x = x;
+        npcs.rects[npcNumber].pos.y = y;
         npcs.rects[npcNumber].velocity.x = speedx;
         npcs.rects[npcNumber].velocity.y = speedy;
 
     }
 
     window.getNpcPosX = function (npcNumber) {
-        return npcs.rects[npcNumber].x;
+        return npcs.rects[npcNumber].pos.x;
     }
 
     window.getNpcPosY = function (npcNumber) {
-        return npcs.rects[npcNumber].y;
+        return npcs.rects[npcNumber].pos.y;
     }
 
     window.nextCustume = function nextCustume() {
