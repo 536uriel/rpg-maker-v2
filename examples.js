@@ -59,6 +59,9 @@ if(y > 200){
   sy = 0
 }
 
+print("p1", player.x , player.y , 20, "blue")
+print("e1", x - player.pos.x + player.x, y - player.pos.y  + player.y, 20, "red")
+
 whenAttackDeleteNpc()
 if(getNpcsLen() < 1){
 x = 100
@@ -67,7 +70,6 @@ sx = 1
 sy
 addNpc(x, y, 0, 0)
 }
-
     `
 
   editor2.setValue(editor2.getValue() + "\n" + c2);
