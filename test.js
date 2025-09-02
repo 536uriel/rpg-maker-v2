@@ -9,7 +9,7 @@ import { Sprite } from "./Sprite.js";
 import Camera from "./Camera.js";
 import Npc from "./Npc.js";
 import { rotate_in_center, createPoolBg, createBlueHouse, createOrangeHouse, createRedHouse } from "./helpers.js";
-import { poolWithBridge, example2, example3 } from "./examples.js";
+import { poolWithBridge, example2, example3, example4 } from "./examples.js";
 
 // Initialize CodeMirror
 //editors for the precode 
@@ -102,7 +102,8 @@ var commands = [
     "isSwordAttcksNpcs()",
     "deleteNpc(npcNumber)",
     "player.pos.x = 200",
-    "player.pos.y = 200"
+    "player.pos.y = 200",
+    "isBlocksCollideWithAnyNpcs()"
 ]
 
 var clist = document.getElementById("commands");
@@ -146,6 +147,10 @@ document.getElementById("e2").addEventListener("click", () => {
 
 document.getElementById("e3").addEventListener("click", () => {
     example3(editor1, editor2);
+});
+
+document.getElementById("e4").addEventListener("click", () => {
+    example4(editor1, editor2);
 });
 
 
@@ -494,6 +499,30 @@ sprite.set_sprites().then(() => {
             for (let i = 0; i < npcs.rects.length; i++) {
                 if (overlap(player, npcs.rects[i])) {
                     return true;
+                }
+            }
+
+            return false;
+
+        }
+
+        window.isBlocksCollideWithAnyNpcs = function () {
+
+            const tmpRects = board.getAllSubjectsFromGrid();
+
+            for (let i = 0; i < tmpRects.length; i++) {
+                for (let j = 0; j < npcs.rects.length; j++) {
+                    try {
+                        if (overlap(npcs.rects[j], tmpRects[i])
+                            && tmpRects[i].sprite != sprite.sprites.get("bridge")
+                            && tmpRects[i].sprite != sprite.sprites.get("water")) {
+                            return true;
+                        }
+                    } catch (err) {
+                        console.log(err);
+                        return false;
+                    }
+
                 }
             }
 
