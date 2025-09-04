@@ -10,19 +10,28 @@ bg("DeepSkyBlue")`;
 
 
 export function example2(editor1, editor2) {
-  const c1 = `
-createPool(350, 100)
-addBridge(350, 200)
-addBridge(400, 200)
-addBridge(450, 200)
-addBridge(350,150)        /* הוסף גשר */
+  const c1 = `clearBackground()      /* נקה רקע */
 
-addUpstairs(450,300)     /* הוסף מדרגות למעלה */
+createBlueWall(250,50, 1,1)     /* הוסף קיר כחול */
+createBlueWall(300,50, 1,1)     /* הוסף קיר כחול */
+createBlueWall(350,100, 1,1)     /* הוסף קיר כחול */
+createBlueWall(350,50, 1,1)     /* הוסף קיר כחול */
+createBlueWall(350,150, 1,1)     /* הוסף קיר כחול */
+createBlueWall(350,200, 1,1)     /* הוסף קיר כחול */
+createBlueWall(300,200, 1,1)     /* הוסף קיר כחול */
+createBlueWall(250,200, 1,1)     /* הוסף קיר כחול */
+
+createFloor(250,100, 1,1)        /* הוסף רצפה */
+createFloor(250,150, 1,1)        /* הוסף רצפה */
+createFloor(300,100, 1,1)        /* הוסף רצפה */
+createFloor(300,150, 1,1)        /* הוסף רצפה */
+
+addUpstairs(300,100)     /* הוסף מדרגות למעלה */
+
 
 addThisLevel()
 
 clearBackground()      /* נקה רקע */
-
 
 
 x = 100
@@ -61,8 +70,6 @@ addThisLevel()
 
 clearBackground()      /* נקה רקע */
 
-
-
 drawLevelBlocksByNumber(0)
 
 player.level = 0      /* מספר שלב של השחקן */
@@ -88,7 +95,9 @@ if(isCollideWithDownstairs()){
   drawLevelBlocksByNumber(player.level)
 }  
   
-showCurrentLevel(x, y, fontSize = 30, color = 'black');
+showCurrentLevel(x, y, fontSize = 25, color = 'purple');
+
+if(player.level == 0){ bg("Tan")}else{bg("LightGreen")}
 `
 
   editor2.setValue(editor2.getValue() + "\n" + c2);
