@@ -107,7 +107,11 @@ var commands = [
     "player.pos.y = 200     /* מיקום שחקן בגובה */",
     "isBlocksCollideWithAnyNpcs()",
     "isCollideWithUpstairs()        /* האם השחקן נוגע במדרגה למעלה */",
-    "isCollideWithDownstairs()      /* האם השחקן נוגע במדרגה למטה */"
+    "isCollideWithDownstairs()      /* האם השחקן נוגע במדרגה למטה */",
+    "addThisLevel()",
+    "deleteLastLevel()",
+    "drawLevelBlocksByNumber(n)",
+    "showCurrentLevel(x, y, fontSize = 30, color = 'black')"
 ]
 
 var clist = document.getElementById("commands");
@@ -159,8 +163,10 @@ document.getElementById("e4").addEventListener("click", () => {
 
 
 function cleanCode() {
-    editor1.setValue("");
+    editor1.setValue(`clearBackground()      /* נקה רקע */
+bg("aliceblue")     /* צבע רקע בצבע */`);
     editor2.setValue("");
+    
 }
 
 
@@ -235,6 +241,7 @@ var npcs = new Npc();
 var upstairsArray = [];
 var downstairsArray = [];
 
+var levels = [];
 
 
 sprite.set_sprites().then(() => {
@@ -257,6 +264,7 @@ sprite.set_sprites().then(() => {
     player.velocity = { x: 0, y: 0 };
     player.pos = { x: 200, y: 200 };
     player.gravity = 0;
+    player.level = 0;
 
     player.attack = function () {
         sword.x = this.r;
@@ -296,13 +304,58 @@ sprite.set_sprites().then(() => {
         board.clearGrid();
         upstairsArray.length = 0;
         downstairsArray.length = 0;
-        
+
         if (window.deleteNpc && npcs.rects.length > 0) {
             npcs.rects.forEach((n, i) => {
                 window.deleteNpc(i);
             });
 
         }
+    }
+
+    window.addThisLevel = function () {
+        levels.push(board.getAllSubjectsFromGrid());
+    }
+
+    window.deleteLastLevel = function () {
+        if (levels.length > 0) {
+            levels.pop();
+        }
+    }
+
+    window.rectWithSprite = function rect(x, y, rect_sprite) {
+
+        x = Math.round(x / rectW);
+        y = Math.round(y / rectH);
+
+        if (x < 0) {
+            x = 0
+        }
+
+        if (y < 0) {
+            y = 0
+        }
+
+        board.setGrid(x, y, (new Rect(x * rectW, y * rectH, rectW, rectH, rect_sprite, camera)), player.pos);
+    }
+
+    window.drawLevelBlocksByNumber = function (levelNum) {
+        if (levelNum >= 0 && levelNum < levels.length) {
+
+            board.clearGrid();
+            levels[levelNum].forEach(rect => {
+               
+                if (rect != undefined) {
+                    window.rectWithSprite(rect.x, rect.y, rect.sprite);
+                }
+            });
+
+        }
+
+    }
+
+    window.showCurrentLevel = function (x, y, fontSize = 30, color = "black") {
+        window.print("קומה מספר: " + window.player.level, x, y, fontSize, color);
     }
 
     window.createPool = function (x, y) {
@@ -492,7 +545,7 @@ sprite.set_sprites().then(() => {
     }
 
     window.rect = function rect(x, y) {
-        console.log("run rect")
+        
         x = Math.round(x / rectW);
         y = Math.round(y / rectH);
 
