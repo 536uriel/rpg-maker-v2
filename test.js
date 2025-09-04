@@ -97,6 +97,8 @@ var commands = [
     "addUpstairs(x, y)     /* הוסף מדרגות למעלה */",
     "addDownstairs(x, y)       /* הוסף מדרגות למטה */",
     "createBlueWall(x, y, 2, 4)     /* הוסף קיר כחול */",
+    "createFloor(x, y, 3, 3)        /* הוסף רצפה */",
+    "addShelf(x, y)     /* הוסף מדף */",
     "getNpcsLen()",
     "getNpcPosX(npcNumber)",
     "getNpcPosY(npcNumber)",
@@ -349,6 +351,38 @@ sprite.set_sprites().then(() => {
 
         }
 
+    }
+
+    window.addShelf = function (x, y) {
+        x = Math.round(x / rectW);
+        y = Math.round(y / rectH);
+
+        if (x < 0) {
+            x = 0
+        }
+
+        if (y < 0) {
+            y = 0
+        }
+
+        let shelf_sprite = sprite.sprites.get('shelf');
+        board.setGrid(x, y, (new Rect(x * rectW, y * rectH, rectW, rectH, shelf_sprite, camera)), player.pos);
+    }
+
+    window.createFloor = function (x, y, size_w, size_h) {
+        x = Math.round(x / rectW);
+        y = Math.round(y / rectH);
+
+        if (x < 0) {
+            x = 0
+        }
+
+        if (y < 0) {
+            y = 0
+        }
+
+        let floor_sprite = sprite.sprites.get('floor');
+        board.setGrid(x, y, (new Rect(x * rectW, y * rectH, rectW * size_w, rectH * size_h, floor_sprite, camera)), player.pos);
     }
 
     window.createBlueWall = function (x, y, size_w, size_h) {

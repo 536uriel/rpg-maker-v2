@@ -24,12 +24,12 @@ export function stopMoveWhenCollide(subject, obstacles, x, y, camera, canvas, sp
     const bridge = sprite.sprites.get('bridge');
     const upstairs = sprite.sprites.get("upstairs");
     const downstairs = sprite.sprites.get("downstairs");
-
+    const floor = sprite.sprites.get("floor");
 
 
     intersection(subject, obstacles, obstacle => {
 
-        if (obstacle.sprite != water && obstacle.sprite != bridge && obstacle.sprite != upstairs && obstacle.sprite != downstairs) {
+        if (obstacle.sprite != water && obstacle.sprite != bridge && obstacle.sprite != upstairs && obstacle.sprite != downstairs && obstacle.sprite != floor) {
             //if subject move to right
             if (x > 0) {
 
@@ -51,7 +51,7 @@ export function stopMoveWhenCollide(subject, obstacles, x, y, camera, canvas, sp
 
     intersection(subject, obstacles, obstacle => {
 
-        if (obstacle.sprite != water && obstacle.sprite != bridge && obstacle.sprite != upstairs && obstacle.sprite != downstairs) {
+        if (obstacle.sprite != water && obstacle.sprite != bridge && obstacle.sprite != upstairs && obstacle.sprite != downstairs && obstacle.sprite != floor) {
 
             if (y > 0) {
 
@@ -85,10 +85,11 @@ export function stopNpcsMoveWhenCollide(subject, obstacles, x, y, sprite) {
     const bridge = sprite.sprites.get('bridge');
     const upstairs = sprite.sprites.get("upstairs");
     const downstairs = sprite.sprites.get("downstairs");
+    const floor = sprite.sprites.get("floor");
 
     intersection(subject, obstacles, obstacle => {
 
-        if (obstacle.sprite != water && obstacle.sprite != bridge && obstacle.sprite != upstairs && obstacle.sprite != downstairs) {
+        if (obstacle.sprite != water && obstacle.sprite != bridge && obstacle.sprite != upstairs && obstacle.sprite != downstairs && obstacle.sprite != floor) {
             //if subject move to right
             if (x > 0) {
 
@@ -113,7 +114,7 @@ export function stopNpcsMoveWhenCollide(subject, obstacles, x, y, sprite) {
 
     intersection(subject, obstacles, obstacle => {
 
-        if (obstacle.sprite != water && obstacle.sprite != bridge && obstacle.sprite != upstairs && obstacle.sprite != downstairs) {
+        if (obstacle.sprite != water && obstacle.sprite != bridge && obstacle.sprite != upstairs && obstacle.sprite != downstairs && obstacle.sprite != floor) {
 
             if (y > 0) {
 

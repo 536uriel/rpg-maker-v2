@@ -39,6 +39,8 @@ export class Sprite {
                 this.set_upstairs_sprite(img);
                 this.set_downstairs_sprite(img);
                 this.set_blueWall_sprite(img);
+                this.set_shelf_sprite(img);
+                this.set_floor_sprite(img);
 
             });
 
@@ -96,9 +98,19 @@ export class Sprite {
 
     }
 
+    set_floor_sprite(img) {
+        const floor_sprite = this.loadSprite_preciclly(img, 287, 603, 43, 31);
+        this.sprites.set("floor", floor_sprite);
+    }
+
     set_blueWall_sprite(img) {
-        const blueWall_sprite = this.loadSprite_preciclly(img, 490, 45,28, 80);
+        const blueWall_sprite = this.loadSprite_preciclly(img, 490, 45, 28, 80);
         this.sprites.set("blueWall", blueWall_sprite);
+    }
+
+    set_shelf_sprite(img) {
+        const can_img = this.loadSprite(img, 8, 31, this.size_w, this.size_h);
+        this.sprites.set('shelf', can_img);
     }
 
     set_upstairs_sprite(img) {
