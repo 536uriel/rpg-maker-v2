@@ -96,6 +96,7 @@ var commands = [
     "bg(color)     /* צבע רקע בצבע */",
     "addUpstairs(x, y)     /* הוסף מדרגות למעלה */",
     "addDownstairs(x, y)       /* הוסף מדרגות למטה */",
+    "createBlueWall(x, y, 2, 4)     /* הוסף קיר כחול */",
     "getNpcsLen()",
     "getNpcPosX(npcNumber)",
     "getNpcPosY(npcNumber)",
@@ -348,6 +349,22 @@ sprite.set_sprites().then(() => {
 
         }
 
+    }
+
+    window.createBlueWall = function (x, y, size_w, size_h) {
+        x = Math.round(x / rectW);
+        y = Math.round(y / rectH);
+
+        if (x < 0) {
+            x = 0
+        }
+
+        if (y < 0) {
+            y = 0
+        }
+
+        let blueWall_sprite = sprite.sprites.get('blueWall');
+        board.setGrid(x, y, (new Rect(x * rectW, y * rectH, rectW * size_w, rectH * size_h, blueWall_sprite, camera)), player.pos);
     }
 
     window.showCurrentLevel = function (x, y, fontSize = 30, color = "black") {

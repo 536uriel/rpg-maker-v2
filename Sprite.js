@@ -38,6 +38,7 @@ export class Sprite {
                 this.set_bridge_sprite(img);
                 this.set_upstairs_sprite(img);
                 this.set_downstairs_sprite(img);
+                this.set_blueWall_sprite(img);
 
             });
 
@@ -93,6 +94,11 @@ export class Sprite {
             console.log(err)
         }
 
+    }
+
+    set_blueWall_sprite(img) {
+        const blueWall_sprite = this.loadSprite_preciclly(img, 490, 45,28, 80);
+        this.sprites.set("blueWall", blueWall_sprite);
     }
 
     set_upstairs_sprite(img) {
