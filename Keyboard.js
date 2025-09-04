@@ -13,7 +13,7 @@ export default class keyboard {
             document.addEventListener(state, (e) => {
                 let code = e.keyCode;
 
-
+                e.preventDefault();
                 if (code == key) {
                     this.keys.get(key)(state);
                 }
