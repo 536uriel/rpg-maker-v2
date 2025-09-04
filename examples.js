@@ -2,7 +2,8 @@ export function poolWithBridge(editor1) {
   let e1 = `createPool(350, 100)
 addBridge(350, 200)
 addBridge(400, 200)
-addBridge(450, 200)`;
+addBridge(450, 200)
+bg("DeepSkyBlue")`;
 
   editor1.setValue(editor1.getValue() + "\n" + e1);
 }
@@ -129,7 +130,7 @@ createRedHouse(600,300)
 addBridge(550, 300)
 addBridge(550, 350)
 
-bg("LightGreen")
+bg("MediumTurquoise")
 
 `
   editor1.setValue(editor1.getValue() + "\n" + c1);
@@ -176,7 +177,7 @@ addNpc(x, y, 0, 0)
 export function example4(editor1, editor2) {
   const c1 = `// הקוד שפועל פעם אחת
 clearBackground()
-
+bg("Wheat")
 addNpc(100,100,1, 0)
 addNpc(100,100,0, 1)
 
