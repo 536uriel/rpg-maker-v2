@@ -94,6 +94,8 @@ var commands = [
     "addBridge(x, y)        /* הוסף גשר */",
     "clearBackground()      /* נקה רקע */",
     "bg(color)     /* צבע רקע בצבע */",
+    "addUpstairs(x, y)     /* הוסף מדרגות למעלה */",
+    "addDownstairs(x, y)       /* הוסף מדרגות למטה */",
     "getNpcsLen()",
     "getNpcPosX(npcNumber)",
     "getNpcPosY(npcNumber)",
@@ -327,6 +329,44 @@ sprite.set_sprites().then(() => {
 
         let bridge_sprite = sprite.sprites.get('bridge');
         board.setGrid(x, y, (new Rect(x * rectW, y * rectH, rectW, rectH, bridge_sprite, camera)), player.pos);
+
+    }
+
+
+    window.addUpstairs = function (x, y) {
+
+        x = Math.round(x / rectW);
+        y = Math.round(y / rectH);
+
+        if (x < 0) {
+            x = 0
+        }
+
+        if (y < 0) {
+            y = 0
+        }
+
+        let upstairs_sprite = sprite.sprites.get("upstairs");
+        board.setGrid(x, y, (new Rect(x * rectW, y * rectH, rectW, rectH, upstairs_sprite, camera)), player.pos);
+
+    }
+
+
+    window.addDownstairs = function (x, y) {
+
+        x = Math.round(x / rectW);
+        y = Math.round(y / rectH);
+
+        if (x < 0) {
+            x = 0
+        }
+
+        if (y < 0) {
+            y = 0
+        }
+
+        let downstairs_sprite = sprite.sprites.get("downstairs");
+        board.setGrid(x, y, (new Rect(x * rectW, y * rectH, rectW, rectH, downstairs_sprite, camera)), player.pos);
 
     }
 

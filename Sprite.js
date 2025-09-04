@@ -36,6 +36,8 @@ export class Sprite {
                 this.set_orangeHouse_sprite(img);
                 this.set_redHouse_sprite(img);
                 this.set_bridge_sprite(img);
+                this.set_upstairs_sprite(img);
+                this.set_downstairs_sprite(img);
 
             });
 
@@ -93,6 +95,15 @@ export class Sprite {
 
     }
 
+    set_upstairs_sprite(img) {
+        const can_img = this.loadSprite(img, 2, 31, this.size_w, this.size_h);
+        this.sprites.set('upstairs', can_img);
+    }
+
+    set_downstairs_sprite(img) {
+        const can_img = this.loadSprite(img, 2, 32, this.size_w, this.size_h);
+        this.sprites.set('downstairs', can_img);
+    }
 
 
     set_waterPool_sprite(img) {
