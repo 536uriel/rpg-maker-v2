@@ -13,8 +13,12 @@ export default class keyboard {
             document.addEventListener(state, (e) => {
                 let code = e.keyCode;
 
-                e.preventDefault();
+
                 if (code == key) {
+                    if (code == 37 || code == 38 ||
+                        code == 39 || code == 40) {
+                        e.preventDefault();
+                    }
                     this.keys.get(key)(state);
                 }
             })
