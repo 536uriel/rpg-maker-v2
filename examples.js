@@ -9,21 +9,34 @@ addBridge(450, 200)`;
 
 
 export function example2(editor1, editor2) {
-  const c1 = `// כתוב כאן קוד שיפעל פעם אחת 
-clearBackground()
+  const c1 = `
+createPool(350, 100)
+addBridge(350, 200)
+addBridge(400, 200)
+addBridge(450, 200)
+addBridge(350,150)        /* הוסף גשר */
+
+addUpstairs(450,300)     /* הוסף מדרגות למעלה */
+
+addThisLevel()
+
+clearBackground()      /* נקה רקע */
+
+
+
 x = 100
 y = 100
 sx = 1
 sy = 0
-addNpc(x, y, 0, 0)
-addNpc(100, 100, 2, 0)
 
 createPool(350, 100)
 createPool(500, 100)
+createPool(650, 100)
 
 addBridge(350, 200)
 addBridge(400, 200)
 addBridge(450, 200)
+addBridge(350,150)        /* הוסף גשר */
 
 addBridge(500, 200)
 addBridge(550, 200)
@@ -40,37 +53,42 @@ addBridge(550, 350)
 
 bg("LightGreen")
 
+
+addDownstairs(300,350)       /* הוסף מדרגות למטה */
+
+addThisLevel()
+
+clearBackground()      /* נקה רקע */
+
+
+
+drawLevelBlocksByNumber(0)
+
+player.level = 0      /* מספר שלב של השחקן */
+
 `
   editor1.setValue(editor1.getValue() + "\n" + c1);
 
-  const c2 = `// כתוב כאן קוד שיפעל לעולמים 
-x += sx
-y += sy
+  const c2 = `//לעולמים
 
-setNpc(0, x, y, 0, 0)
+if(isCollideWithUpstairs()){
+  player.pos.x = 200     /* מיקום שחקן ברוחב */
+  player.pos.y = 200     /* מיקום שחקן בגובה */
+  clearBackground()      /* נקה רקע */
+  player.level += 1;
+  drawLevelBlocksByNumber(player.level)
+}    
 
-if(x > 300){
-  sx = 0
-  sy = 1
-}
-
-if(y > 200){
-  sx = 1
-  sy = 0
-}
-
-print("p1", player.x , player.y , 20, "blue")
-print("e1", x - player.pos.x + player.x, y - player.pos.y  + player.y, 20, "red")
-
-whenAttackDeleteNpc()
-if(getNpcsLen() < 1){
-x = 100
-y = 100
-sx = 1
-sy
-addNpc(x, y, 0, 0)
-}
-    `
+if(isCollideWithDownstairs()){
+  player.pos.x = 200     /* מיקום שחקן ברוחב */
+  player.pos.y = 200     /* מיקום שחקן בגובה */
+  clearBackground()      /* נקה רקע */
+  player.level -= 1;
+  drawLevelBlocksByNumber(player.level)
+}  
+  
+showCurrentLevel(x, y, fontSize = 30, color = 'black');
+`
 
   editor2.setValue(editor2.getValue() + "\n" + c2);
 
@@ -93,6 +111,7 @@ createPool(350, 100)
 createPool(500, 100)
 createPool(650, 100)
 
+addBridge(350, 150)
 addBridge(350, 200)
 addBridge(400, 200)
 addBridge(450, 200)
@@ -165,6 +184,7 @@ addNpc(100,100,3, 0)
 addNpc(100,100,0, 3)
 
 createPool(350, 100)
+addBridge(350, 150)
 addBridge(350, 200)
 addBridge(400, 200)
 addBridge(450, 200)

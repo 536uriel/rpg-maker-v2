@@ -167,7 +167,7 @@ function cleanCode() {
     editor1.setValue(`clearBackground()      /* נקה רקע */
 bg("aliceblue")     /* צבע רקע בצבע */`);
     editor2.setValue("");
-    
+
 }
 
 
@@ -239,9 +239,6 @@ var squere_sprite;
 
 var npcs = new Npc();
 
-var upstairsArray = [];
-var downstairsArray = [];
-
 var levels = [];
 
 
@@ -303,8 +300,6 @@ sprite.set_sprites().then(() => {
 
     window.clearBackground = function () {
         board.clearGrid();
-        upstairsArray.length = 0;
-        downstairsArray.length = 0;
 
         if (window.deleteNpc && npcs.rects.length > 0) {
             npcs.rects.forEach((n, i) => {
@@ -345,7 +340,7 @@ sprite.set_sprites().then(() => {
 
             board.clearGrid();
             levels[levelNum].forEach(rect => {
-               
+
                 if (rect != undefined) {
                     window.rectWithSprite(rect.x, rect.y, rect.sprite);
                 }
@@ -410,14 +405,16 @@ sprite.set_sprites().then(() => {
 
         let upstairs_sprite = sprite.sprites.get("upstairs");
         const newUpstairsRect = new Rect(x * rectW, y * rectH, rectW, rectH, upstairs_sprite, camera)
-        upstairsArray.push(newUpstairsRect);
         board.setGrid(x, y, newUpstairsRect, player.pos);
 
     }
 
     window.isCollideWithUpstairs = function () {
-        for (let i = 0; i < upstairsArray.length; i++) {
-            if (overlap(player, upstairsArray[i])) {
+        let blocks = board.getAllSubjectsFromGrid();
+        let upstairs_sprite = sprite.sprites.get("upstairs");
+
+        for (let i = 0; i < blocks.length; i++) {
+            if (overlap(player, blocks[i]) && blocks[i].sprite == upstairs_sprite) {
                 return true;
             }
         }
@@ -440,14 +437,16 @@ sprite.set_sprites().then(() => {
 
         let downstairs_sprite = sprite.sprites.get("downstairs");
         const newDownstairsRect = new Rect(x * rectW, y * rectH, rectW, rectH, downstairs_sprite, camera);
-        downstairsArray.push(newDownstairsRect);
         board.setGrid(x, y, newDownstairsRect, player.pos);
 
     }
 
     window.isCollideWithDownstairs = function () {
-        for (let i = 0; i < downstairsArray.length; i++) {
-            if (overlap(player, downstairsArray[i])) {
+        let blocks = board.getAllSubjectsFromGrid();
+        let downstairs_sprite = sprite.sprites.get("downstairs");
+
+        for (let i = 0; i < blocks.length; i++) {
+            if (overlap(player, blocks[i]) && blocks[i].sprite == downstairs_sprite) {
                 return true;
             }
         }
@@ -546,7 +545,7 @@ sprite.set_sprites().then(() => {
     }
 
     window.rect = function rect(x, y) {
-        
+
         x = Math.round(x / rectW);
         y = Math.round(y / rectH);
 
