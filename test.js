@@ -105,7 +105,9 @@ var commands = [
     "deleteNpc(npcNumber)",
     "player.pos.x = 200     /* מיקום שחקן ברוחב */",
     "player.pos.y = 200     /* מיקום שחקן בגובה */",
-    "isBlocksCollideWithAnyNpcs()"
+    "isBlocksCollideWithAnyNpcs()",
+    "isCollideWithUpstairs()        /* האם השחקן נוגע במדרגה למעלה */",
+    "isCollideWithDownstairs()      /* האם השחקן נוגע במדרגה למטה */"
 ]
 
 var clist = document.getElementById("commands");
@@ -230,6 +232,9 @@ var squere_sprite;
 
 var npcs = new Npc();
 
+var upstairsArray = [];
+var downstairsArray = [];
+
 
 
 sprite.set_sprites().then(() => {
@@ -289,6 +294,9 @@ sprite.set_sprites().then(() => {
 
     window.clearBackground = function () {
         board.clearGrid();
+        upstairsArray.length = 0;
+        downstairsArray.length = 0;
+        
         if (window.deleteNpc && npcs.rects.length > 0) {
             npcs.rects.forEach((n, i) => {
                 window.deleteNpc(i);
@@ -347,10 +355,21 @@ sprite.set_sprites().then(() => {
         }
 
         let upstairs_sprite = sprite.sprites.get("upstairs");
-        board.setGrid(x, y, (new Rect(x * rectW, y * rectH, rectW, rectH, upstairs_sprite, camera)), player.pos);
+        const newUpstairsRect = new Rect(x * rectW, y * rectH, rectW, rectH, upstairs_sprite, camera)
+        upstairsArray.push(newUpstairsRect);
+        board.setGrid(x, y, newUpstairsRect, player.pos);
 
     }
 
+    window.isCollideWithUpstairs = function () {
+        for (let i = 0; i < upstairsArray.length; i++) {
+            if (overlap(player, upstairsArray[i])) {
+                return true;
+            }
+        }
+
+        return false;
+    }
 
     window.addDownstairs = function (x, y) {
 
@@ -366,8 +385,20 @@ sprite.set_sprites().then(() => {
         }
 
         let downstairs_sprite = sprite.sprites.get("downstairs");
-        board.setGrid(x, y, (new Rect(x * rectW, y * rectH, rectW, rectH, downstairs_sprite, camera)), player.pos);
+        const newDownstairsRect = new Rect(x * rectW, y * rectH, rectW, rectH, downstairs_sprite, camera);
+        downstairsArray.push(newDownstairsRect);
+        board.setGrid(x, y, newDownstairsRect, player.pos);
 
+    }
+
+    window.isCollideWithDownstairs = function () {
+        for (let i = 0; i < downstairsArray.length; i++) {
+            if (overlap(player, downstairsArray[i])) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
 

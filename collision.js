@@ -22,11 +22,14 @@ export function stopMoveWhenCollide(subject, obstacles, x, y, camera, canvas, sp
 
     const water = sprite.sprites.get('water');
     const bridge = sprite.sprites.get('bridge');
+    const upstairs = sprite.sprites.get("upstairs");
+    const downstairs = sprite.sprites.get("downstairs");
+
 
 
     intersection(subject, obstacles, obstacle => {
 
-        if (obstacle.sprite != water && obstacle.sprite != bridge) {
+        if (obstacle.sprite != water && obstacle.sprite != bridge && obstacle.sprite != upstairs && obstacle.sprite != downstairs) {
             //if subject move to right
             if (x > 0) {
 
@@ -48,7 +51,7 @@ export function stopMoveWhenCollide(subject, obstacles, x, y, camera, canvas, sp
 
     intersection(subject, obstacles, obstacle => {
 
-        if (obstacle.sprite != water && obstacle.sprite != bridge) {
+        if (obstacle.sprite != water && obstacle.sprite != bridge && obstacle.sprite != upstairs && obstacle.sprite != downstairs) {
 
             if (y > 0) {
 
@@ -80,11 +83,12 @@ export function stopNpcsMoveWhenCollide(subject, obstacles, x, y, sprite) {
 
     const water = sprite.sprites.get('water');
     const bridge = sprite.sprites.get('bridge');
-
+    const upstairs = sprite.sprites.get("upstairs");
+    const downstairs = sprite.sprites.get("downstairs");
 
     intersection(subject, obstacles, obstacle => {
 
-        if (obstacle.sprite != water && obstacle.sprite != bridge) {
+        if (obstacle.sprite != water && obstacle.sprite != bridge && obstacle.sprite != upstairs && obstacle.sprite != downstairs) {
             //if subject move to right
             if (x > 0) {
 
@@ -109,7 +113,7 @@ export function stopNpcsMoveWhenCollide(subject, obstacles, x, y, sprite) {
 
     intersection(subject, obstacles, obstacle => {
 
-        if (obstacle.sprite != water && obstacle.sprite != bridge) {
+        if (obstacle.sprite != water && obstacle.sprite != bridge && obstacle.sprite != upstairs && obstacle.sprite != downstairs) {
 
             if (y > 0) {
 
