@@ -105,6 +105,7 @@ var commands = [
     "deleteNpc(npcNumber)",
     "player.pos.x = 200     /* מיקום שחקן ברוחב */",
     "player.pos.y = 200     /* מיקום שחקן בגובה */",
+    "player.level       /* מספר שלב של השחקן */",
     "isBlocksCollideWithAnyNpcs()",
     "isCollideWithUpstairs()        /* האם השחקן נוגע במדרגה למעלה */",
     "isCollideWithDownstairs()      /* האם השחקן נוגע במדרגה למטה */",
