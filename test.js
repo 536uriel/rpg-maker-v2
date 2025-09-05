@@ -79,14 +79,6 @@ editor2.setSize((cwidth / 2) - 30, 200);
 
 var commands = [
     "rect(x, y)     /* צור בלוק */",
-    "player.gravity = 3     /* הוסף כוח נפילה לשחקן */",
-    "nextCustume()      /* התלבושת הבאה */",
-    "nextBlock()        /* הבלוק הבא */",
-    "addNpc(x, y, speedx, speedy)       /* הוסף אוייב */",
-    "setNpc(npcNumber, x, y, speedx, speedy)        /* הגדר אוייב */",
-    "setNpcCostume(npcNumber, costumeNum)       /* הגדר מספר תלבושת לאוייב */",
-    "whenAttackDeleteNpc()      /* כאשר שחקן תוקף מחק אוייב */",
-    "print(text, x, y, fontSize, color)     /* הדפס כיתוב */",
     "createPool(x, y)       /* צור בריכה */",
     "createBlueHouse(x, y)      /* צור בית כחול */",
     "createOrangeHouse(x, y)        /* צור בית כתום */",
@@ -98,7 +90,17 @@ var commands = [
     "addDownstairs(x, y)       /* הוסף מדרגות למטה */",
     "createBlueWall(x, y, 2, 4)     /* הוסף קיר כחול */",
     "createFloor(x, y, 3, 3)        /* הוסף רצפה */",
-    "addShelf(x, y)     /* הוסף מדף */",
+    "addShelf(x, y)     /* הוסף מדף */"
+]
+
+var commands2 = [
+    "nextCustume()      /* התלבושת הבאה */",
+    "nextBlock()        /* הבלוק הבא */",
+    "addNpc(x, y, speedx, speedy)       /* הוסף אוייב */",
+    "setNpc(npcNumber, x, y, speedx, speedy)        /* הגדר אוייב */",
+    "setNpcCostume(npcNumber, costumeNum)       /* הגדר מספר תלבושת לאוייב */",
+    "whenAttackDeleteNpc()      /* כאשר שחקן תוקף מחק אוייב */",
+    "print(text, x, y, fontSize, color)     /* הדפס כיתוב */",
     "getNpcsLen()",
     "getNpcPosX(npcNumber)",
     "getNpcPosY(npcNumber)",
@@ -115,7 +117,8 @@ var commands = [
     "addThisLevel()",
     "deleteLastLevel()",
     "drawLevelBlocksByNumber(n)",
-    "showCurrentLevel(x, y, fontSize = 30, color = 'black')"
+    "showCurrentLevel(x, y, fontSize = 30, color = 'black')",
+    "player.gravity = 3     /* הוסף כוח נפילה לשחקן */"
 ]
 
 var clist = document.getElementById("commands");
@@ -148,6 +151,37 @@ commands.forEach(command => {
     alist.appendChild(a);
 });
 
+//* commands2
+var clist = document.getElementById("commands2");
+
+commands2.forEach(command => {
+    let li = document.createElement("li");
+
+    li.innerText = command;
+
+    li.addEventListener("click", () => {
+        editor1.setValue(editor1.getValue() + "\n" + command);
+    })
+
+    clist.appendChild(li)
+});
+
+
+var alist = document.getElementById("commends-drop-down2");
+
+commands2.forEach(command => {
+    let a = document.createElement("a");
+
+    a.innerText = command;
+    a.id = "commends-drop-a"
+
+    a.addEventListener("click", () => {
+        editor1.setValue(editor1.getValue() + "\n" + command);
+    })
+
+    alist.appendChild(a);
+});
+//*/
 
 document.getElementById("e1").addEventListener("click", () => {
     poolWithBridge(editor1);
