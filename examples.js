@@ -12,14 +12,9 @@ bg("DeepSkyBlue")`;
 export function example2(editor1, editor2) {
   const c1 = `clearBackground()      /* נקה רקע */
 
-createBlueWall(250,50, 1,1)     /* הוסף קיר כחול */
-createBlueWall(300,50, 1,1)     /* הוסף קיר כחול */
-createBlueWall(350,100, 1,1)     /* הוסף קיר כחול */
-createBlueWall(350,50, 1,1)     /* הוסף קיר כחול */
-createBlueWall(350,150, 1,1)     /* הוסף קיר כחול */
-createBlueWall(350,200, 1,1)     /* הוסף קיר כחול */
-createBlueWall(300,200, 1,1)     /* הוסף קיר כחול */
-createBlueWall(250,200, 1,1)     /* הוסף קיר כחול */
+createBlueWall(250,50, 2,1)     /* הוסף קיר כחול */
+createBlueWall(350,50, 1,4)     /* הוסף קיר כחול */
+createBlueWall(250,200, 2,1)     /* הוסף קיר כחול */
 
 createFloor(250,100, 1,1)        /* הוסף רצפה */
 createFloor(250,150, 1,1)        /* הוסף רצפה */

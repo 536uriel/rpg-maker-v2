@@ -372,8 +372,6 @@ sprite.set_sprites().then(() => {
         board.setGrid(x, y, (new Rect(x * rectW, y * rectH, w, h, rect_sprite, camera)), player.pos);
     }
 
-    //!to fix - its drawing the block size the same size 
-    //! even if it has different size
     window.drawLevelBlocksByNumber = function (levelNum) {
         if (levelNum >= 0 && levelNum < levels.length) {
 
