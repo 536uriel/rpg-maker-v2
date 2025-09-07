@@ -356,7 +356,7 @@ sprite.set_sprites().then(() => {
         }
     }
 
-    window.rectWithSprite = function rect(x, y, rect_sprite) {
+    window.rectWithSprite = function (x, y, w, h, rect_sprite) {
 
         x = Math.round(x / rectW);
         y = Math.round(y / rectH);
@@ -369,9 +369,11 @@ sprite.set_sprites().then(() => {
             y = 0
         }
 
-        board.setGrid(x, y, (new Rect(x * rectW, y * rectH, rectW, rectH, rect_sprite, camera)), player.pos);
+        board.setGrid(x, y, (new Rect(x * rectW, y * rectH, w, h, rect_sprite, camera)), player.pos);
     }
 
+    //!to fix - its drawing the block size the same size 
+    //! even if it has different size
     window.drawLevelBlocksByNumber = function (levelNum) {
         if (levelNum >= 0 && levelNum < levels.length) {
 
@@ -379,7 +381,7 @@ sprite.set_sprites().then(() => {
             levels[levelNum].forEach(rect => {
 
                 if (rect != undefined) {
-                    window.rectWithSprite(rect.x, rect.y, rect.sprite);
+                    window.rectWithSprite(rect.x, rect.y, rect.w, rect.h, rect.sprite);
                 }
             });
 
@@ -629,7 +631,7 @@ sprite.set_sprites().then(() => {
         }
     }
 
-    window.rect = function rect(x, y) {
+    window.rect = function (x, y) {
 
         x = Math.round(x / rectW);
         y = Math.round(y / rectH);
