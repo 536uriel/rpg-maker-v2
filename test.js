@@ -70,11 +70,8 @@ divtxt.style.marginLeft = "30px"
 divtxt.style.color = "rgb(96, 117, 156)"
 divtxt.innerText = "size " + canvas.width + " X " + canvas.height;
 
-
 editor1.setSize((cwidth / 2) - 30, 120);
 editor2.setSize((cwidth / 2) - 30, 200);
-
-
 
 
 var commands = [
@@ -114,10 +111,10 @@ var commands2 = [
     "isBlocksCollideWithAnyNpcs()",
     "isCollideWithUpstairs()        /* האם השחקן נוגע במדרגה למעלה */",
     "isCollideWithDownstairs()      /* האם השחקן נוגע במדרגה למטה */",
-    "addThisLevel()",
-    "deleteLastLevel()",
-    "drawLevelBlocksByNumber(n)",
-    "showCurrentLevel(x, y, fontSize = 30, color = 'black')",
+    "addThisLevel()     /* הוסף בלוקים במסך לשלב נפרד */",
+    "deleteLastLevel()      /* מחק שלב האחרון שנוצר */",
+    "drawLevelBlocksByNumber(n)     /* צייר שלב לפי מספרו */",
+    "showCurrentLevel(x, y, fontSize = 30, color = 'black')     /* הדפס מספר שלב נוכחי */",
     "player.gravity = 3     /* הוסף כוח נפילה לשחקן */"
 ]
 
