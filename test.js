@@ -87,7 +87,8 @@ var commands = [
     "addDownstairs(x, y)       /* הוסף מדרגות למטה */",
     "createBlueWall(x, y, 2, 4)     /* הוסף קיר כחול */",
     "createFloor(x, y, 3, 3)        /* הוסף רצפה */",
-    "addShelf(x, y)     /* הוסף מדף */"
+    "addShelf(x, y)     /* הוסף מדף */",
+    "createRoom()       /* הוסף חדר עם חלל פנים */"
 ]
 
 var commands2 = [
@@ -442,6 +443,18 @@ sprite.set_sprites().then(() => {
 
     window.createBlueHouse = function (x, y) {
         createBlueHouse(sprite, rectW, rectH, x, y, camera, board, player)
+    }
+
+    window.createRoom = function (x = 0, y = 0) {
+
+        window.createFloor(x + 300, y + 200, 3, 2)        /* הוסף רצפה */
+        window.createFloor(x + 300, y + 300, 3, 2)        /* הוסף רצפה */
+
+        window.createBlueWall(x + 300, y + 150, 3, 1)     /* הוסף קיר כחול */
+        window.createBlueWall(x + 450, y + 150, 1, 5)     /* הוסף קיר כחול */
+        window.createBlueWall(x + 250, y + 150, 1, 5)     /* הוסף קיר כחול */
+
+        window.createBlueWall(x + 400, y + 350, 1, 1)     /* הוסף קיר כחול */
     }
 
     window.createOrangeHouse = function (x, y) {
