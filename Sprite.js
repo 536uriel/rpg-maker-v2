@@ -41,6 +41,8 @@ export class Sprite {
                 this.set_blueWall_sprite(img);
                 this.set_shelf_sprite(img);
                 this.set_floor_sprite(img);
+                this.set_orangeTree_sprite(img);
+                this.set_tree_sprite(img);
 
             });
 
@@ -139,6 +141,41 @@ export class Sprite {
         }
 
     }
+
+
+    set_orangeTree_sprite(img) {
+
+        this.sprites.set('orangeTree', []);
+
+        for (let y = 21; y < 24; y++) {
+            for (let x = 2; x < 4; x++) {
+                const can_img = this.loadSprite(img, x, y, this.size_w, this.size_h);
+
+                let blocks = this.sprites.get('orangeTree');
+                blocks.push(can_img);
+                this.sprites.set('orangeTree', blocks);
+            }
+        }
+
+    }
+
+
+    set_tree_sprite(img) {
+
+        this.sprites.set('tree', []);
+
+        for (let y = 21; y < 24; y++) {
+            for (let x = 4; x < 6; x++) {
+                const can_img = this.loadSprite(img, x, y, this.size_w, this.size_h);
+
+                let blocks = this.sprites.get('tree');
+                blocks.push(can_img);
+                this.sprites.set('tree', blocks);
+            }
+        }
+
+    }
+
 
     set_bridge_sprite(img) {
         const can_img = this.loadSprite(img, 13, 8, this.size_w, this.size_h);

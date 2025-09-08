@@ -8,7 +8,7 @@ import Board from "./Board.js";
 import { Sprite } from "./Sprite.js";
 import Camera from "./Camera.js";
 import Npc from "./Npc.js";
-import { rotate_in_center, createPoolBg, createBlueHouse, createOrangeHouse, createRedHouse } from "./helpers.js";
+import { rotate_in_center, createPoolBg, createBlueHouse, createOrangeHouse, createRedHouse, createOrangetreeBg, createTreeBg } from "./helpers.js";
 import { poolWithBridge, example2, example3, example4 } from "./examples.js";
 
 // Initialize CodeMirror
@@ -88,7 +88,10 @@ var commands = [
     "createBlueWall(x, y, 2, 4)     /* הוסף קיר כחול */",
     "createFloor(x, y, 3, 3)        /* הוסף רצפה */",
     "addShelf(x, y)     /* הוסף מדף */",
-    "createRoom()       /* הוסף חדר עם חלל פנים */"
+    "createRoom()       /* הוסף חדר עם חלל פנים */",
+    "createOrangetree(x, y)     /* הוסף עץ תפוזים */",
+    "createTree(x, y)       /* הוסף עץ */"
+
 ]
 
 var commands2 = [
@@ -440,6 +443,18 @@ sprite.set_sprites().then(() => {
     window.createPool = function (x, y) {
         createPoolBg(sprite, rectW, rectH, x, y, camera, board, player);
     }
+
+
+    
+    window.createOrangetree = function (x, y) {
+        createOrangetreeBg(sprite, rectW, rectH, x, y, camera, board, player);
+    }
+
+    window.createTree = function (x, y) {
+        createTreeBg(sprite, rectW, rectH, x, y, camera, board, player);
+    }
+
+
 
     window.createBlueHouse = function (x, y) {
         createBlueHouse(sprite, rectW, rectH, x, y, camera, board, player)

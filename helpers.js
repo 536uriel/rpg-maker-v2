@@ -68,6 +68,64 @@ export function createPoolBg(spriteSheet, blockWidth, blockHeight, poolX, poolY,
 }
 
 
+
+export function createOrangetreeBg(spriteSheet, blockWidth, blockHeight, otx, oty, camera, board, player) {
+    const sprites = spriteSheet.sprites.get('orangeTree');
+
+    otx = Math.round(otx / blockWidth);
+    oty = Math.round(oty / blockHeight);
+
+    if (otx < 0) {
+        otx = 0
+    }
+
+    if (oty < 0) {
+        oty = 0
+    }
+
+    let i = 0;
+
+
+    for (let y = oty; y < oty + 3; y++) {
+        for (let x = otx; x < otx + 2; x++) {
+            board.setGrid(x, y, (new Rect(x * blockWidth, y * blockHeight, blockWidth, blockHeight, sprites[i], camera)), player.pos);
+
+            i++;
+        }
+    }
+
+}
+
+
+export function createTreeBg(spriteSheet, blockWidth, blockHeight, tx, ty, camera, board, player) {
+    const sprites = spriteSheet.sprites.get('tree');
+
+    tx = Math.round(tx / blockWidth);
+    ty = Math.round(ty / blockHeight);
+
+    if (tx < 0) {
+        tx = 0
+    }
+
+    if (ty < 0) {
+        ty = 0
+    }
+
+    let i = 0;
+
+
+    for (let y = ty; y < ty + 3; y++) {
+        for (let x = tx; x < tx + 2; x++) {
+            board.setGrid(x, y, (new Rect(x * blockWidth, y * blockHeight, blockWidth, blockHeight, sprites[i], camera)), player.pos);
+
+            i++;
+        }
+    }
+
+}
+
+
+
 export function createBlueHouse(spriteSheet, blockWidth, blockHeight, hx, hy, camera, board, player) {
     const sprites = spriteSheet.sprites.get('blueHouse');
 
