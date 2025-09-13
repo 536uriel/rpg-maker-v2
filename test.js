@@ -90,7 +90,8 @@ var commands = [
     "addShelf(x, y)     /* הוסף מדף */",
     "createRoom()       /* הוסף חדר עם חלל פנים */",
     "createOrangetree(x, y)     /* הוסף עץ תפוזים */",
-    "createTree(x, y)       /* הוסף עץ */"
+    "createTree(x, y)       /* הוסף עץ */",
+    "createGridFloor(x, y, w, h)        /* צור רצפה מרוצפת */"
 
 ]
 
@@ -420,6 +421,14 @@ sprite.set_sprites().then(() => {
         board.setGrid(x, y, (new Rect(x * rectW, y * rectH, rectW * size_w, rectH * size_h, floor_sprite, camera)), player.pos);
     }
 
+    window.createGridFloor = function (x, y, gwith, gheight) {
+        for (let i = 1; i <= gwith; i++) {
+            for (let j = 1; j <= gheight; j++) {
+                window.createFloor( x + (i * 50), y + (j * 50), 1, 1)        
+            }
+        }
+    }
+
     window.createBlueWall = function (x, y, size_w, size_h) {
         x = Math.round(x / rectW);
         y = Math.round(y / rectH);
@@ -445,7 +454,7 @@ sprite.set_sprites().then(() => {
     }
 
 
-    
+
     window.createOrangetree = function (x, y) {
         createOrangetreeBg(sprite, rectW, rectH, x, y, camera, board, player);
     }
