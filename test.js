@@ -11,6 +11,10 @@ import Npc from "./Npc.js";
 import { rotate_in_center, createPoolBg, createBlueHouse, createOrangeHouse, createRedHouse, createOrangetreeBg, createTreeBg } from "./helpers.js";
 import { poolWithBridge, example2, example3, example4 } from "./examples.js";
 
+function isEmptyOrNull(str) {
+    return str == null || (typeof str === 'string' && str.trim().length === 0);
+}
+
 // Initialize CodeMirror
 //editors for the precode 
 var editor1 = CodeMirror.fromTextArea(document.getElementById("editor1"), {
@@ -218,6 +222,7 @@ document.getElementById("popupBtn").addEventListener("click", openPopup);
 //closepopup
 document.getElementById("closePopupBtn").addEventListener("click", closePopup);
 
+
 //save to local storage
 document.getElementById("saveCodeToLocalStorageBtn").addEventListener("click", saveCodeToLocalStorage);
 
@@ -234,7 +239,14 @@ function closePopup() {
     overlay.style.display = "none";
 }
 
-function saveCodeToLocalStorage() {
+function saveCodeToLocalStorage(event) {
+    try {
+        event.preventDefault();
+    } catch (err) {
+        console.log(err)
+    }
+
+
     let studentName = document.getElementById("studentName").value;
     let projectName = document.getElementById("projectName").value;
 
@@ -245,13 +257,25 @@ function saveCodeToLocalStorage() {
         e1Text, e2Text
     }
 
-    localStorage.setItem(studentName + ":" + projectName, JSON.stringify(data));
-    alert("הקוד נשמר בשם");
-    closePopup();
+    if (!isEmptyOrNull(studentName) && !isEmptyOrNull(projectName)) {
+        localStorage.setItem(studentName + ":" + projectName, JSON.stringify(data));
+        alert("הקוד נשמר בשם");
+        closePopup();
+    } else {
+        alert("לא סיפקת שם או שם פרוייקט");
+        closePopup();
+    }
 
 }
 
-function getCodeFromLocalStorage() {
+function getCodeFromLocalStorage(event) {
+
+    try {
+        event.preventDefault();
+    } catch (err) {
+        console.log(err)
+    }
+
     let studentName = document.getElementById("studentName").value;
     let projectName = document.getElementById("projectName").value;
 
@@ -259,14 +283,14 @@ function getCodeFromLocalStorage() {
 
     if (stringData != null) {
         let data = JSON.parse(stringData);
-        console.log(data)
 
         editor1.setValue(data.e1Text);
         editor2.setValue(data.e2Text);
+        console.log(data)
         alert("הקוד נטען בהצלחה");
         closePopup();
     } else {
-        console.log("student key not found");
+        alert("לא נמצא פרוייקט עם השם שהזנת")
         closePopup();
     }
 
