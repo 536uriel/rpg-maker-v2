@@ -64,6 +64,31 @@
         <a style="float: right;color: rgb(138, 130, 243);" href="https://536uriel.github.io/p5-integrated-assistant/"
             target="_blank" rel="noopener noreferrer">p5בחזרה לדף התרגול ב</a>
 
+        <a id="popupBtn" style="float: right;color: rgb(130, 243, 207);" target="_blank">
+            שמור/קבל קוד בשם </a>
+
+    </div>
+
+    <!--end navbar-->
+
+    <!-- Overlay & Popup -->
+    <div class="overlay" id="overlay">
+        <div class="popup">
+            <button class="close-btn" id="closePopupBtn">×</button>
+            <h2>Student Project Form</h2>
+            <form>
+                <div>
+                    <label for="studentName">השם שלך</label>
+                    <input type="text" id="studentName" name="studentName" required>
+                </div>
+                <div>
+                    <label for="projectName">שם העולם</label>
+                    <input type="text" id="projectName" name="projectName" required>
+                </div>
+                <button type="submit" id="saveCodeToLocalStorageBtn">שמור בשם</button>
+                <button type="submit" id="getCodeFromLocalStorageBtn">קבל קוד עם שם</button>
+            </form>
+        </div>
     </div>
 
     <h1 style="color: rgb(126, 134, 250);"> תכנות עולם משחק </h1>

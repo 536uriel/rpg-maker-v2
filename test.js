@@ -210,6 +210,76 @@ bg("aliceblue")     /* צבע רקע בצבע */`);
 }
 
 
+//$save code with the student name to local storage
+
+//open popup
+document.getElementById("popupBtn").addEventListener("click", openPopup);
+
+//closepopup
+document.getElementById("closePopupBtn").addEventListener("click", closePopup);
+
+//save to local storage
+document.getElementById("saveCodeToLocalStorageBtn").addEventListener("click", saveCodeToLocalStorage);
+
+//get code by stu name and project name from local storage
+document.getElementById("getCodeFromLocalStorageBtn").addEventListener("click", getCodeFromLocalStorage);
+
+
+const overlay = document.getElementById("overlay");
+
+function openPopup() {
+    overlay.style.display = "flex";
+}
+function closePopup() {
+    overlay.style.display = "none";
+}
+
+function saveCodeToLocalStorage() {
+    let studentName = document.getElementById("studentName").value;
+    let projectName = document.getElementById("projectName").value;
+
+    const e1Text = editor1.getValue();
+    const e2Text = editor2.getValue();
+
+    const data = {
+        e1Text, e2Text
+    }
+
+    localStorage.setItem(studentName + ":" + projectName, JSON.stringify(data));
+    alert("הקוד נשמר בשם");
+    closePopup();
+
+}
+
+function getCodeFromLocalStorage() {
+    let studentName = document.getElementById("studentName").value;
+    let projectName = document.getElementById("projectName").value;
+
+    let stringData = localStorage.getItem(studentName + ":" + projectName);
+
+    if (stringData != null) {
+        let data = JSON.parse(stringData);
+        console.log(data)
+
+        editor1.setValue(data.e1Text);
+        editor2.setValue(data.e2Text);
+        alert("הקוד נטען בהצלחה");
+        closePopup();
+    } else {
+        console.log("student key not found");
+        closePopup();
+    }
+
+}
+
+// Close when clicking outside popup
+window.onclick = function (e) {
+    if (e.target === overlay) {
+        closePopup();
+    }
+}
+
+
 
 // Function to execute code as online console
 function runCode() {
@@ -424,7 +494,7 @@ sprite.set_sprites().then(() => {
     window.createGridFloor = function (x, y, gwith, gheight) {
         for (let i = 1; i <= gwith; i++) {
             for (let j = 1; j <= gheight; j++) {
-                window.createFloor( x + (i * 50), y + (j * 50), 1, 1)        
+                window.createFloor(x + (i * 50), y + (j * 50), 1, 1)
             }
         }
     }
