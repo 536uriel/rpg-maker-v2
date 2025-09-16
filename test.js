@@ -79,9 +79,9 @@ editor2.setSize((cwidth / 2) - 30, 200);
 
 
 var commands = [
-    "rect(100, 100)     /* צור בלוק */",
-    "createPool(100, 100)       /* צור בריכה */",
-    "createBlueHouse(100, 100)      /* צור בית כחול */",
+    "rect(100, 100)     /*  (x,y) צור בלוק במיקום */",
+    "createPool(100, 100)       /* (x,y) צור בריכה */",
+    "createBlueHouse(100, 100)      /* (x,y) צור בית כחול */",
     "createOrangeHouse(100, 100)        /* צור בית כתום */",
     "createRedHouse(100, 100)       /* צור בית אדום */",
     "addBridge(100, 100)        /* הוסף גשר */",
@@ -89,24 +89,24 @@ var commands = [
     "bg('LightGreen')     /* צבע רקע בצבע */",
     "addUpstairs(100, 100)     /* הוסף מדרגות למעלה */",
     "addDownstairs(100, 100)       /* הוסף מדרגות למטה */",
-    "createBlueWall(100, 100, 2, 4)     /* הוסף קיר כחול */",
-    "createFloor(100, 100, 3, 3)        /* הוסף רצפה */",
+    "createBlueWall(100, 100, 2, 4)     /* (x,y,width,height) הוסף קיר כחול */",
+    "createFloor(100, 100, 3, 3)        /* (x,y,width,height) הוסף רצפה */",
     "addShelf(100, 100)     /* הוסף מדף */",
     "createRoom()       /* הוסף חדר עם חלל פנים */",
     "createOrangetree(100, 100)     /* הוסף עץ תפוזים */",
     "createTree(100, 100)       /* הוסף עץ */",
-    "createGridFloor(100, 100, 10, 10)        /* צור רצפה מרוצפת */"
+    "createGridFloor(100, 100, 10, 10)        /* (x,y,width,height) צור רצפה מרוצפת */"
 
 ]
 
 var commands2 = [
     "nextCustume()      /* התלבושת הבאה */",
     "nextBlock()        /* הבלוק הבא */",
-    "addNpc(250, 250, 1, 0)       /* הוסף אוייב */",
-    "setNpc(0, 250, 250, 1, 0)        /* הגדר אוייב */",
-    "setNpcCostume(0, 1)       /* הגדר מספר תלבושת לאוייב */",
+    "addNpc(250, 250, 1, 0)       /* (x,y,speedx,speedy) הוסף אוייב */",
+    "setNpc(0, 250, 250, 1, 0)        /* (npc_number,x,y,speedx,speedy)הגדר אוייב */",
+    "setNpcCostume(0, 1)       /* (npc_number, costum_number)הגדר מספר תלבושת לאוייב */",
     "whenAttackDeleteNpc()      /* כאשר שחקן תוקף מחק אוייב */",
-    "print('text', 100, 100, 20, 'red')     /* הדפס כיתוב */",
+    "print('text', 100, 100, 20, 'red')     /* ('text',x,y,font_width, 'color')הדפס כיתוב */",
     "getNpcsLen()",
     "getNpcPosX(0)",
     "getNpcPosY(0)",
