@@ -79,41 +79,41 @@ editor2.setSize((cwidth / 2) - 30, 200);
 
 
 var commands = [
-    "rect(x, y)     /* צור בלוק */",
-    "createPool(x, y)       /* צור בריכה */",
-    "createBlueHouse(x, y)      /* צור בית כחול */",
-    "createOrangeHouse(x, y)        /* צור בית כתום */",
-    "createRedHouse(x, y)       /* צור בית אדום */",
-    "addBridge(x, y)        /* הוסף גשר */",
+    "rect(100, 100)     /* צור בלוק */",
+    "createPool(100, 100)       /* צור בריכה */",
+    "createBlueHouse(100, 100)      /* צור בית כחול */",
+    "createOrangeHouse(100, 100)        /* צור בית כתום */",
+    "createRedHouse(100, 100)       /* צור בית אדום */",
+    "addBridge(100, 100)        /* הוסף גשר */",
     "clearBackground()      /* נקה רקע */",
-    "bg(color)     /* צבע רקע בצבע */",
-    "addUpstairs(x, y)     /* הוסף מדרגות למעלה */",
-    "addDownstairs(x, y)       /* הוסף מדרגות למטה */",
-    "createBlueWall(x, y, 2, 4)     /* הוסף קיר כחול */",
-    "createFloor(x, y, 3, 3)        /* הוסף רצפה */",
-    "addShelf(x, y)     /* הוסף מדף */",
+    "bg('LightGreen')     /* צבע רקע בצבע */",
+    "addUpstairs(100, 100)     /* הוסף מדרגות למעלה */",
+    "addDownstairs(100, 100)       /* הוסף מדרגות למטה */",
+    "createBlueWall(100, 100, 2, 4)     /* הוסף קיר כחול */",
+    "createFloor(100, 100, 3, 3)        /* הוסף רצפה */",
+    "addShelf(100, 100)     /* הוסף מדף */",
     "createRoom()       /* הוסף חדר עם חלל פנים */",
-    "createOrangetree(x, y)     /* הוסף עץ תפוזים */",
-    "createTree(x, y)       /* הוסף עץ */",
-    "createGridFloor(x, y, w, h)        /* צור רצפה מרוצפת */"
+    "createOrangetree(100, 100)     /* הוסף עץ תפוזים */",
+    "createTree(100, 100)       /* הוסף עץ */",
+    "createGridFloor(100, 100, 10, 10)        /* צור רצפה מרוצפת */"
 
 ]
 
 var commands2 = [
     "nextCustume()      /* התלבושת הבאה */",
     "nextBlock()        /* הבלוק הבא */",
-    "addNpc(x, y, speedx, speedy)       /* הוסף אוייב */",
-    "setNpc(npcNumber, x, y, speedx, speedy)        /* הגדר אוייב */",
-    "setNpcCostume(npcNumber, costumeNum)       /* הגדר מספר תלבושת לאוייב */",
+    "addNpc(250, 250, 1, 0)       /* הוסף אוייב */",
+    "setNpc(0, 250, 250, 1, 0)        /* הגדר אוייב */",
+    "setNpcCostume(0, 1)       /* הגדר מספר תלבושת לאוייב */",
     "whenAttackDeleteNpc()      /* כאשר שחקן תוקף מחק אוייב */",
-    "print(text, x, y, fontSize, color)     /* הדפס כיתוב */",
+    "print('text', 100, 100, 20, 'red')     /* הדפס כיתוב */",
     "getNpcsLen()",
-    "getNpcPosX(npcNumber)",
-    "getNpcPosY(npcNumber)",
-    "isCollideWithNpc(npcNumber)",
+    "getNpcPosX(0)",
+    "getNpcPosY(0)",
+    "isCollideWithNpc(0)",
     "isCollideWithAnyNpcs()",
     "isSwordAttcksNpcs()",
-    "deleteNpc(npcNumber)",
+    "deleteNpc(0)",
     "player.pos.x = 200     /* מיקום שחקן ברוחב */",
     "player.pos.y = 200     /* מיקום שחקן בגובה */",
     "player.level       /* מספר שלב של השחקן */",
@@ -123,7 +123,7 @@ var commands2 = [
     "addThisLevel()     /* הוסף בלוקים במסך לשלב נפרד */",
     "deleteLastLevel()      /* מחק שלב האחרון שנוצר */",
     "drawLevelBlocksByNumber(n)     /* צייר שלב לפי מספרו */",
-    "showCurrentLevel(x, y, fontSize = 30, color = 'black')     /* הדפס מספר שלב נוכחי */",
+    "showCurrentLevel(100, 100, fontSize = 30, color = 'black')     /* הדפס מספר שלב נוכחי */",
     "player.gravity = 3     /* הוסף כוח נפילה לשחקן */"
 ]
 
