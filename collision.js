@@ -25,11 +25,12 @@ export function stopMoveWhenCollide(subject, obstacles, x, y, camera, canvas, sp
     const upstairs = sprite.sprites.get("upstairs");
     const downstairs = sprite.sprites.get("downstairs");
     const floor = sprite.sprites.get("floor");
+    const door = sprite.sprites.get("door");
 
 
     intersection(subject, obstacles, obstacle => {
 
-        if (obstacle.sprite != water && obstacle.sprite != bridge && obstacle.sprite != upstairs && obstacle.sprite != downstairs && obstacle.sprite != floor) {
+        if (obstacle.sprite != water && obstacle.sprite != bridge && obstacle.sprite != upstairs && obstacle.sprite != downstairs && obstacle.sprite != floor && obstacle.sprite != door) {
             //if subject move to right
             if (x > 0) {
 
@@ -51,7 +52,7 @@ export function stopMoveWhenCollide(subject, obstacles, x, y, camera, canvas, sp
 
     intersection(subject, obstacles, obstacle => {
 
-        if (obstacle.sprite != water && obstacle.sprite != bridge && obstacle.sprite != upstairs && obstacle.sprite != downstairs && obstacle.sprite != floor) {
+        if (obstacle.sprite != water && obstacle.sprite != bridge && obstacle.sprite != upstairs && obstacle.sprite != downstairs && obstacle.sprite != floor && obstacle.sprite != door) {
 
             if (y > 0) {
 
@@ -86,10 +87,12 @@ export function stopNpcsMoveWhenCollide(subject, obstacles, x, y, sprite) {
     const upstairs = sprite.sprites.get("upstairs");
     const downstairs = sprite.sprites.get("downstairs");
     const floor = sprite.sprites.get("floor");
+    const door = sprite.sprites.get("door");
+
 
     intersection(subject, obstacles, obstacle => {
 
-        if (obstacle.sprite != water && obstacle.sprite != bridge && obstacle.sprite != upstairs && obstacle.sprite != downstairs && obstacle.sprite != floor) {
+        if (obstacle.sprite != water && obstacle.sprite != bridge && obstacle.sprite != upstairs && obstacle.sprite != downstairs && obstacle.sprite != floor && obstacle.sprite != door) {
             //if subject move to right
             if (x > 0) {
 
@@ -114,7 +117,7 @@ export function stopNpcsMoveWhenCollide(subject, obstacles, x, y, sprite) {
 
     intersection(subject, obstacles, obstacle => {
 
-        if (obstacle.sprite != water && obstacle.sprite != bridge && obstacle.sprite != upstairs && obstacle.sprite != downstairs && obstacle.sprite != floor) {
+        if (obstacle.sprite != water && obstacle.sprite != bridge && obstacle.sprite != upstairs && obstacle.sprite != downstairs && obstacle.sprite != floor && obstacle.sprite != door) {
 
             if (y > 0) {
 

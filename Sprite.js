@@ -55,15 +55,18 @@ export class Sprite {
             const bigHousePoints = [[0, 78], [29, 55], [35, 55], [43, 60],
             [52, 60], [52, 72], [62, 82], [63, 110], [58, 110], [58, 127], [0, 127], [0, 78]];
 
-            await load_image(50, 50, SITE_URL + '/assets/free.png').then((img) => {
-                const bigHouse_sprite = this.loadSpritePolygon(img, bigHousePoints);
-                this.sprites.set("bigHouse", bigHouse_sprite);
-            });
-
+            const doorPoints = [[94, 107], [114, 107], [114, 126], [94, 126], [94, 107]];
 
             await load_image(50, 50, SITE_URL + '/assets/free.png').then((img) => {
-                const giantHouse_sprite = this.loadSprite_preciclly(img, 67, 50, 73, 75);
+
+                const giantHouse_sprite = this.loadSpritePolygon(img, bigHousePoints);
+                const door_sprite = this.loadSpritePolygon(img, doorPoints);
+
                 this.sprites.set("giantHouse", giantHouse_sprite);
+                this.sprites.set("door", door_sprite);
+
+                const bigHouse_sprite = this.loadSprite_preciclly(img, 67, 50, 73, 75);
+                this.sprites.set("bigHouse", bigHouse_sprite);
             });
 
 
