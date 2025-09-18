@@ -124,6 +124,7 @@ var commands2 = [
     "isBlocksCollideWithAnyNpcs()",
     "isCollideWithUpstairs()        /* האם השחקן נוגע במדרגה למעלה */",
     "isCollideWithDownstairs()      /* האם השחקן נוגע במדרגה למטה */",
+    "isCollideWithDoor()        /* שחקן נוגע בדלת */",
     "addThisLevel()     /* הוסף בלוקים במסך לשלב נפרד */",
     "deleteLastLevel()      /* מחק שלב האחרון שנוצר */",
     "drawLevelBlocksByNumber(n)     /* צייר שלב לפי מספרו */",
@@ -729,6 +730,19 @@ sprite.set_sprites().then(() => {
 
         for (let i = 0; i < blocks.length; i++) {
             if (overlap(player, blocks[i]) && blocks[i].sprite == downstairs_sprite) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    window.isCollideWithDoor = function () {
+        let blocks = board.getAllSubjectsFromGrid();
+        let door_sprite = sprite.sprites.get("door");
+
+        for (let i = 0; i < blocks.length; i++) {
+            if (overlap(player, blocks[i]) && blocks[i].sprite == door_sprite) {
                 return true;
             }
         }
