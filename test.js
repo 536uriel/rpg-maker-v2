@@ -515,7 +515,7 @@ sprite.set_sprites().then(() => {
         }
 
         let door_sprite = sprite.sprites.get('door');
-        board.setGrid(x, y, (new Rect(x * rectW, y * rectH, rectW + (rectW / 2), rectH * 2, door_sprite, camera)), player.pos);
+        board.setGrid(x, y, (new Rect(x * rectW, y * rectH, Math.round(rectW * 1.5), rectH * 2 + 10, door_sprite, camera)), player.pos);
     }
 
     window.addBigHouse = function (x, y) {

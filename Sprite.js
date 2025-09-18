@@ -59,14 +59,16 @@ export class Sprite {
 
             await load_image(50, 50, SITE_URL + '/assets/free.png').then((img) => {
 
-                const giantHouse_sprite = this.loadSpritePolygon(img, bigHousePoints);
+                const bigHouse_sprite = this.loadSpritePolygon(img, bigHousePoints);
                 const door_sprite = this.loadSpritePolygon(img, doorPoints);
 
-                this.sprites.set("giantHouse", giantHouse_sprite);
+                this.sprites.set("bigHouse", bigHouse_sprite);
                 this.sprites.set("door", door_sprite);
 
-                const bigHouse_sprite = this.loadSprite_preciclly(img, 67, 50, 73, 75);
-                this.sprites.set("bigHouse", bigHouse_sprite);
+                const giantHouse_sprite = this.loadSprite_preciclly(img, 67, 50, 73, 75);
+
+                this.sprites.set("giantHouse", giantHouse_sprite);
+
             });
 
 
