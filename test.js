@@ -67,6 +67,7 @@ var camera = new Camera(canvas);
 var levelSizeWidth = canvas.width * 4;
 var levelSizeHeight = canvas.width * 4;
 
+
 let divtxt = document.getElementById("canvas-size-text");
 divtxt.style.display = "inline-block"
 divtxt.style.fontSize = "1.5rem"
@@ -357,6 +358,12 @@ function runCode() {
 document.getElementById("run-btn").addEventListener("click", runCode);
 document.getElementById("clean-btn").addEventListener("click", cleanCode);
 
+window.debugMod = false;
+document.getElementById("dubug-btn").addEventListener("click", function () {
+    window.debugMod = !window.debugMod;
+});
+
+
 
 
 var mousePos = { x: 0, y: 0 }
@@ -428,6 +435,13 @@ sprite.set_sprites().then(() => {
     ]
 
     let drawBackground = board.createBackground(ground_sprite, rects_pos, rectW, rectH, camera, canvas, levelSizeWidth, levelSizeHeight);
+
+    //# newDebugCode
+
+    let drawDebugBackground = board.createDebugBackground(rectW, camera, levelSizeWidth, levelSizeHeight);
+
+    //# end newDebugCode
+
 
     window.bg = function (color) {
         document.getElementById("screen").style.backgroundColor = color;
@@ -824,6 +838,9 @@ sprite.set_sprites().then(() => {
 
 
         drawBackground(ctx);
+        if (window.debugMod) {
+            drawDebugBackground(ctx);
+        }
 
         npcs.update();
         drawNpcsLayer(ctx, npcs.rects, camera, sprite);

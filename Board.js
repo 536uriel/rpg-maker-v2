@@ -61,6 +61,42 @@ export default class Board {
         return rects;
     }
 
+    //#newDebugCode
+
+    createDebugBackground(rw, camera, levelSizeWidth, levelSizeHeight) {
+        let debugBackgroundSprite = document.createElement('canvas');
+        debugBackgroundSprite.width = levelSizeWidth;
+        debugBackgroundSprite.height = levelSizeHeight;
+        let ctxDebugBackgroundSprite = debugBackgroundSprite.getContext('2d');
+
+        this.ctxDebugBackgroundSprite = ctxDebugBackgroundSprite;
+
+        for (let x = rw; x < levelSizeWidth - rw; x += 50) {
+            this.ctxDebugBackgroundSprite.strokeStyle = "red";
+            this.ctxDebugBackgroundSprite.beginPath(); // Start a new path
+            this.ctxDebugBackgroundSprite.moveTo(x, rw);
+            this.ctxDebugBackgroundSprite.lineTo(x + rw, levelSizeHeight - rw);
+            this.ctxDebugBackgroundSprite.stroke(); // Render the path
+
+        }
+
+        for (let y = rw; y < levelSizeHeight - rw; y += 50) {
+            this.ctxDebugBackgroundSprite.strokeStyle = "orange";
+            this.ctxDebugBackgroundSprite.beginPath(); // Start a new path
+            this.ctxDebugBackgroundSprite.moveTo(rw, y);
+            this.ctxDebugBackgroundSprite.lineTo(levelSizeWidth - 50, y);
+            this.ctxDebugBackgroundSprite.stroke(); // Render the path
+
+        }
+
+        return function drawDebugBackground(ctx) {
+            ctx.drawImage(debugBackgroundSprite, -camera.x, camera.y);
+        }
+
+    }
+
+    //#end newDebugCode
+
     //create background by the given sprite and positions
     createBackground(sprite, rects, rw, rh, camera, canvas, levelSizeWidth, levelSizeHeight) {
 
