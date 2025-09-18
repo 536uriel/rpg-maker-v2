@@ -79,6 +79,8 @@ editor2.setSize((cwidth / 2) - 30, 200);
 
 
 var commands = [
+    "addGiantHouse(100,100)         /* (x,y) צור בית ענק במיקום*/",
+    "addBigHouse(100,100)        /* (x,y) צור בית גדול במיקום*/",
     "rect(100, 100)     /*  (x,y) צור בלוק במיקום */",
     "createPool(100, 100)       /* (x,y) צור בריכה */",
     "createBlueHouse(100, 100)      /* (x,y) צור בית כחול */",
@@ -482,6 +484,42 @@ sprite.set_sprites().then(() => {
         }
 
     }
+
+    //$newcode
+
+    window.addBigHouse = function (x, y) {
+        x = Math.round(x / rectW);
+        y = Math.round(y / rectH);
+
+        if (x < 0) {
+            x = 0
+        }
+
+        if (y < 0) {
+            y = 0
+        }
+
+        let bigHouse_sprite = sprite.sprites.get('bigHouse');
+        board.setGrid(x, y, (new Rect(x * rectW, y * rectH, 63 * 2, 70 * 2, bigHouse_sprite, camera)), player.pos);
+    }
+
+    window.addGiantHouse = function (x, y) {
+        x = Math.round(x / rectW);
+        y = Math.round(y / rectH);
+
+        if (x < 0) {
+            x = 0
+        }
+
+        if (y < 0) {
+            y = 0
+        }
+
+        let giantHouse_sprite = sprite.sprites.get('giantHouse');
+        board.setGrid(x, y, (new Rect(x * rectW, y * rectH, 63 * 3, 75 * 3, giantHouse_sprite, camera)), player.pos);
+    }
+
+    //$endnewcode
 
     window.addShelf = function (x, y) {
         x = Math.round(x / rectW);

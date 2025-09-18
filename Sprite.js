@@ -50,7 +50,28 @@ export class Sprite {
             console.log(err)
         }
 
+        //$try to load free.png
+        try {
+            const bigHousePoints = [[0, 78], [29, 55], [35, 55], [43, 60],
+            [52, 60], [52, 72], [62, 82], [63, 110], [58, 110], [58, 127], [0, 127], [0, 78]];
 
+            await load_image(50, 50, SITE_URL + '/assets/free.png').then((img) => {
+                const bigHouse_sprite = this.loadSpritePolygon(img, bigHousePoints);
+                this.sprites.set("bigHouse", bigHouse_sprite);
+            });
+
+
+            await load_image(50, 50, SITE_URL + '/assets/free.png').then((img) => {
+                const giantHouse_sprite = this.loadSprite_preciclly(img, 67, 50, 73, 75);
+                this.sprites.set("giantHouse", giantHouse_sprite);
+            });
+
+
+        } catch (err) {
+            console.log(err)
+        }
+
+        //$end new try code
 
         try {
 
@@ -352,6 +373,47 @@ export class Sprite {
 
         return routeFrames(characterStr, this.sprites, dist, frame_dist, frames_len);
     }
+
+    //$ newcode
+
+    loadSpritePolygon(img, points) {
+        // points = array of [x, y] relative to the image
+        // Example: [[10, 10], [60, 20], [50, 70], [15, 60]]
+
+        // Compute bounding box of the polygon so the canvas is just big enough
+        let xs = points.map(p => p[0]);
+        let ys = points.map(p => p[1]);
+        let minX = Math.min(...xs);
+        let maxX = Math.max(...xs);
+        let minY = Math.min(...ys);
+        let maxY = Math.max(...ys);
+        let w = maxX - minX;
+        let h = maxY - minY;
+
+        let newCanvas = document.createElement("canvas");
+        newCanvas.width = w;
+        newCanvas.height = h;
+        let ctx = newCanvas.getContext("2d");
+
+        // Define the polygon path (relative to the bounding box)
+        ctx.beginPath();
+        ctx.moveTo(points[0][0] - minX, points[0][1] - minY);
+        for (let i = 1; i < points.length; i++) {
+            ctx.lineTo(points[i][0] - minX, points[i][1] - minY);
+        }
+        ctx.closePath();
+
+        // Apply clipping mask
+        ctx.clip();
+
+        // Draw the sprite image, offset so polygon fits inside
+        ctx.drawImage(img, -minX, -minY);
+
+        return newCanvas;
+    }
+
+
+    //$endnew code
 
     loadSprite_preciclly(img, cut_from_x, cut_from_y,
         tile_size_w, tile_size_h) {
