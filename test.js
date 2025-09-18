@@ -500,7 +500,7 @@ sprite.set_sprites().then(() => {
         }
 
         let bigHouse_sprite = sprite.sprites.get('bigHouse');
-        board.setGrid(x, y, (new Rect(x * rectW, y * rectH, 63 * 2, 70 * 2, bigHouse_sprite, camera)), player.pos);
+        board.setGrid(x, y, (new Rect(x * rectW, y * rectH, 100, 150, bigHouse_sprite, camera)), player.pos);
     }
 
     window.addGiantHouse = function (x, y) {
@@ -516,7 +516,7 @@ sprite.set_sprites().then(() => {
         }
 
         let giantHouse_sprite = sprite.sprites.get('giantHouse');
-        board.setGrid(x, y, (new Rect(x * rectW, y * rectH, 63 * 3, 75 * 3, giantHouse_sprite, camera)), player.pos);
+        board.setGrid(x, y, (new Rect(x * rectW, y * rectH, 200, 250, giantHouse_sprite, camera)), player.pos);
     }
 
     //$endnewcode
