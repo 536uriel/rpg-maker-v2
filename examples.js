@@ -11,58 +11,43 @@ bg("DeepSkyBlue")`;
 
 export function example2(editor1, editor2) {
   const c1 = `clearBackground()      /* נקה רקע */
+bg("LimeGreen")     /* צבע רקע בצבע */
+player.pos.x = 200     /* מיקום שחקן ברוחב */
+player.pos.y = 200     /* מיקום שחקן בגובה */
 
-createBlueWall(250,50, 2,1)     /* הוסף קיר כחול */
-createBlueWall(350,50, 1,4)     /* הוסף קיר כחול */
-createBlueWall(250,200, 2,1)     /* הוסף קיר כחול */
+addGiantHouse(300,150)         /* (x,y) צור בית ענק במיקום*/
 
-createFloor(250,100, 1,1)        /* הוסף רצפה */
-createFloor(250,150, 1,1)        /* הוסף רצפה */
-createFloor(300,100, 1,1)        /* הוסף רצפה */
-createFloor(300,150, 1,1)        /* הוסף רצפה */
+addDoor(350,300)      /* (x,y) צור דלת במיקום */
 
-addUpstairs(300,100)     /* הוסף מדרגות למעלה */
-
-
-addThisLevel()
-
+addThisLevel()     /* הוסף בלוקים במסך לשלב נפרד */
 clearBackground()      /* נקה רקע */
 
 
-x = 100
-y = 100
-sx = 1
-sy = 0
+createGridFloor(50,50,5,5)        /* צור רצפה מרוצפת */
 
-createPool(350, 100)
-createPool(500, 100)
-createPool(650, 100)
-
-addBridge(350, 200)
-addBridge(400, 200)
-addBridge(450, 200)
-addBridge(350,150)        /* הוסף גשר */
-
-addBridge(500, 200)
-addBridge(550, 200)
-addBridge(550, 250)
-addBridge(600, 200)
+createBlueWall(50,50, 1, 6)     /* הוסף קיר כחול */
+createBlueWall(50,200, 1, 4)     /* הוסף קיר כחול */
 
 
-createBlueHouse(350,300)
-createOrangeHouse(450,300)
-createRedHouse(600,300)
+createBlueWall(100, 50, 2, 1)     /* הוסף קיר כחול */
+createBlueWall(200, 50, 1, 1)     /* הוסף קיר כחול */
+createBlueWall(250, 50, 2, 1)     /* הוסף קיר כחול */
 
-addBridge(550, 300)
-addBridge(550, 350)
+createBlueWall(350,50, 1, 6)     /* הוסף קיר כחול */
+createBlueWall(350,200, 1, 4)     /* הוסף קיר כחול */
 
-bg("LightGreen")
+createBlueWall(100, 350, 2, 1)     /* הוסף קיר כחול */
+createBlueWall(200, 350, 2, 1)     /* הוסף קיר כחול */
+createBlueWall(250, 350, 2, 1)     /* הוסף קיר כחול */
 
 
-addDownstairs(300,350)       /* הוסף מדרגות למטה */
+addDownstairs(300,300)       /* הוסף מדרגות למטה */
 
-addThisLevel()
+addShelf(100,100)     /* הוסף מדף */
+addShelf(100,300)     /* הוסף מדף */
 
+
+addThisLevel()     /* הוסף בלוקים במסך לשלב נפרד */
 clearBackground()      /* נקה רקע */
 
 drawLevelBlocksByNumber(0)
@@ -72,9 +57,10 @@ player.level = 0      /* מספר שלב של השחקן */
 `
   editor1.setValue(editor1.getValue() + "\n" + c1);
 
-  const c2 = `//לעולמים
+  const c2 = `// כתוב כאן קוד ולחץ על הפעל קוד 
+//לעולמים
 
-if(isCollideWithUpstairs()){
+if(isCollideWithDoor()){
   player.pos.x = 200     /* מיקום שחקן ברוחב */
   player.pos.y = 200     /* מיקום שחקן בגובה */
   clearBackground()      /* נקה רקע */
@@ -90,9 +76,10 @@ if(isCollideWithDownstairs()){
   drawLevelBlocksByNumber(player.level)
 }  
   
-showCurrentLevel(x, y, fontSize = 25, color = 'purple');
+showCurrentLevel(100,100, fontSize = 25, color = 'purple');
 
-if(player.level == 0){ bg("Tan")}else{bg("LightGreen")}
+if(player.level == 0){ bg("LightGreen")}else{bg("aqua")}
+
 `
 
   editor2.setValue(editor2.getValue() + "\n" + c2);
