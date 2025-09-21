@@ -57,20 +57,22 @@ player.level = 0      /* מספר שלב של השחקן */
 `
   editor1.setValue(editor1.getValue() + "\n" + c1);
 
-  const c2 = `// כתוב כאן קוד ולחץ על הפעל קוד 
+  const c2 = `
+// כתוב כאן קוד ולחץ על הפעל קוד 
 //לעולמים
 
 if(isCollideWithDoor()){
   player.pos.x = 200     /* מיקום שחקן ברוחב */
-  player.pos.y = 200     /* מיקום שחקן בגובה */
+  player.pos.y = 250     /* מיקום שחקן בגובה */
   clearBackground()      /* נקה רקע */
   player.level += 1;
   drawLevelBlocksByNumber(player.level)
+  addNpc(150, 150, 1, 0)       /* (x,y,speedx,speedy) הוסף אוייב */
 }    
 
 if(isCollideWithDownstairs()){
   player.pos.x = 200     /* מיקום שחקן ברוחב */
-  player.pos.y = 200     /* מיקום שחקן בגובה */
+  player.pos.y = 250     /* מיקום שחקן בגובה */
   clearBackground()      /* נקה רקע */
   player.level -= 1;
   drawLevelBlocksByNumber(player.level)
@@ -80,6 +82,7 @@ showCurrentLevel(100,100, fontSize = 25, color = 'purple');
 
 if(player.level == 0){ bg("LightGreen")}else{bg("aqua")}
 
+whenAttackDeleteNpc()      /* כאשר שחקן תוקף מחק אוייב */
 `
 
   editor2.setValue(editor2.getValue() + "\n" + c2);
