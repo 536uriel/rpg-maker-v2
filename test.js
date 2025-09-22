@@ -408,6 +408,7 @@ sprite.set_sprites().then(() => {
     player.pos = { x: 200, y: 200 };
     player.gravity = 0;
     player.level = 0;
+    player.life = 10;
 
     player.attack = function () {
         sword.x = this.r;

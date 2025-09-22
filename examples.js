@@ -83,6 +83,8 @@ showCurrentLevel(100,100, fontSize = 25, color = 'purple');
 if(player.level == 0){ bg("LightGreen")}else{bg("aqua")}
 
 whenAttackDeleteNpc()      /* כאשר שחקן תוקף מחק אוייב */
+print("חיים : " + player.life, 100, 50, 30, 'red')     /* ('text',x,y,font_width, 'color')הדפס כיתוב */
+
 `
 
   editor2.setValue(editor2.getValue() + "\n" + c2);

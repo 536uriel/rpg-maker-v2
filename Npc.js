@@ -105,7 +105,8 @@ export default class Npc {
 
             //!the player must be first in overlap because his x doesnt change, only his pos.x
             if (overlap(player, this.magicBall)) {
-
+                //$ add newcode
+                player.life -= 1;
                 //set magicBall to boss posission
                 this.magicBall.pos.x = this.pos.x;
                 this.magicBall.pos.y = this.pos.y;
