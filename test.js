@@ -107,6 +107,7 @@ var commands2 = [
     "nextCustume()      /* התלבושת הבאה */",
     "nextBlock()        /* הבלוק הבא */",
     "addNpc(250, 250, 1, 0)       /* (x,y,speedx,speedy) הוסף אוייב */",
+    "addShootingBoss(2, 100,100)        /* (difficulty ,x, y) הוסף אוייב מכשף */",
     "setNpc(0, 250, 250, 1, 0)        /* (npc_number,x,y,speedx,speedy)הגדר אוייב */",
     "setNpcCostume(0, 1)       /* (npc_number, costum_number)הגדר מספר תלבושת לאוייב */",
     "whenAttackDeleteNpc()      /* כאשר שחקן תוקף מחק אוייב */",
@@ -444,6 +445,16 @@ sprite.set_sprites().then(() => {
 
     //# end newDebugCode
 
+    //$ start newcode
+
+    window.addShootingBoss = function (difficulty ,x, y) {
+
+        npcs.addShootingBoss(sprite, "1player-run-1", difficulty, x, y);
+
+    }
+
+    //$ end newcode
+
 
     window.bg = function (color) {
         document.getElementById("screen").style.backgroundColor = color;
@@ -501,7 +512,7 @@ sprite.set_sprites().then(() => {
 
     }
 
-    //$newcode
+
 
     window.addDoor = function (x, y) {
         x = Math.round(x / rectW);
@@ -551,7 +562,7 @@ sprite.set_sprites().then(() => {
         board.setGrid(x, y, (new Rect(x * rectW, y * rectH, 200, 250, giantHouse_sprite, camera)), player.pos);
     }
 
-    //$endnewcode
+
 
     window.addShelf = function (x, y) {
         x = Math.round(x / rectW);
@@ -873,9 +884,6 @@ sprite.set_sprites().then(() => {
             drawDebugBackground(ctx);
         }
 
-        npcs.update();
-        drawNpcsLayer(ctx, npcs.rects, camera, sprite);
-
         player.velocity.y += player.gravity / 60;
 
         if (sword.attackDuration > 0) {
@@ -896,8 +904,15 @@ sprite.set_sprites().then(() => {
 
         player.draw_preciclly_sprite(ctx, sprite.getSpriteAnimation(costume + 'player-run-', player, 10, 4));
 
+        //# change - update npcs after seting player posiotion
+
         sword.pos.x = player.rp;
         sword.pos.y = player.tp;
+
+        npcs.update(player, sword);
+        drawNpcsLayer(ctx, npcs.rects, camera, sprite);
+
+
 
         div_show_mouse.innerText = "x: " + player.pos.x + ", y: " + player.pos.y;
 

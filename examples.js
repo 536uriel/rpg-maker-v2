@@ -67,7 +67,7 @@ if(isCollideWithDoor()){
   clearBackground()      /* נקה רקע */
   player.level += 1;
   drawLevelBlocksByNumber(player.level)
-  addNpc(150, 150, 1, 0)       /* (x,y,speedx,speedy) הוסף אוייב */
+  addShootingBoss(2, 250, 100)        /* (difficulty ,x, y) הוסף אוייב מכשף */
 }    
 
 if(isCollideWithDownstairs()){

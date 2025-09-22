@@ -50,7 +50,7 @@ export class Sprite {
             console.log(err)
         }
 
-        //$try to load free.png
+
         try {
             const bigHousePoints = [[0, 78], [29, 55], [35, 55], [43, 60],
             [52, 60], [52, 72], [62, 82], [63, 110], [58, 110], [58, 127], [0, 127], [0, 78]];
@@ -76,12 +76,16 @@ export class Sprite {
             console.log(err)
         }
 
-        //$end new try code
+
 
         try {
 
             await load_image(50, 50, SITE_URL + "/assets/wepons_16.png").then((img) => {
                 this.set_sword_sprite(img);
+                
+                //$ start newcode
+                this.set_magicBall_sprite(img);
+                //$ end newcode
             });
 
         } catch (err) {
@@ -270,6 +274,15 @@ export class Sprite {
         const can_img = this.loadSprite(img, 4, 1, this.size_w, this.size_h);
         this.sprites.set('water', can_img);
     }
+
+    //$ start newcode
+
+    set_magicBall_sprite(img) {
+        const magicBall_sprite = this.loadSprite(img, 7, 17, this.size_w, this.size_h);
+        this.sprites.set("magicBall", magicBall_sprite);
+    }
+
+    //$ end newcode
 
     set_sword_sprite(img) {
         const sword_img = this.loadSprite(img, 0, 21, this.size_w, this.size_h);

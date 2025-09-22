@@ -18,23 +18,28 @@ export function rotate_in_center(ctx, rect, deg) {
 
 }
 
+//$ start new chanege
 export function set_tracking_object(ob1, ob2, velocity, func) {
-    if (ob1.x < ob2.x) {
+    if (ob1.pos.x < ob2.pos.x) {
         ob2.velocity.x = -velocity;
     } else {
-        ob2.velocity.x = velocity
+        ob2.velocity.x = velocity;
+
     }
 
-    if (ob1.y < ob2.y) {
+    if (ob1.pos.y < ob2.pos.y) {
         ob2.velocity.y = -velocity;
     } else {
-        ob2.velocity.y = velocity
+        ob2.velocity.y = velocity;
+
     }
 
     if (func) {
         func(ob1, ob2, velocity);
     }
 }
+
+//$ end new chanege
 
 export function dist(ob1, ob2) {
     return Math.sqrt((ob1.x - ob2.x) ^ 2 + (ob1.y - ob2.y) ^ 2);
