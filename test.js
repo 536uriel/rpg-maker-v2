@@ -8,7 +8,7 @@ import Board from "./Board.js";
 import { Sprite } from "./Sprite.js";
 import Camera from "./Camera.js";
 import Npc from "./Npc.js";
-import { rotate_in_center, createPoolBg, createBlueHouse, createOrangeHouse, createRedHouse, createOrangetreeBg, createTreeBg } from "./helpers.js";
+import { rotate_in_center, createPoolBg, createBlueHouse, createOrangeHouse, createRedHouse, createOrangetreeBg, createTreeBg, getRandomIntInclusive } from "./helpers.js";
 import { poolWithBridge, example2, example3, example4 } from "./examples.js";
 
 function isEmptyOrNull(str) {
@@ -111,7 +111,9 @@ var commands2 = [
     "setNpc(0, 250, 250, 1, 0)        /* (npc_number,x,y,speedx,speedy)הגדר אוייב */",
     "setNpcCostume(0, 1)       /* (npc_number, costum_number)הגדר מספר תלבושת לאוייב */",
     "whenAttackDeleteNpc()      /* כאשר שחקן תוקף מחק אוייב */",
+    "player.life = 10       /* קבע חיים של שחקן ל10 */",
     "print('text', 100, 100, 20, 'red')     /* ('text',x,y,font_width, 'color')הדפס כיתוב */",
+    "random(1,10)       /* קבל מספר אקראי בטוווח של 2 מספרים */",
     "getNpcsLen()",
     "getNpcPosX(0)",
     "getNpcPosY(0)",
@@ -196,7 +198,7 @@ commands2.forEach(command => {
 //*/
 
 document.getElementById("e1").addEventListener("click", () => {
-    poolWithBridge(editor1);
+    poolWithBridge(editor1, editor2);
 });
 
 document.getElementById("e2").addEventListener("click", () => {
@@ -453,6 +455,8 @@ sprite.set_sprites().then(() => {
         npcs.addShootingBoss(sprite, "1player-run-1", difficulty, x, y);
 
     }
+
+    window.random = getRandomIntInclusive;
 
     //$ end newcode
 

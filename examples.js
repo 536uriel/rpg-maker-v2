@@ -1,11 +1,42 @@
-export function poolWithBridge(editor1) {
-  let e1 = `createPool(350, 100)
+export function poolWithBridge(editor1, editor2) {
+  let e1 = `// כתוב כאן קוד ולחץ על הפעל קוד 
+clearBackground()      /* נקה רקע */
+bg("aliceblue")     /* צבע רקע בצבע */
+createPool(350, 100)
 addBridge(350, 200)
 addBridge(400, 200)
 addBridge(450, 200)
-bg("DeepSkyBlue")`;
+
+addBridge(350, 150)
+addBridge(450, 250)
+bg("DeepSkyBlue")
+
+addBigHouse(500,100)        /* (x,y) צור בית גדול במיקום*/
+addBigHouse(500,250)        /* (x,y) צור בית גדול במיקום*/
+
+addShootingBoss(5, 450,200)        /* (difficulty ,x, y) הוסף אוייב מכשף */
+addShootingBoss(2, 400, 350)        /* (difficulty ,x, y) הוסף אוייב מכשף */
+player.life = 10       /* קבע חיים של שחקן ל10 */
+time = 0
+
+lastSpawn = 0;  // הזמן שבו יצרנו אויב לאחרונה
+
+`;
 
   editor1.setValue(editor1.getValue() + "\n" + e1);
+
+  const c2 = `print('חיים:  ' + player.life, 100, 100, 30, 'red')     /* ('text',x,y,font_width, 'color')הדפס כיתוב */
+time += 1/60
+print('זמן:  ' + Math.round(time), 100, 50, 30, 'yellow')     /* ('text',x,y,font_width, 'color')הדפס כיתוב */
+
+if(time - lastSpawn >= 5){
+  addShootingBoss(random(1,10), random(300,450), random(50,450))        /* (difficulty ,x, y) הוסף אוייב מכשף */
+  lastSpawn = time; // עדכון הזמן האחרון
+}  
+
+  `
+
+  editor2.setValue(editor2.getValue() + "\n" + c2);
 }
 
 
@@ -53,6 +84,7 @@ clearBackground()      /* נקה רקע */
 drawLevelBlocksByNumber(0)
 
 player.level = 0      /* מספר שלב של השחקן */
+player.life = 10       /* קבע חיים של שחקן ל10 */
 
 `
   editor1.setValue(editor1.getValue() + "\n" + c1);

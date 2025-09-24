@@ -1,5 +1,11 @@
 import Rect from "./Rect.js";
 
+export function getRandomIntInclusive(min, max) {
+  const minCeiled = Math.ceil(min);
+  const maxFloored = Math.floor(max);
+  return Math.floor(Math.random() * (maxFloored - minCeiled + 1)) + minCeiled;
+}
+
 //rotate object in his center
 export function rotate_in_center(ctx, rect, deg) {
 
