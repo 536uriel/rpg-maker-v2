@@ -2,8 +2,6 @@ A tool app (V2) to help young age studants to learn code easally and get them to
 
 this app is a client side only and mainly contains prapered commands to build rpg game with js with ease.
 
-
-
 Copyright (c) 2025 AHARON URIEL BRAVERMAN
 
 Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)
@@ -19,3 +17,5 @@ Under the following terms:
 - NonCommercial — You may not use the material for commercial purposes.
 
 Full license: https://creativecommons.org/licenses/by-nc/4.0/
+
+credits for assets (from free sites like): https://craftpix.net/freebies/
