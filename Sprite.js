@@ -82,7 +82,7 @@ export class Sprite {
 
             await load_image(50, 50, SITE_URL + "/assets/wepons_16.png").then((img) => {
                 this.set_sword_sprite(img);
-                
+
                 //$ start newcode
                 this.set_magicBall_sprite(img);
                 //$ end newcode
@@ -127,6 +127,25 @@ export class Sprite {
         } catch (err) {
             console.log(err)
         }
+
+        //# start loading new sprites:
+        try {
+            await load_image(50, 50, SITE_URL + '/assets/free2.png').then((img) => {
+
+                this.set_new_player_sprites1(img);
+                this.set_new_player_sprites2(img);
+                this.set_new_player_sprites3(img);
+                this.set_new_player_sprites4(img);
+                this.set_new_player_sprites5(img);
+                this.set_new_player_sprites6(img);
+
+            });
+
+        } catch (err) {
+            console.log(err)
+        }
+
+        //# end loading new sprites:
 
     }
 
@@ -362,6 +381,148 @@ export class Sprite {
     }
 
 
+    //# new sprites:
+
+    set_new_player_sprites1(img) {
+
+
+        const player_run_1 = this.loadSprite_byCoordinates(img,
+            15, 45, 90, 125);
+
+        const player_run_2 = this.loadSprite_byCoordinates(img,
+            140, 45, 220, 125);
+
+        const player_run_3 = this.loadSprite_byCoordinates(img,
+            270, 45, 350, 125);
+
+        const player_run_4 = this.loadSprite_byCoordinates(img,
+            400, 45, 475, 125);
+
+
+        this.sprites.set('4player-run-1', player_run_1);
+        this.sprites.set('4player-run-2', player_run_2);
+        this.sprites.set('4player-run-3', player_run_3);
+        this.sprites.set('4player-run-4', player_run_4);
+    }
+
+
+    set_new_player_sprites2(img) {
+
+
+        const player_run_1 = this.loadSprite_byCoordinates(img,
+            30, 165, 75, 240);
+
+        const player_run_2 = this.loadSprite_byCoordinates(img,
+            155, 165, 205, 240);
+
+        const player_run_3 = this.loadSprite_byCoordinates(img,
+            285, 165, 335, 240);
+
+        const player_run_4 = this.loadSprite_byCoordinates(img,
+            410, 165, 460, 240);
+
+
+        this.sprites.set('5player-run-1', player_run_1);
+        this.sprites.set('5player-run-2', player_run_2);
+        this.sprites.set('5player-run-3', player_run_3);
+        this.sprites.set('5player-run-4', player_run_4);
+    }
+
+
+    set_new_player_sprites3(img) {
+
+
+        const player_run_1 = this.loadSprite_byCoordinates(img,
+            30, 310, 80, 390);
+
+        const player_run_2 = this.loadSprite_byCoordinates(img,
+            160, 310, 210, 390);
+
+        const player_run_3 = this.loadSprite_byCoordinates(img,
+            285, 310, 335, 390);
+
+        const player_run_4 = this.loadSprite_byCoordinates(img,
+            410, 310, 465, 390);
+
+
+        this.sprites.set('6player-run-1', player_run_1);
+        this.sprites.set('6player-run-2', player_run_2);
+        this.sprites.set('6player-run-3', player_run_3);
+        this.sprites.set('6player-run-4', player_run_4);
+    }
+
+
+    set_new_player_sprites4(img) {
+
+
+        const player_run_1 = this.loadSprite_byCoordinates(img,
+            25, 450, 80, 530);
+
+        const player_run_2 = this.loadSprite_byCoordinates(img,
+            155, 450, 205, 530);
+
+        const player_run_3 = this.loadSprite_byCoordinates(img,
+            285, 450, 335, 530);
+
+        const player_run_4 = this.loadSprite_byCoordinates(img,
+            410, 450, 465, 530);
+
+
+        this.sprites.set('7player-run-1', player_run_1);
+        this.sprites.set('7player-run-2', player_run_2);
+        this.sprites.set('7player-run-3', player_run_3);
+        this.sprites.set('7player-run-4', player_run_4);
+    }
+
+
+    set_new_player_sprites5(img) {
+
+
+        const player_run_1 = this.loadSprite_byCoordinates(img,
+            25, 580, 75, 655);
+
+        const player_run_2 = this.loadSprite_byCoordinates(img,
+            150, 580, 200, 655);
+
+        const player_run_3 = this.loadSprite_byCoordinates(img,
+            280, 580, 330, 655);
+
+        const player_run_4 = this.loadSprite_byCoordinates(img,
+            410, 580, 460, 655);
+
+
+        this.sprites.set('8player-run-1', player_run_1);
+        this.sprites.set('8player-run-2', player_run_2);
+        this.sprites.set('8player-run-3', player_run_3);
+        this.sprites.set('8player-run-4', player_run_4);
+    }
+
+
+    set_new_player_sprites6(img) {
+
+
+        const player_run_1 = this.loadSprite_byCoordinates(img,
+            15, 710, 70, 785);
+
+        const player_run_2 = this.loadSprite_byCoordinates(img,
+            145, 710, 200, 785);
+
+        const player_run_3 = this.loadSprite_byCoordinates(img,
+            275, 710, 330, 785);
+
+        const player_run_4 = this.loadSprite_byCoordinates(img,
+            410, 710, 465, 785);
+
+
+        this.sprites.set('9player-run-1', player_run_1);
+        this.sprites.set('9player-run-2', player_run_2);
+        this.sprites.set('9player-run-3', player_run_3);
+        this.sprites.set('9player-run-4', player_run_4);
+    }
+
+
+    //# end new sprites:
+
 
     //$this func is mainly for outer class
     drawSprite(ctx, sprite_name, tile_x, tile_y) {
@@ -430,6 +591,26 @@ export class Sprite {
         return newCanvas;
     }
 
+
+
+
+    loadSprite_byCoordinates(img, cut_from_x, cut_from_y,
+        cut_to_x, cut_to_y) {
+
+        let tile_size_w = cut_to_x - cut_from_x;
+        let tile_size_h = cut_to_y - cut_from_y;
+
+        let newCanvasElement = document.createElement("canvas");
+        newCanvasElement.width = tile_size_w;
+        newCanvasElement.height = tile_size_h;
+        let temp_ctx = newCanvasElement.getContext("2d");
+        temp_ctx.drawImage(img, cut_from_x,
+            cut_from_y, tile_size_w, tile_size_h,
+            0, 0, tile_size_w, tile_size_h);
+
+        return newCanvasElement;
+
+    }
 
     //$endnew code
 

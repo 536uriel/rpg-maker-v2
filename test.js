@@ -450,7 +450,7 @@ sprite.set_sprites().then(() => {
 
     //$ start newcode
 
-    window.addShootingBoss = function (difficulty ,x, y) {
+    window.addShootingBoss = function (difficulty, x, y) {
 
         npcs.addShootingBoss(sprite, "1player-run-1", difficulty, x, y);
 
@@ -793,8 +793,8 @@ sprite.set_sprites().then(() => {
     }
 
     window.setNpcCostume = function (npcNumber, costumeNum) {
-        //to prevent errors -> for new there is only 3 costumes!!
-        if (costumeNum >= 1 && costumeNum <= 3) {
+        //to prevent errors -> for new there is only 9 costumes!!
+        if (costumeNum >= 1 && costumeNum <= 9) {
             npcs.rects[npcNumber].costume = costumeNum;
         }
     }
@@ -816,22 +816,10 @@ sprite.set_sprites().then(() => {
     }
 
     window.nextCustume = function nextCustume() {
-        switch (costume) {
-            case 1:
-                costume = 2;
-                break;
+        costume += 1;
 
-            case 2:
-                costume = 3;
-                break;
-
-            case 3:
-                costume = 1;
-                break;
-
-            default:
-                costume = 1;
-                break;
+        if (costume > 9) {
+            costume = 1;
         }
 
     }

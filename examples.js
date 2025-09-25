@@ -16,6 +16,9 @@ addBigHouse(500,250)        /* (x,y) צור בית גדול במיקום*/
 
 addShootingBoss(5, 450,200)        /* (difficulty ,x, y) הוסף אוייב מכשף */
 addShootingBoss(2, 400, 350)        /* (difficulty ,x, y) הוסף אוייב מכשף */
+
+setNpcCostume(0, random(1,9))       /* (npc_number, costum_number)הגדר מספר תלבושת לאוייב */
+
 player.life = 10       /* קבע חיים של שחקן ל10 */
 time = 0
 
@@ -31,6 +34,7 @@ print('זמן:  ' + Math.round(time), 100, 50, 30, 'yellow')     /* ('text',x,y,
 
 if(time - lastSpawn >= 5){
   addShootingBoss(random(1,10), random(300,450), random(50,450))        /* (difficulty ,x, y) הוסף אוייב מכשף */
+  setNpcCostume(0, random(1,9))       /* (npc_number, costum_number)הגדר מספר תלבושת לאוייב */
   lastSpawn = time; // עדכון הזמן האחרון
 }  
 
