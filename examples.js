@@ -207,36 +207,25 @@ addNpc(x, y, 0, 0)
 }
 
 export function example4(editor1, editor2) {
-  const c1 = `// הקוד שפועל פעם אחת
-clearBackground()
-bg("Wheat")
-addNpc(100,100,1, 0)
-addNpc(100,100,0, 1)
+  const c1 = `clearBackground()      /* נקה רקע */
+bg("DarkTurquoise")     /* צבע רקע בצבע */
+addShootingBoss(2, 100,100)        /* (difficulty ,x, y) הוסף אוייב מכשף */
+setNpcCostume(0, 6)       /* (npc_number, costum_number)הגדר מספר תלבושת לאוייב */
+addShootingBoss(2, 200,300)        /* (difficulty ,x, y) הוסף אוייב מכשף */
+setNpcCostume(1, 4)       /* (npc_number, costum_number)הגדר מספר תלבושת לאוייב */
+addBigHouse(200,200)        /* (x,y) צור בית גדול במיקום*/
 
-addNpc(100,100,3, 0)
-addNpc(100,100,0, 3)
-
-createPool(350, 100)
-addBridge(350, 150)
-addBridge(350, 200)
-addBridge(400, 200)
-addBridge(450, 200)
 `
   editor1.setValue(editor1.getValue() + "\n" + c1);
 
-  const c2 = `// הקוד שפועל לעולמים
-whenAttackDeleteNpc()
+  const c2 = `setNpcDetination(0, 1, 400, 100)      /* (npcNumber, destNum, x, y) הגדר מיקום הגעה לאוייב */
+setNpcDetination(0, 2, 100, 200)      /* (npcNumber, destNum, x, y) הגדר מיקום הגעה לאוייב */
+setNpcDetination(0, 3, 350, 350)      /* (npcNumber, destNum, x, y) הגדר מיקום הגעה לאוייב */
 
-for(var i = 0; i < getNpcsLen(); i++){
-  
-  if(getNpcPosX(i) >= 200 ){
-    setNpc(i, getNpcPosX(i), getNpcPosY(i), 0, 1)
-    }
-  
-    if(getNpcPosY(i) >= 200){
-    	setNpc(i, getNpcPosX(i) , 200, 1, 0)
-  }
-}
+setNpcDetination(1, 1, 400, 100)      /* (npcNumber, destNum, x, y) הגדר מיקום הגעה לאוייב */
+setNpcDetination(1, 2, 100, 200)      /* (npcNumber, destNum, x, y) הגדר מיקום הגעה לאוייב */
+setNpcDetination(1, 3, 350, 350)      /* (npcNumber, destNum, x, y) הגדר מיקום הגעה לאוייב */
+
     `
 
   editor2.setValue(editor2.getValue() + "\n" + c2);
