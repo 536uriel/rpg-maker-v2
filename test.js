@@ -110,6 +110,8 @@ var commands2 = [
     "addShootingBoss(2, 100,100)        /* (difficulty ,x, y) הוסף אוייב מכשף */",
     "setNpc(0, 250, 250, 1, 0)        /* (npc_number,x,y,speedx,speedy)הגדר אוייב */",
     "setNpcCostume(0, 1)       /* (npc_number, costum_number)הגדר מספר תלבושת לאוייב */",
+    "setNpcDetination(0, 100, 100)      /* (npcNumber, x, y) הגדר מיקום הגעה לאוייב */",
+    "setNpcSpeed(0, 1, 0)       /* (npcNumber, speedx, speedy) הגדר מהירות אוייב */",
     "whenAttackDeleteNpc()      /* כאשר שחקן תוקף מחק אוייב */",
     "player.life = 10       /* קבע חיים של שחקן ל10 */",
     "print('text', 100, 100, 20, 'red')     /* ('text',x,y,font_width, 'color')הדפס כיתוב */",
@@ -799,12 +801,43 @@ sprite.set_sprites().then(() => {
         }
     }
 
-    window.setNpc = function (npcNumber, x, y, speedx, speedy) {
+    window.setNpc = function (npcNumber, x, y, speedx = 0, speedy = 0) {
         npcs.rects[npcNumber].pos.x = x;
         npcs.rects[npcNumber].pos.y = y;
         npcs.rects[npcNumber].velocity.x = speedx;
         npcs.rects[npcNumber].velocity.y = speedy;
 
+    }
+
+    window.setNpcSpeed = function (npcNumber, speedx, speedy) {
+        npcs.rects[npcNumber].velocity.x = speedx;
+        npcs.rects[npcNumber].velocity.y = speedy;
+    }
+
+    window.setNpcDetination = function (npcNumber, x, y) {
+        if (npcs.rects[npcNumber].pos.x < x) {
+            npcs.rects[npcNumber].velocity.x = 1;
+        }
+
+        if (npcs.rects[npcNumber].pos.x > x) {
+            npcs.rects[npcNumber].velocity.x = -1;
+        }
+
+        if (npcs.rects[npcNumber].pos.y < y) {
+            npcs.rects[npcNumber].velocity.y = 1;
+        }
+
+        if (npcs.rects[npcNumber].pos.y > y) {
+            npcs.rects[npcNumber].velocity.y = -1;
+        }
+
+
+        if (npcs.rects[npcNumber].pos.x == x &&
+            npcs.rects[npcNumber].pos.y == y) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     window.getNpcPosX = function (npcNumber) {
