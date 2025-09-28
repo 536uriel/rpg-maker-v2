@@ -816,7 +816,7 @@ sprite.set_sprites().then(() => {
 
     window.setNpcDetination = function (npcNumber, destNum, x, y) {
 
-        if (npcs.rects.length > 0) {
+        if (npcs.rects.length > 0 && npcNumber < npcs.rects.length) {
 
 
 
