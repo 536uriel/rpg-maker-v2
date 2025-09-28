@@ -816,36 +816,42 @@ sprite.set_sprites().then(() => {
 
     window.setNpcDetination = function (npcNumber, destNum, x, y) {
 
-        if (!("d" in npcs.rects[npcNumber])) {
-            npcs.rects[npcNumber].d = 1;
-        }
+        if (npcs.rects.length > 0) {
 
-        if (destNum == npcs.rects[npcNumber].d) {
 
-            if (npcs.rects[npcNumber].pos.x < x - 50) {
-                npcs.rects[npcNumber].velocity.x = 1;
+
+            if (!("d" in npcs.rects[npcNumber])) {
+                npcs.rects[npcNumber].d = 1;
             }
 
-            if (npcs.rects[npcNumber].pos.x > x + 50) {
-                npcs.rects[npcNumber].velocity.x = -1;
+            if (destNum == npcs.rects[npcNumber].d) {
+
+                if (npcs.rects[npcNumber].pos.x < x - 50) {
+                    npcs.rects[npcNumber].velocity.x = 1;
+                }
+
+                if (npcs.rects[npcNumber].pos.x > x + 50) {
+                    npcs.rects[npcNumber].velocity.x = -1;
+                }
+
+                if (npcs.rects[npcNumber].pos.y < y - 50) {
+                    npcs.rects[npcNumber].velocity.y = 1;
+                }
+
+                if (npcs.rects[npcNumber].pos.y > y + 50) {
+                    npcs.rects[npcNumber].velocity.y = -1;
+                }
+
+
+                if (npcs.rects[npcNumber].pos.x >= x - 50 &&
+                    npcs.rects[npcNumber].pos.y >= y - 50 &&
+                    npcs.rects[npcNumber].pos.x <= x + 50 &&
+                    npcs.rects[npcNumber].pos.y <= y + 50
+                ) {
+                    npcs.rects[npcNumber].d++;
+                }
             }
 
-            if (npcs.rects[npcNumber].pos.y < y - 50) {
-                npcs.rects[npcNumber].velocity.y = 1;
-            }
-
-            if (npcs.rects[npcNumber].pos.y > y + 50) {
-                npcs.rects[npcNumber].velocity.y = -1;
-            }
-
-
-            if (npcs.rects[npcNumber].pos.x >= x - 50 &&
-                npcs.rects[npcNumber].pos.y >= y - 50 &&
-                npcs.rects[npcNumber].pos.x <= x + 50 &&
-                npcs.rects[npcNumber].pos.y <= y + 50
-            ) {
-                npcs.rects[npcNumber].d++;
-            }
         }
     }
 
