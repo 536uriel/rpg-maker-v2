@@ -7,7 +7,8 @@
 
     <!-- for google search engine -->
     <meta name="google-site-verification" content="5UKEHup6c7u7rBDScD3SRN7b9SO1HChzZmcCcThRFPg" />
-    <meta name="description" content="תרגול תכנות יצירת עולם משחק על ידי פקודות מובנות - למידה תכנות לילדים ונוער . rpg game maker v2">
+    <meta name="description"
+        content="תרגול תכנות יצירת עולם משחק על ידי פקודות מובנות - למידה תכנות לילדים ונוער . rpg game maker v2">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>יצירת עולם משחק rpg game maker v2</title>
@@ -27,8 +28,9 @@
 </head>
 
 <body>
+    <!-- navbarComponent -->
 
-    <div class="navbar">
+    <div id="navbarComponent" class="navbar">
         <a href="#" id="clean-btn">נקה קןד</a>
 
         <div class="dropdown">
@@ -70,8 +72,16 @@
             שמור/קבל קוד בשם </a>
 
     </div>
+    <!--end navbarComponent-->
 
-    <!--end navbar-->
+
+    <!-- sidenav component -->
+    <div id="sidenav" class="sidenav">
+        <div id="sidenav-commends-drop-down">
+
+        </div>
+    </div>
+    <!-- end sidenav component -->
 
     <!-- Overlay & Popup -->
     <div class="overlay" id="overlay">
@@ -97,7 +107,22 @@
 
     <div class="main-container">
 
-        <div class="editors-container">
+
+
+        <div id="input-blocks-container" class="input-blocks-container">
+            <div id="target1">
+
+            </div>
+
+
+            <div id="target2">
+
+            </div>
+        </div>
+
+
+
+        <div id="editors-container" class="editors-container">
             <!-- CodeMirror Editor -->
             <h3 style="color: rgb(145, 92, 251);">קורה פעם אחת</h3>
 
@@ -112,6 +137,9 @@
         <div class="output-contaner">
             <!-- Run Button -->
             <div>
+                <button id="switch-components-btn" class="orange"> עבור למצב אחר </button>
+                <button id="run-blocks-btn" class="run-btn">הפעל בלוקים</button>
+
                 <button id="run-btn" class="run-btn">הפעל קוד</button>
 
                 <div id="canvas-size-text">

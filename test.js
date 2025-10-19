@@ -10,6 +10,8 @@ import Camera from "./Camera.js";
 import Npc from "./Npc.js";
 import { rotate_in_center, createPoolBg, createBlueHouse, createOrangeHouse, createRedHouse, createOrangetreeBg, createTreeBg, getRandomIntInclusive } from "./helpers.js";
 import { poolWithBridge, example2, example3, example4 } from "./examples.js";
+import { BlocksComponent } from "./blocks-editor-component.js";
+
 
 function isEmptyOrNull(str) {
     return str == null || (typeof str === 'string' && str.trim().length === 0);
@@ -136,6 +138,7 @@ var commands2 = [
     "showCurrentLevel(100, 100, fontSize = 30, color = 'black')     /* הדפס מספר שלב נוכחי */",
     "player.gravity = 3     /* הוסף כוח נפילה לשחקן */"
 ]
+
 
 var clist = document.getElementById("commands");
 
@@ -370,6 +373,42 @@ document.getElementById("dubug-btn").addEventListener("click", function () {
     window.debugMod = !window.debugMod;
 });
 
+
+let blocksComponent = new BlocksComponent(commands, commands2);
+
+document.getElementById("run-blocks-btn").addEventListener("click", e => {
+    try {
+
+
+
+        let target1Commends = document.getElementById("target1").children;
+        let target2Commends = document.getElementById("target2").children;
+
+        let target1CommendsStr = "";
+        
+        //clean code:
+        target1CommendsStr += "clearBackground()\n";
+        target1CommendsStr += "bg('aliceblue')\n";
+
+        let target2CommendsStr = "";
+
+        for (let i = 0; i < target1Commends.length; i++) {
+            target1CommendsStr += blocksComponent.getCommandString(target1Commends[i]) + "\n";
+        }
+
+        for (let i = 0; i < target2Commends.length; i++) {
+            target2CommendsStr += blocksComponent.getCommandString(target2Commends[i])
+        }
+
+        //execute code blocks:
+        new Function(target1CommendsStr)();
+        new Function(target2CommendsStr)();
+
+    } catch (err) {
+        console.log(err);
+    }
+
+})
 
 
 
@@ -1034,4 +1073,54 @@ sprite.set_sprites().then(() => {
 
 
 });
+
+
+function switchElementVisability(elem) {
+    if (elem.style.display == "none") {
+        elem.style.display = "block"
+    } else {
+        elem.style.display = "none"
+    }
+
+
+}
+
+
+var navbarElement = document.getElementById("navbarComponent");
+var editorsContainer = document.getElementById("editors-container");
+var cmdlist1 = document.getElementById("commands");
+var cmdlist2 = document.getElementById("commands2");
+var outputElem = document.getElementById("output");
+var runBtn = document.getElementById("run-btn");
+
+
+
+var sidenav = document.getElementById("sidenav");
+var inputBlocksContainer = document.getElementById("input-blocks-container");
+var runBlocksBtn = document.getElementById("run-blocks-btn");
+
+
+
+sidenav.style.display = "none";
+inputBlocksContainer.style.display = "none";
+runBlocksBtn.style.display = "none";
+
+
+var switchComponentsBtn = document.getElementById("switch-components-btn");
+switchComponentsBtn.addEventListener("click", e => {
+    switchElementVisability(sidenav);
+    switchElementVisability(inputBlocksContainer);
+    switchElementVisability(cmdlist1);
+    switchElementVisability(cmdlist2);
+    switchElementVisability(outputElem);
+    switchElementVisability(runBtn);
+
+    switchElementVisability(navbarElement);
+    switchElementVisability(editorsContainer);
+    switchElementVisability(runBlocksBtn);
+
+})
+
+
+
 
