@@ -242,7 +242,6 @@ document.getElementById("saveCodeToLocalStorageBtn").addEventListener("click", s
 //get code by stu name and project name from local storage
 document.getElementById("getCodeFromLocalStorageBtn").addEventListener("click", getCodeFromLocalStorage);
 
-
 const overlay = document.getElementById("overlay");
 
 function openPopup() {
