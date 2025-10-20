@@ -147,8 +147,11 @@ export class BlocksComponent {
             let offsetX = 0;
             let offsetY = 0;
 
+
+
             // Start dragging (source or clone)
             document.addEventListener('dragstart', e => {
+
                 const el = e.target;
                 if (el.classList.contains('draggable') || el.classList.contains('clone')) {
                     draggedEl = el;
@@ -184,6 +187,7 @@ export class BlocksComponent {
                 const original = document.querySelector(`.draggable[data-id="${data.id}"]`);
                 const clone = original.cloneNode(true);
                 clone.classList.add('clone');
+                clone.id = original.id + "clone";
                 clone.style.left = x + 'px';
                 clone.style.top = y + 'px';
                 clone.setAttribute('draggable', 'true');
@@ -193,6 +197,7 @@ export class BlocksComponent {
 
             // Detect end of drag (for removal when dropped outside)
             document.addEventListener('dragend', e => {
+
                 if (!draggedEl) return;
                 const el = draggedEl;
                 draggedEl = null;
@@ -200,14 +205,19 @@ export class BlocksComponent {
                 if (!el.classList.contains('clone')) return;
 
                 const rect = target.getBoundingClientRect();
-                const inside =
-                    e.clientX >= rect.left &&
-                    e.clientX <= rect.right &&
-                    e.clientY >= rect.top &&
-                    e.clientY <= rect.bottom;
 
+                //!need to fix
+                const insideLeftRight =
+                    e.pageX >= rect.left &&
+                    e.pageX <= rect.right 
+
+                // alert(e.pageX + ",(>=) " + rect.left + ",,,"
+                //     + e.pageX + ",(<=) " + rect.right + ",,,"
+                //     + e.pageY + ",(>=) " + rect.top + ",,,"
+                //     + e.pageY + ",(<=) " + rect.bottom + ",,,"
+                // )
                 // Remove clone if dropped outside
-                if (!inside) el.remove();
+                if (!insideLeftRight) el.remove();
             });
 
         });
