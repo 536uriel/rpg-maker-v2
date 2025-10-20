@@ -70,7 +70,7 @@ export class BlocksComponent {
             args.forEach((arg, i) => {
                 const input = document.createElement('input');
                 if (crypto != null && crypto != undefined) {
-                    input.id = crypto.randomUUID();
+                    input.name = crypto.randomUUID();
                 }
                 input.type = 'text';
                 input.value = arg;
@@ -187,7 +187,14 @@ export class BlocksComponent {
                 const original = document.querySelector(`.draggable[data-id="${data.id}"]`);
                 const clone = original.cloneNode(true);
                 clone.classList.add('clone');
-                clone.id = original.id + "clone";
+
+                let tmpuuid = crypto.randomUUID();
+                if (tmpuuid) {
+                    clone.id = tmpuuid;
+                } else {
+                    clone.id = original.id + "clone";
+                }
+
                 clone.style.left = x + 'px';
                 clone.style.top = y + 'px';
                 clone.setAttribute('draggable', 'true');
@@ -209,7 +216,7 @@ export class BlocksComponent {
                 //!need to fix
                 const insideLeftRight =
                     e.pageX >= rect.left &&
-                    e.pageX <= rect.right 
+                    e.pageX <= rect.right
 
                 // alert(e.pageX + ",(>=) " + rect.left + ",,,"
                 //     + e.pageX + ",(<=) " + rect.right + ",,,"
