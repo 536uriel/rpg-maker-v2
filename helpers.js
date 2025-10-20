@@ -218,3 +218,36 @@ export function createRedHouse(spriteSheet, blockWidth, blockHeight, hx, hy, cam
 
 }
 
+
+
+export function popup(str = ""){
+
+  const overlay = document.createElement("div");
+  overlay.style.cssText = `
+    position:fixed; inset:0; background:rgba(0,0,0,0.5);
+    display:flex; align-items:center; justify-content:center; z-index:9999;
+  `;
+
+  const popup = document.createElement("div");
+  popup.style.cssText = `
+    background:white; padding:20px; border-radius:10px; 
+    box-shadow:0 0 20px rgba(0,0,0,0.3); text-align:center; 
+    max-width:300px; font-family:sans-serif;
+  `;
+  popup.innerHTML = `
+    <h3 style="margin-top:0">ברוכים הבאים לעורך קוד עולם משחק</h3>
+    <p>${str}</p>
+    <button style="
+      background:#007bff; color:white; border:none; 
+      padding:8px 14px; border-radius:6px; cursor:pointer;
+    ">הבנתי</button>
+  `;
+
+  overlay.appendChild(popup);
+  document.body.appendChild(overlay);
+
+  popup.querySelector("button").onclick = () => overlay.remove();
+  overlay.onclick = e => { if(e.target === overlay) overlay.remove(); };
+
+};
+

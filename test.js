@@ -8,7 +8,7 @@ import Board from "./Board.js";
 import { Sprite } from "./Sprite.js";
 import Camera from "./Camera.js";
 import Npc from "./Npc.js";
-import { rotate_in_center } from "./helpers.js";
+import { rotate_in_center, popup } from "./helpers.js";
 import { poolWithBridge, example2, example3, example4 } from "./examples.js";
 import { BlocksComponent } from "./blocks-editor-component.js";
 import { setWindowsCommandsAfterSetSprites, setWindowsCommandsInsideUpdate } from "./WindowsCommands.js";
@@ -373,6 +373,10 @@ document.getElementById("dubug-btn").addEventListener("click", function () {
     window.debugMod = !window.debugMod;
 });
 
+document.getElementById("dubug-btn2").addEventListener("click", function () {
+    window.debugMod = !window.debugMod;
+});
+
 
 let blocksComponent = new BlocksComponent(commands, commands2);
 
@@ -632,7 +636,20 @@ switchComponentsBtn.addEventListener("click", e => {
     switchElementVisability(editorsContainer);
     switchElementVisability(runBlocksBtn);
 
-})
+});
+
+let pstr1 = `<p>תזכורת: המקש 0 מיועד למכת חרב
+    וכדי לצאת ממצב בדיקה יש ללחוץ עליו פעם נוספת </p>`;
+   
+let pstr2 = `<p>לא לשכוח שכל פעם שרוצים להפעיל את שורות הקוד או הבלוקים
+    יש ללחוץ על ״הפעל קוד״ או על ״הפעל בלוקים״ כל פעם מחדש</p>`;
+
+let pstr3 = `<p>כדי לעבור ממצב עריכה רגיל למצב בניית בלוקים 
+    וכן להפך - יש ללחוץ על הכפתור <strong class="orange">עבור למצב אחר</strong> </p>`;
+
+popup(pstr1 + pstr2 + pstr3);
+
+
 
 
 
