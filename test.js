@@ -560,13 +560,22 @@ sprite.set_sprites().then(() => {
 
 
 function switchElementVisability(elem) {
+    let displayData = elem.getAttribute("style-display-data");
+
     if (elem.style.display == "none") {
-        elem.style.display = "block"
+        //for preventing logic bugs
+        if (displayData != null) {
+            elem.style.display = displayData;
+        } else {
+            elem.style.display = "block"
+        }
     } else {
         elem.style.display = "none"
     }
+}
 
-
+function setElementStyleDisplayData(elem) {
+    elem.setAttribute("style-display-data", getComputedStyle(elem, null).display);
 }
 
 
@@ -577,12 +586,22 @@ var cmdlist2 = document.getElementById("commands2");
 var outputElem = document.getElementById("output");
 var runBtn = document.getElementById("run-btn");
 
-
-
 var sidenav = document.getElementById("sidenav");
 var inputBlocksContainer = document.getElementById("input-blocks-container");
 var runBlocksBtn = document.getElementById("run-blocks-btn");
 
+
+setElementStyleDisplayData(navbarElement);
+setElementStyleDisplayData(editorsContainer);
+setElementStyleDisplayData(cmdlist1);
+setElementStyleDisplayData(cmdlist2);
+setElementStyleDisplayData(outputElem);
+setElementStyleDisplayData(runBtn);
+
+
+setElementStyleDisplayData(sidenav);
+setElementStyleDisplayData(inputBlocksContainer);
+setElementStyleDisplayData(runBlocksBtn);
 
 
 sidenav.style.display = "none";
