@@ -21,6 +21,9 @@ export class BlocksComponent {
 
             args.forEach((arg, i) => {
                 const input = document.createElement('input');
+                if (crypto != null && crypto != undefined) {
+                    input.id = crypto.randomUUID();
+                }
                 input.type = 'text';
                 input.value = arg;
                 input.style.width = '50px';
@@ -44,8 +47,15 @@ export class BlocksComponent {
             let a = document.createElement("a");
 
             a.innerText = command;
-            a.id = "source"
-            a.setAttribute("data-id", index);
+
+            if (crypto != null && crypto != undefined) {
+                let uuid = crypto.randomUUID();
+                a.id = uuid;
+                a.setAttribute("data-id", uuid);
+            } else {
+                a.setAttribute("data-id", index);
+            }
+
             a.draggable = "true"
             a.classList.add("draggable")
             a.classList.add("green")
@@ -55,14 +65,19 @@ export class BlocksComponent {
         });
 
 
-        var sidenavAlist = document.getElementById("sidenav-commends-drop-down");
-
         commands2.forEach((command, index) => {
             let a = document.createElement("a");
 
             a.innerText = command;
-            a.id = "source"
-            a.setAttribute("data-id", lencmds + index);
+
+            if (crypto != null && crypto != undefined) {
+                let uuid = crypto.randomUUID();
+                a.id = uuid;
+                a.setAttribute("data-id", uuid);
+            } else {
+                a.setAttribute("data-id", lencmds + index);
+            }
+
             a.draggable = "true"
             a.classList.add("draggable")
             a.classList.add("blue")
@@ -70,27 +85,9 @@ export class BlocksComponent {
 
             sidenavAlist.appendChild(a);
         });
-        //*/
-
-        ////////////////
-
-        var sidenavList = document.getElementById("sidenav-commends-drop-down");
-
-        commands.forEach((command, index) => {
-            let a = document.createElement("a");
-
-            a.innerText = command;
-            a.id = "source"
-            a.setAttribute("data-id", index);
-            a.draggable = "true"
-            a.classList.add("draggable")
-            a.classList.add("orange")
-            replaceNumbersWithInputs(a);
-
-            sidenavList.appendChild(a);
-        });
 
         ///////
+
         (["target1", "target2"]).forEach((targetStr, index_target) => {
 
 

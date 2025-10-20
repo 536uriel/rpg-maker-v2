@@ -52,6 +52,7 @@ var cheight = Math.max(body.scrollHeight, body.offsetHeight,
     html.clientHeight, html.scrollHeight, html.offsetHeight);
 
 var callback = () => { };
+var callback2 = () => { };
 
 document.getElementById("btns-img").src = SITE_URL + "/assets/wasd-btns.jpeg"
 
@@ -349,7 +350,6 @@ function runCode() {
         }
         */
         callback = () => {
-            //for execute p5 code
 
             new Function(code)();
         }
@@ -403,6 +403,11 @@ document.getElementById("run-blocks-btn").addEventListener("click", e => {
         //execute code blocks:
         new Function(target1CommendsStr)();
         new Function(target2CommendsStr)();
+
+        callback2 = () => {
+
+            new Function(target2CommendsStr)();
+        }
 
     } catch (err) {
         console.log(err);
@@ -536,7 +541,7 @@ sprite.set_sprites().then(() => {
         div_show_mouse.innerText = "x: " + player.pos.x + ", y: " + player.pos.y;
 
         callback();
-
+        callback2();
 
 
         npcs.iterateNpcs(npcRect => {
