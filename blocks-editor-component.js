@@ -1,7 +1,55 @@
 //@ component start from here:
+class UpwardColorRgb {
+    constructor() {
+        this.red = 100;
+        this.green = 0;
+        this.blue = 0;
+
+        this.ored = 150;
+        this.ogreen = 250;
+        this.oblue = 250;
+    }
+
+    getRgbColorStr() {
+        if (this.red <= 220) {
+            this.red += 30;
+        } else {
+            if (this.green <= 220) {
+                this.green += 30;
+            } else {
+                if (this.blue <= 240) {
+                    this.blue += 10;
+                }
+            }
+        }
+
+        return `rgb(${this.red}, ${this.green}, ${this.blue})`;
+    }
+
+
+    getOpositeRgbColorStr() {
+        if (this.ored >= 40) {
+            this.ored -= 30;
+        } else {
+            if (this.ogreen >= 40) {
+                this.ogreen -= 30;
+            } else {
+                if (this.oblue >= 20) {
+                    this.oblue -= 10;
+                }
+            }
+        }
+
+        return `rgb(${this.ored}, ${this.ogreen}, ${this.oblue})`;
+    }
+}
+
+
 export class BlocksComponent {
 
     constructor(commands, commands2) {
+
+        const rgbColor = new UpwardColorRgb();
 
         this.commands = commands;
         this.commands2 = commands2;
@@ -58,7 +106,8 @@ export class BlocksComponent {
 
             a.draggable = "true"
             a.classList.add("draggable")
-            a.classList.add("green")
+            a.style.background = rgbColor.getRgbColorStr();
+            a.style.color = rgbColor.getOpositeRgbColorStr();
             replaceNumbersWithInputs(a);
 
             sidenavAlist.appendChild(a);
@@ -80,7 +129,8 @@ export class BlocksComponent {
 
             a.draggable = "true"
             a.classList.add("draggable")
-            a.classList.add("blue")
+            a.style.background = rgbColor.getRgbColorStr();
+            a.style.color = rgbColor.getOpositeRgbColorStr();
             replaceNumbersWithInputs(a);
 
             sidenavAlist.appendChild(a);
