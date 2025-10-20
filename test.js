@@ -392,6 +392,10 @@ document.getElementById("run-blocks-btn").addEventListener("click", e => {
 
         let target2CommendsStr = "";
 
+        target1CommendsStr += editor1.getValue() + "\n";
+        target2CommendsStr += editor2.getValue() + "\n";
+
+
         for (let i = 0; i < target1Commends.length; i++) {
             target1CommendsStr += blocksComponent.getCommandString(target1Commends[i]) + "\n";
         }
@@ -399,6 +403,7 @@ document.getElementById("run-blocks-btn").addEventListener("click", e => {
         for (let i = 0; i < target2Commends.length; i++) {
             target2CommendsStr += blocksComponent.getCommandString(target2Commends[i])
         }
+
 
         //execute code blocks:
         new Function(target1CommendsStr)();
