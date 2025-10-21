@@ -280,7 +280,7 @@ function saveCodeToLocalStorage(event) {
     if (!isEmptyOrNull(studentName) && !isEmptyOrNull(projectName)) {
         localStorage.setItem(studentName + ":" + projectName, JSON.stringify(data));
 
-        //!need to fix
+
         try {
 
             const target1Childrens = target1BlockEditor.children;
@@ -385,6 +385,12 @@ function getCodeFromLocalStorage(event) {
             }
 
 
+        } catch (err) {
+            console.log(err);
+        }
+
+        try {
+            const sidenavChildrens = document.getElementById("sidenav-commends-drop-down").children;
 
             let target2Data = JSON.parse(localStorage.getItem(studentName + ":" + projectName + "blocks2"));
 
