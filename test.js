@@ -317,8 +317,10 @@ function getCodeFromLocalStorage(event) {
         editor1.setValue(data.e1Text);
         editor2.setValue(data.e2Text);
 
-        const target1BlockEditor = document.getElementById("target1");
-        const target2BlockEditor = document.getElementById("target2");
+        const target1Elem = document.getElementById("target1");
+        const target2Elem = document.getElementById("target1");
+
+        const input_blocks_container = document.getElementById("input-blocks-container");
 
 
         //!need to fix
@@ -331,19 +333,30 @@ function getCodeFromLocalStorage(event) {
 
             const target2Html = target2ClonedData.strHtml;
 
-            if (target1Html) {
-                let targetId1 = target1BlockEditor.id;
+            const inputBlocksContainerChidrensStr1 = `<a href="#" id="dubug-btn2"> מצב בדיקה </a>
+            <h3 style="color: rgb(145, 92, 251);">קורה פעם אחת</h3>
+            ${target1Html}`
 
-                target1BlockEditor.innerHTML = target1Html;
-                target1BlockEditor.id = targetId1;
+            const inputBlocksContainerChidrensStr2 = ` <h3 style="color: rgb(145, 92, 251);">קורה לעולמים</h3>
+            ${target2Html} `;
+
+            let input_blocks_containerStr = "";
+
+            if (target1Html) {
+                input_blocks_containerStr += inputBlocksContainerChidrensStr1;
+            } else {
+                input_blocks_containerStr += target1Elem.outerHTML;
             }
 
             if (target2Html) {
-                let targetId2 = target2BlockEditor.id;
+                input_blocks_containerStr += inputBlocksContainerChidrensStr2;
+            } else {
+                input_blocks_containerStr += target2Elem.outerHTML;
 
-                target2BlockEditor.innerHTML = target2Html;
-                target2BlockEditor.id = targetId2;
             }
+
+            input_blocks_container.innerHTML = input_blocks_containerStr;
+
 
         } catch (err) {
             console.log(err)
