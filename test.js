@@ -355,7 +355,8 @@ function getCodeFromLocalStorage(event) {
 
             }
 
-            input_blocks_container.innerHTML = input_blocks_containerStr;
+            //!need to fix
+            //input_blocks_container.innerHTML = input_blocks_containerStr;
 
 
         } catch (err) {
