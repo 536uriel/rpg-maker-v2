@@ -267,12 +267,28 @@ function saveCodeToLocalStorage(event) {
     const e1Text = editor1.getValue();
     const e2Text = editor2.getValue();
 
+    const target1BlockEditor = document.getElementById("target1");
+
+    const target2BlockEditor = document.getElementById("target2");
+
+
     const data = {
         e1Text, e2Text
     }
 
+
     if (!isEmptyOrNull(studentName) && !isEmptyOrNull(projectName)) {
         localStorage.setItem(studentName + ":" + projectName, JSON.stringify(data));
+
+        //!need to fix
+        try {
+            localStorage.setItem(studentName + ":" + projectName + "blocks1", JSON.stringify({ strHtml: target1BlockEditor.outerHTML }));
+            localStorage.setItem(studentName + ":" + projectName + "blocks2", JSON.stringify({ strHtml: target2BlockEditor.outerHTML }));
+        } catch (err) {
+            console.log(err)
+        }
+
+
         alert("הקוד נשמר בשם");
         closePopup();
     } else {
@@ -300,7 +316,39 @@ function getCodeFromLocalStorage(event) {
 
         editor1.setValue(data.e1Text);
         editor2.setValue(data.e2Text);
-        console.log(data)
+
+        const target1BlockEditor = document.getElementById("target1");
+        const target2BlockEditor = document.getElementById("target2");
+
+
+        //!need to fix
+        try {
+
+            let target1ClonedData = JSON.parse(localStorage.getItem(studentName + ":" + projectName + "blocks1"));
+            let target2ClonedData = JSON.parse(localStorage.getItem(studentName + ":" + projectName + "blocks2"));
+
+            const target1Html = target1ClonedData.strHtml;
+
+            const target2Html = target2ClonedData.strHtml;
+
+            if (target1Html) {
+                let targetId1 = target1BlockEditor.id;
+
+                target1BlockEditor.innerHTML = target1Html;
+                target1BlockEditor.id = targetId1;
+            }
+
+            if (target2Html) {
+                let targetId2 = target2BlockEditor.id;
+
+                target2BlockEditor.innerHTML = target2Html;
+                target2BlockEditor.id = targetId2;
+            }
+
+        } catch (err) {
+            console.log(err)
+        }
+
         alert("הקוד נטען בהצלחה");
         closePopup();
     } else {
@@ -640,7 +688,7 @@ switchComponentsBtn.addEventListener("click", e => {
 
 let pstr1 = `<p>תזכורת: המקש 0 מיועד למכת חרב
     וכדי לצאת ממצב בדיקה יש ללחוץ עליו פעם נוספת </p>`;
-   
+
 let pstr2 = `<p>לא לשכוח שכל פעם שרוצים להפעיל את שורות הקוד או הבלוקים
     יש ללחוץ על ״הפעל קוד״ או על ״הפעל בלוקים״ כל פעם מחדש</p>`;
 
