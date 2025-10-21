@@ -282,8 +282,32 @@ function saveCodeToLocalStorage(event) {
 
         //!need to fix
         try {
-            localStorage.setItem(studentName + ":" + projectName + "blocks1", JSON.stringify({ strHtml: target1BlockEditor.outerHTML }));
-            localStorage.setItem(studentName + ":" + projectName + "blocks2", JSON.stringify({ strHtml: target2BlockEditor.outerHTML }));
+
+            const target1Childrens = target1BlockEditor.children;
+            let target1NodesData = [];
+
+            for (let i = 0; i < target1Childrens.length; i++) {
+                target1NodesData.push({
+                    x: target1Childrens[i].clientX, y: target1Childrens[i].clientY,
+                    command: window.blocksComponent.getCommandString(target1Childrens[i])
+                });
+
+            }
+
+            const target2Childrens = target2BlockEditor.children;
+            let target2NodesData = [];
+
+            for (let i = 0; i < target2Childrens.length; i++) {
+                target2NodesData.push({
+                    x: target2Childrens[i].clientX, y: target2Childrens[i].clientY,
+                    command: window.blocksComponent.getCommandString(target2Childrens[i])
+                });
+
+            }
+
+
+            localStorage.setItem(studentName + ":" + projectName + "blocks1", JSON.stringify({ target1NodesData }));
+            localStorage.setItem(studentName + ":" + projectName + "blocks2", JSON.stringify({ target2NodesData }));
         } catch (err) {
             console.log(err)
         }
@@ -317,46 +341,87 @@ function getCodeFromLocalStorage(event) {
         editor1.setValue(data.e1Text);
         editor2.setValue(data.e2Text);
 
-        const target1Elem = document.getElementById("target1");
-        const target2Elem = document.getElementById("target1");
-
-        const input_blocks_container = document.getElementById("input-blocks-container");
-
 
         //!need to fix
         try {
 
-            let target1ClonedData = JSON.parse(localStorage.getItem(studentName + ":" + projectName + "blocks1"));
-            let target2ClonedData = JSON.parse(localStorage.getItem(studentName + ":" + projectName + "blocks2"));
+            const sidenavChildrens = document.getElementById("sidenav-commends-drop-down").children;
 
-            const target1Html = target1ClonedData.strHtml;
+            let target1Data = JSON.parse(localStorage.getItem(studentName + ":" + projectName + "blocks1"));
 
-            const target2Html = target2ClonedData.strHtml;
+            const target1NodesData = target1Data.target1NodesData;
 
-            const inputBlocksContainerChidrensStr1 = `<a href="#" id="dubug-btn2"> מצב בדיקה </a>
-            <h3 style="color: rgb(145, 92, 251);">קורה פעם אחת</h3>
-            ${target1Html}`
 
-            const inputBlocksContainerChidrensStr2 = ` <h3 style="color: rgb(145, 92, 251);">קורה לעולמים</h3>
-            ${target2Html} `;
+            const target1 = document.getElementById("target1");
 
-            let input_blocks_containerStr = "";
+            for (let i = 0; i < target1NodesData.length; i++) {
 
-            if (target1Html) {
-                input_blocks_containerStr += inputBlocksContainerChidrensStr1;
-            } else {
-                input_blocks_containerStr += target1Elem.outerHTML;
+                let target1DataTmp = target1NodesData[i];
+
+                for (let j = 0; j < sidenavChildrens.length; j++) {
+
+                    let original = sidenavChildrens[j];
+
+                    if (window.blocksComponent.getCommandString(original) == target1DataTmp.command) {
+
+                        let clone = original.cloneNode(true);
+                        clone.classList.add('clone');
+
+                        let tmpuuid = crypto.randomUUID();
+                        if (tmpuuid) {
+                            clone.id = tmpuuid;
+                        } else {
+                            clone.id = original.id + "clone";
+                        }
+
+                        clone.style.left = target1DataTmp.x + 'px';
+                        clone.style.top = target1DataTmp.y + 'px';
+                        clone.setAttribute('draggable', 'true');
+                        clone.dataset.instanceId = Math.random().toString(36).slice(2);
+                        target1.appendChild(clone);
+                    }
+                }
+
             }
 
-            if (target2Html) {
-                input_blocks_containerStr += inputBlocksContainerChidrensStr2;
-            } else {
-                input_blocks_containerStr += target2Elem.outerHTML;
+
+
+            let target2Data = JSON.parse(localStorage.getItem(studentName + ":" + projectName + "blocks2"));
+
+            const target2NodesData = target2Data.target2NodesData;
+
+            const target2 = document.getElementById("target2");
+
+            for (let i = 0; i < target2NodesData.length; i++) {
+
+                let target2DataTmp = target2NodesData[i];
+
+                for (let j = 0; j < sidenavChildrens.length; j++) {
+
+                    let original = sidenavChildrens[j];
+
+                    if (window.blocksComponent.getCommandString(original) == target2DataTmp.command) {
+
+                        let clone = original.cloneNode(true);
+                        clone.classList.add('clone');
+
+                        let tmpuuid = crypto.randomUUID();
+                        if (tmpuuid) {
+                            clone.id = tmpuuid;
+                        } else {
+                            clone.id = original.id + "clone";
+                        }
+
+                        clone.style.left = target2DataTmp.x + 'px';
+                        clone.style.top = target2DataTmp.y + 'px';
+                        clone.setAttribute('draggable', 'true');
+                        clone.dataset.instanceId = Math.random().toString(36).slice(2);
+                        target2.appendChild(clone);
+                    }
+                }
 
             }
 
-            //!need to fix
-            //input_blocks_container.innerHTML = input_blocks_containerStr;
 
 
         } catch (err) {
@@ -440,7 +505,7 @@ document.getElementById("dubug-btn2").addEventListener("click", function () {
 });
 
 
-let blocksComponent = new BlocksComponent(commands, commands2);
+window.blocksComponent = new BlocksComponent(commands, commands2);
 
 document.getElementById("run-blocks-btn").addEventListener("click", e => {
     try {
@@ -463,11 +528,11 @@ document.getElementById("run-blocks-btn").addEventListener("click", e => {
 
 
         for (let i = 0; i < target1Commends.length; i++) {
-            target1CommendsStr += blocksComponent.getCommandString(target1Commends[i]) + "\n";
+            target1CommendsStr += window.blocksComponent.getCommandString(target1Commends[i]) + "\n";
         }
 
         for (let i = 0; i < target2Commends.length; i++) {
-            target2CommendsStr += blocksComponent.getCommandString(target2Commends[i])
+            target2CommendsStr += window.blocksComponent.getCommandString(target2Commends[i])
         }
 
 
