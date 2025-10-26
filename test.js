@@ -354,7 +354,7 @@ function getCodeFromLocalStorage(event) {
             let target1Data = JSON.parse(localStorage.getItem(studentName + ":" + projectName + "blocks1"));
 
             const target1NodesData = target1Data.target1NodesData;
-
+            console.log(target1NodesData)
 
             const target1 = document.getElementById("target1");
 
@@ -366,7 +366,7 @@ function getCodeFromLocalStorage(event) {
 
                     let original = sidenavChildrens[j];
 
-                    if (window.blocksComponent.getCommandString(original) == target1DataTmp.command) {
+                    if (window.blocksComponent.getCommandString(original).split("(")[0] == target1DataTmp.command.split("(")[0]) {
 
                         let clone = original.cloneNode(true);
                         clone.classList.add('clone');
@@ -378,7 +378,7 @@ function getCodeFromLocalStorage(event) {
                             clone.id = original.id + "clone";
                         }
 
-                        console.log(target1DataTmp.x)
+                        
 
                         clone.style.left = target1DataTmp.left;
                         clone.style.top = target1DataTmp.top;
@@ -412,7 +412,7 @@ function getCodeFromLocalStorage(event) {
 
                     let original = sidenavChildrens[j];
 
-                    if (window.blocksComponent.getCommandString(original) == target2DataTmp.command) {
+                    if (window.blocksComponent.getCommandString(original).split("(")[0] == target2DataTmp.command.split("(")[0]) {
 
                         let clone = original.cloneNode(true);
                         clone.classList.add('clone');
