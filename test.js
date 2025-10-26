@@ -287,19 +287,23 @@ function saveCodeToLocalStorage(event) {
             let target1NodesData = [];
 
             for (let i = 0; i < target1Childrens.length; i++) {
+                
                 target1NodesData.push({
-                    x: target1Childrens[i].clientX, y: target1Childrens[i].clientY,
+                    left: target1Childrens[i].style.left, top: target1Childrens[i].style.top,
                     command: window.blocksComponent.getCommandString(target1Childrens[i])
                 });
+               
 
             }
 
             const target2Childrens = target2BlockEditor.children;
             let target2NodesData = [];
 
+
             for (let i = 0; i < target2Childrens.length; i++) {
+
                 target2NodesData.push({
-                    x: target2Childrens[i].clientX, y: target2Childrens[i].clientY,
+                    left: target2Childrens[i].style.left, top: target2Childrens[i].style.top,
                     command: window.blocksComponent.getCommandString(target2Childrens[i])
                 });
 
@@ -374,8 +378,10 @@ function getCodeFromLocalStorage(event) {
                             clone.id = original.id + "clone";
                         }
 
-                        clone.style.left = target1DataTmp.x + 'px';
-                        clone.style.top = target1DataTmp.y + 'px';
+                        console.log(target1DataTmp.x)
+
+                        clone.style.left = target1DataTmp.left;
+                        clone.style.top = target1DataTmp.top;
                         clone.setAttribute('draggable', 'true');
                         clone.dataset.instanceId = Math.random().toString(36).slice(2);
                         target1.appendChild(clone);
@@ -418,8 +424,8 @@ function getCodeFromLocalStorage(event) {
                             clone.id = original.id + "clone";
                         }
 
-                        clone.style.left = target2DataTmp.x + 'px';
-                        clone.style.top = target2DataTmp.y + 'px';
+                        clone.style.left = target2DataTmp.left;
+                        clone.style.top = target2DataTmp.top;
                         clone.setAttribute('draggable', 'true');
                         clone.dataset.instanceId = Math.random().toString(36).slice(2);
                         target2.appendChild(clone);
