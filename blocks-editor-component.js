@@ -244,4 +244,30 @@ export class BlocksComponent {
         return result.trim();
     }
 
+    setInputsNumsBySameCommandString(elem, command) {
+
+        //gets only inputs elements inside a
+        let inputs = elem.querySelectorAll('input[type="text"]');
+
+        if (inputs.length == 0) {
+            return;
+        }
+
+        //takes values from commands
+        let strNumsArr = ((command.split("(")[1]).split(")")[0]).split(",");
+
+        //filter the numbers values only from strCommand
+        strNumsArr = strNumsArr.filter(strNum => typeof parseInt(strNum) === 'number' && !isNaN(parseInt(strNum)));
+        
+        strNumsArr.forEach((strNum, i) => {
+            
+            if (typeof parseInt(inputs[i].value) === 'number' && !isNaN(parseInt(inputs[i].value))) {
+                console.log(parseInt(inputs[i].value))
+                let num = parseInt(strNum);
+                inputs[i].value = num;
+            }
+        });
+
+    }
+
 }

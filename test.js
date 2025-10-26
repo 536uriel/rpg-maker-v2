@@ -287,12 +287,12 @@ function saveCodeToLocalStorage(event) {
             let target1NodesData = [];
 
             for (let i = 0; i < target1Childrens.length; i++) {
-                
+
                 target1NodesData.push({
                     left: target1Childrens[i].style.left, top: target1Childrens[i].style.top,
                     command: window.blocksComponent.getCommandString(target1Childrens[i])
                 });
-               
+
 
             }
 
@@ -378,7 +378,7 @@ function getCodeFromLocalStorage(event) {
                             clone.id = original.id + "clone";
                         }
 
-                        
+                        window.blocksComponent.setInputsNumsBySameCommandString(clone, target1DataTmp.command);
 
                         clone.style.left = target1DataTmp.left;
                         clone.style.top = target1DataTmp.top;
@@ -423,6 +423,8 @@ function getCodeFromLocalStorage(event) {
                         } else {
                             clone.id = original.id + "clone";
                         }
+
+                        window.blocksComponent.setInputsNumsBySameCommandString(clone, target2DataTmp.command);
 
                         clone.style.left = target2DataTmp.left;
                         clone.style.top = target2DataTmp.top;
