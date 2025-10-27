@@ -765,6 +765,8 @@ runBlocksBtn.style.display = "none";
 
 
 var switchComponentsBtn = document.getElementById("switch-components-btn");
+switchComponentsBtn.innerText = "עבור למצב בלוקים"
+
 switchComponentsBtn.addEventListener("click", e => {
     switchElementVisability(sidenav);
     switchElementVisability(inputBlocksContainer);
@@ -776,6 +778,13 @@ switchComponentsBtn.addEventListener("click", e => {
     switchElementVisability(navbarElement);
     switchElementVisability(editorsContainer);
     switchElementVisability(runBlocksBtn);
+
+    //switch switchComponentsBtn inner text 
+    if (inputBlocksContainer.style.display == "none") {
+        switchComponentsBtn.innerText = "עבור למצב בלוקים"
+    } else {
+        switchComponentsBtn.innerText = "עבור למצב עורך קוד"
+    }
 
 });
 
