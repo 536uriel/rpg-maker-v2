@@ -650,6 +650,9 @@ sprite.set_sprites().then(() => {
         levels, rectW, rectH, camera, player);
 
     timer.update = function (deltaTime) {
+
+        window.deltaTime = deltaTime;
+
         ctx.clearRect(0, 0, canvas.width * 4, canvas.height * 4)
 
 
