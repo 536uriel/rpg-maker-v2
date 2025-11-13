@@ -691,7 +691,7 @@ sprite.set_sprites().then(() => {
 
 
 
-        div_show_mouse.innerText = "x: " + player.pos.x + ", y: " + player.pos.y;
+        div_show_mouse.innerText = "x: " + Math.round(player.pos.x) + ", y: " + Math.round(player.pos.y);
 
         callback();
         callback2();
