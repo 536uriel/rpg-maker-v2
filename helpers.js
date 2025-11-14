@@ -1,9 +1,10 @@
 import Rect from "./Rect.js";
+import SITE_URL from "./production-config.js";
 
 export function getRandomIntInclusive(min, max) {
-  const minCeiled = Math.ceil(min);
-  const maxFloored = Math.floor(max);
-  return Math.floor(Math.random() * (maxFloored - minCeiled + 1)) + minCeiled;
+    const minCeiled = Math.ceil(min);
+    const maxFloored = Math.floor(max);
+    return Math.floor(Math.random() * (maxFloored - minCeiled + 1)) + minCeiled;
 }
 
 //rotate object in his center
@@ -220,34 +221,46 @@ export function createRedHouse(spriteSheet, blockWidth, blockHeight, hx, hy, cam
 
 
 
-export function popup(str = ""){
+export function popup(str = "") {
 
-  const overlay = document.createElement("div");
-  overlay.style.cssText = `
+    //safty check
+    if(SITE_URL === undefined){
+        SITE_URL = "";
+    }
+
+    let srcImg = SITE_URL + "/assets/wasd-btns.jpeg";
+
+    const overlay = document.createElement("div");
+    overlay.style.cssText = `
     position:fixed; inset:0; background:rgba(0,0,0,0.5);
     display:flex; align-items:center; justify-content:center; z-index:9999;
   `;
 
-  const popup = document.createElement("div");
-  popup.style.cssText = `
+    const popup = document.createElement("div");
+    popup.style.cssText = `
     background:white; padding:20px; border-radius:10px; 
     box-shadow:0 0 20px rgba(0,0,0,0.3); text-align:center; 
     max-width:300px; font-family:sans-serif;
   `;
-  popup.innerHTML = `
+    popup.innerHTML = `
     <h3 style="margin-top:0">ברוכים הבאים לעורך קוד עולם משחק</h3>
     <p>${str}</p>
+    <div>
+        <p style="margin-top: 1rem; text-align: center;"> בתמונה אפשר לראות את הכפתורים הנוספים לתזוזת השחקן          
+        <img style="float: right;" src="${srcImg}" width="100" height="70" alt="" srcset="">
+        </p>
+    </div>
     <button style="
-      background:#007bff; color:white; border:none; 
+      background:#007bff; color:white; border:none; margin-top: 2rem;
       padding:8px 14px; border-radius:6px; cursor:pointer;
     ">הבנתי</button>
   `;
 
-  overlay.appendChild(popup);
-  document.body.appendChild(overlay);
+    overlay.appendChild(popup);
+    document.body.appendChild(overlay);
 
-  popup.querySelector("button").onclick = () => overlay.remove();
-  overlay.onclick = e => { if(e.target === overlay) overlay.remove(); };
+    popup.querySelector("button").onclick = () => overlay.remove();
+    overlay.onclick = e => { if (e.target === overlay) overlay.remove(); };
 
 };
 

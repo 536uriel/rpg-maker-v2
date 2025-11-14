@@ -54,7 +54,6 @@ var cheight = Math.max(body.scrollHeight, body.offsetHeight,
 var callback = () => { };
 var callback2 = () => { };
 
-document.getElementById("btns-img").src = SITE_URL + "/assets/wasd-btns.jpeg"
 
 
 //default rect size
