@@ -53,6 +53,7 @@ export class BlocksComponent {
 
         this.commands = commands;
         this.commands2 = commands2;
+        this.cntCommands = 0;
 
         // Converts numbers in parentheses into <input> fields
         function replaceNumbersWithInputs(element) {
@@ -194,6 +195,17 @@ export class BlocksComponent {
                 } else {
                     clone.id = original.id + "clone";
                 }
+
+                
+                //! new code
+                let newdiv = document.createElement("div");
+                this.cntCommands++;
+                newdiv.innerText = this.cntCommands;
+                newdiv.style.fontSize = "2rem";
+                newdiv.style.marginLeft = "0.5rem";
+
+                clone.appendChild(newdiv);
+                //! end new code
 
                 clone.style.left = x + 'px';
                 clone.style.top = y + 'px';
