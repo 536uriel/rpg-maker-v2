@@ -89,7 +89,25 @@ export default class Board {
 
         }
 
-        return function drawDebugBackground(ctx) {
+        return function drawDebugBackground(ctx, mousePos, camera) {
+            //$ new code
+
+            let xwidth = Math.floor((mousePos.x + camera.x) / 50) * 50;
+            let yHeight = Math.floor((mousePos.y - camera.y) / 50) * 50;
+
+            ctx.globalAlpha = 0.2;
+            if (xwidth < 50 || yHeight < 50) {
+                ctx.fillStyle = "black"
+            } else {
+                ctx.fillStyle = "orange"
+            }
+
+            ctx.fillRect(-camera.x + 50, camera.y + 50, xwidth, yHeight);
+
+            ctx.globalAlpha = 1;
+
+            //$ end new code 
+
             ctx.drawImage(debugBackgroundSprite, -camera.x, camera.y);
         }
 

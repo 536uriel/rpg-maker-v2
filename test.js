@@ -657,7 +657,7 @@ sprite.set_sprites().then(() => {
 
         drawBackground(ctx);
         if (window.debugMod) {
-            drawDebugBackground(ctx);
+            drawDebugBackground(ctx, mousePos, camera);
         }
 
         player.velocity.y += player.gravity / 60;
