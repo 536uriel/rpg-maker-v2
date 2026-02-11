@@ -109,6 +109,8 @@ var commands = [
 var commands2 = [
     "nextCustume()      /* התלבושת הבאה */",
     "nextBlock()        /* הבלוק הבא */",
+    "setVariable(varName, value)    /*   יצירת - או - החלפת משתנה עם ערך */",
+    "getVariable(varName)   /* קבלת ערך המשתנה על פי השם */",
     "addNpc(250, 250, 1, 0)       /* (x,y,speedx,speedy) הוסף אוייב */",
     "addShootingBoss(2, 100,100)        /* (difficulty ,x, y) הוסף אוייב מכשף */",
     "setNpc(0, 250, 250, 1, 0)        /* (npc_number,x,y,speedx,speedy)הגדר אוייב */",

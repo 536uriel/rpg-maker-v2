@@ -1,6 +1,14 @@
 import Rect from "./Rect.js";
 import SITE_URL from "./production-config.js";
 
+export function setVariable(varName, value){
+    window[varName] = value;
+}
+
+export function getVariable(varName){
+    return window[varName];
+}
+
 export function getRandomIntInclusive(min, max) {
     const minCeiled = Math.ceil(min);
     const maxFloored = Math.floor(max);

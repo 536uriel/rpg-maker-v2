@@ -1,6 +1,6 @@
 import Rect from "./Rect.js";
 import { overlap } from "./collision.js";
-import { createPoolBg, createBlueHouse, createOrangeHouse, createRedHouse, createOrangetreeBg, createTreeBg, getRandomIntInclusive } from "./helpers.js";
+import { createPoolBg, createBlueHouse, createOrangeHouse, createRedHouse, createOrangetreeBg, createTreeBg, getRandomIntInclusive, setVariable, getVariable } from "./helpers.js";
 
 export function setWindowsCommandsAfterSetSprites(sprite, board, npcs,
     levels, rectW, rectH, camera, player) {
@@ -14,6 +14,13 @@ export function setWindowsCommandsAfterSetSprites(sprite, board, npcs,
         npcs.addShootingBoss(sprite, "1player-run-1", difficulty, x, y);
 
     }
+
+    //@ new code
+
+    window.setVariable = setVariable;
+    window.getVariable = getVariable;
+
+    //@end new code
 
     window.random = getRandomIntInclusive;
 
