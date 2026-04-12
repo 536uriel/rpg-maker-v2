@@ -7,8 +7,8 @@ export default class Rect {
         this.sprite = sprite
         this.camera = camera;
         this.pos = {
-            x:this.x,
-            y:this.y
+            x: this.x,
+            y: this.y
         }
     }
 
@@ -90,6 +90,31 @@ export default class Rect {
     }
 
     draw_preciclly_sprite(ctx, sprite) {
-        ctx.drawImage(sprite, this.x, this.y, this.w, this.h)
+
+        if (this.flip) {
+            let canvasImage = document.createElement("canvas");
+
+            canvasImage.width = this.w;
+            canvasImage.height = this.h;
+
+            let ctxImage = canvasImage.getContext("2d")
+            
+          
+            ctxImage.translate(this.w, 0);
+            ctxImage.scale(-1, 1);
+            ctxImage.drawImage(sprite, 0, 0, this.w, this.h);
+
+            ctx.drawImage(canvasImage, this.x, this.y, this.w, this.h)
+
+
+
+        } else {
+            
+            ctx.drawImage(sprite, this.x, this.y, this.w, this.h)
+
+        }
+
+
+
     }
 }

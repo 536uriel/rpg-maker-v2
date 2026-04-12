@@ -608,6 +608,19 @@ sprite.set_sprites().then(() => {
         sword.attackDuration = 2;
     }
 
+    player.flip = false;
+
+    player.toFlip = function () {
+        if (this.velocity.x < 0) {
+            this.flip = true;
+
+        } else {
+            if (this.velocity.x > 0) {
+                this.flip = false;
+            }
+        }
+    }
+
     window.player = player;
 
     //set player input movement
@@ -678,7 +691,7 @@ sprite.set_sprites().then(() => {
 
         stopMoveWhenCollide(player, board.getAllSubjectsFromGrid(), player.velocity.x, player.velocity.y, camera, canvas, sprite);
 
-
+        player.toFlip();
 
         player.draw_preciclly_sprite(ctx, sprite.getSpriteAnimation(costume + 'player-run-', player, 10, 4));
 
