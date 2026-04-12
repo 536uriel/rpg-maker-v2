@@ -8,12 +8,14 @@ export default class keyboard {
 
     addTouchSeppurt(elem, f) {
 
-        (["touchstart", "touchend"]).forEach(touchState => {
-            elem.addEventListener(touchState, (e) => {
-                f(touchState);
+        const isSmartphone = window.matchMedia("(max-width: 767px) and (hover: none)").matches;
+        if (isSmartphone) {
+            (["touchstart", "touchend"]).forEach(touchState => {
+                elem.addEventListener(touchState, (e) => {
+                    f(touchState);
+                })
             })
-        })
-
+        }
     }
 
     addKey(key, f) {
