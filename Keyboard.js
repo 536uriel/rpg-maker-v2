@@ -6,6 +6,16 @@ export default class keyboard {
         this.keys = new Map()
     }
 
+    addTouchSeppurt(elem, f) {
+
+        (["touchstart", "touchend"]).forEach(touchState => {
+            elem.addEventListener(touchState, (e) => {
+                f(touchState);
+            })
+        })
+
+    }
+
     addKey(key, f) {
         this.keys.set(key, f);
 
@@ -27,6 +37,7 @@ export default class keyboard {
     }
 
     static set_player(keyboard, entity) {
+
         //(key): ENTER -> attack
         keyboard.addKey(13, function (state) {
             if (state == 'keydown') {
@@ -132,6 +143,57 @@ export default class keyboard {
                 entity.velocity.y = 0
             }
         })
+
+        try {
+
+            let swordBtn = document.getElementById("swordBtn");
+            let leftBtn = document.getElementById("leftBtn");
+            let upBtn = document.getElementById("upBtn");
+            let rightBtn = document.getElementById("rightBtn");
+            let downBtn = document.getElementById("downBtn");
+
+            this.addTouchSeppurt(swordBtn, (touchState) => {
+                if (touchState == "touchstart") {
+                    entity.attack();
+                }
+            });
+
+            addTouchSeppurt(leftBtn, (touchState) => {
+                if (touchState == 'touchstart') {
+                    entity.velocity.x = -5
+                } else {
+                    entity.velocity.x = 0
+                }
+            });
+
+            addTouchSeppurt(rightBtn, (touchState) => {
+                if (touchState == 'touchstart') {
+                    entity.velocity.x = 5
+                } else {
+                    entity.velocity.x = 0
+                }
+            });
+
+            addTouchSeppurt(upBtn, (touchState) => {
+                if (touchState == 'touchstart') {
+                    entity.velocity.y = -5
+                } else {
+                    entity.velocity.y = 0
+                }
+            });
+
+            addTouchSeppurt(downBtn, (touchState) => {
+                if (touchState == 'touchstart') {
+                    entity.velocity.y = 5
+                } else {
+                    entity.velocity.y = 0
+                }
+            });
+
+
+        } catch (err) {
+            alert(err);
+        }
 
     }
 
