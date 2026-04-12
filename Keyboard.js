@@ -8,14 +8,13 @@ export default class keyboard {
 
     addTouchSeppurt(elem, f) {
 
-        const isSmartphone = window.matchMedia("(max-width: 767px) and (hover: none)").matches;
-        if (isSmartphone) {
-            (["touchstart", "touchend"]).forEach(touchState => {
-                elem.addEventListener(touchState, (e) => {
-                    f(touchState);
-                })
+
+        (["touchstart", "touchend"]).forEach(touchState => {
+            elem.addEventListener(touchState, (e) => {
+                f(touchState);
             })
-        }
+        })
+
     }
 
     addKey(key, f) {
@@ -154,13 +153,13 @@ export default class keyboard {
             let rightBtn = document.getElementById("rightBtn");
             let downBtn = document.getElementById("downBtn");
 
-            this.addTouchSeppurt(swordBtn, (touchState) => {
+            keyboard.addTouchSeppurt(swordBtn, (touchState) => {
                 if (touchState == "touchstart") {
                     entity.attack();
                 }
             });
 
-            addTouchSeppurt(leftBtn, (touchState) => {
+            keyboard.addTouchSeppurt(leftBtn, (touchState) => {
                 if (touchState == 'touchstart') {
                     entity.velocity.x = -5
                 } else {
@@ -168,7 +167,7 @@ export default class keyboard {
                 }
             });
 
-            addTouchSeppurt(rightBtn, (touchState) => {
+            keyboard.addTouchSeppurt(rightBtn, (touchState) => {
                 if (touchState == 'touchstart') {
                     entity.velocity.x = 5
                 } else {
@@ -176,7 +175,7 @@ export default class keyboard {
                 }
             });
 
-            addTouchSeppurt(upBtn, (touchState) => {
+            keyboard.addTouchSeppurt(upBtn, (touchState) => {
                 if (touchState == 'touchstart') {
                     entity.velocity.y = -5
                 } else {
@@ -184,7 +183,7 @@ export default class keyboard {
                 }
             });
 
-            addTouchSeppurt(downBtn, (touchState) => {
+            keyboard.addTouchSeppurt(downBtn, (touchState) => {
                 if (touchState == 'touchstart') {
                     entity.velocity.y = 5
                 } else {
