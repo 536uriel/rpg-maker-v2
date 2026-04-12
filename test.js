@@ -733,6 +733,14 @@ function switchElementVisability(elem) {
     }
 }
 
+function setElementVisabilitytoNone(elem) {
+    elem.style.display = "none";
+}
+
+function setElementVisabilitytoBlock(elem) {
+    elem.style.display = "block";
+}
+
 function setElementStyleDisplayData(elem) {
     elem.setAttribute("style-display-data", getComputedStyle(elem, null).display);
 }
@@ -791,6 +799,49 @@ switchComponentsBtn.addEventListener("click", e => {
     }
 
 });
+
+//$new code
+var playModeBtn = document.getElementById("switch-to-play-mode-btn");
+
+playModeBtn.addEventListener("click", (e) => {
+
+    if (playModeBtn.dataset.id == "false") {
+
+        setElementVisabilitytoNone(sidenav);
+        setElementVisabilitytoNone(inputBlocksContainer);
+        setElementVisabilitytoNone(cmdlist1);
+        setElementVisabilitytoNone(cmdlist2);
+        setElementVisabilitytoNone(outputElem);
+        setElementVisabilitytoNone(runBtn);
+
+        setElementVisabilitytoNone(navbarElement);
+        setElementVisabilitytoNone(editorsContainer);
+        setElementVisabilitytoNone(runBlocksBtn);
+
+        playModeBtn.innerText = "עבור למצב עורך קוד";
+        playModeBtn.dataset.id = "true";
+
+
+    } else {
+
+        setElementVisabilitytoBlock(cmdlist1);
+        setElementVisabilitytoBlock(cmdlist2);
+        setElementVisabilitytoBlock(outputElem);
+        setElementVisabilitytoBlock(runBtn);
+
+        setElementVisabilitytoBlock(navbarElement);
+        setElementVisabilitytoBlock(editorsContainer);
+
+        playModeBtn.innerText = "עבור למצב משחק";
+        playModeBtn.dataset.id = "false";
+
+    }
+
+    runCode();
+
+});
+
+//$end new code
 
 let pstr1 = `<p>תזכורת: המקש 0 מיועד למכת חרב
     וכדי לצאת ממצב בדיקה יש ללחוץ עליו פעם נוספת </p>`;

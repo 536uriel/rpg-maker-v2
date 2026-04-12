@@ -72,6 +72,12 @@ h1 {
   background: #ff9800;
 }
 
+.play-btn{
+  background-color: rgb(127, 255, 217);
+  margin-left: auto;
+  display: block;
+}
+
 #target1 {
 
   height: 100%;
