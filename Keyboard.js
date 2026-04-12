@@ -3,7 +3,19 @@ import { intersection } from "./collision.js";
 export default class keyboard {
 
     constructor() {
-        this.keys = new Map()
+        this.keys = new Map();
+
+        //for touch support fix - Disable zoom with viewport
+        this.lastTouchEnd = 0;
+
+        document.addEventListener('touchend', function (event) {
+            const now = Date.now();
+            if (now - this.lastTouchEnd <= 300) {
+                event.preventDefault();
+            }
+            this.lastTouchEnd = now;
+        }, false);
+
     }
 
     addTouchSeppurt(elem, f) {
