@@ -520,3 +520,19 @@ button.run-btn:hover {
   color: azure;
   font-size: large;
 }
+
+.touchBtns {
+  display: grid;
+  gap: 0.5rem;
+  grid-template-columns: auto auto auto;
+  user-select: none;
+  text-overflow: hidden;
+
+}
+
+.touchBtns button {
+  display: block;
+  margin: auto;
+  width: 6rem;
+  padding: 1rem;
+}
