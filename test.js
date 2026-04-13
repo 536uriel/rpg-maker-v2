@@ -606,12 +606,16 @@ sprite.set_sprites().then(() => {
 
     player.attack = function () {
         if (this.flip) {
-            sword.x = this.l - this.w;
+            sword.x = this.l - sword.w;
+            sword.pos.x = player.lp - sword.w;
         } else {
             sword.x = this.r;
+            sword.pos.x = player.rp;
         }
 
         sword.y = this.t;
+        sword.pos.y = player.tp;
+
         sword.attackDuration = 2;
     }
 
@@ -708,9 +712,6 @@ sprite.set_sprites().then(() => {
         player.draw_preciclly_sprite(ctx, sprite.getSpriteAnimation(costume + 'player-run-', player, 10, 4));
 
         //# change - update npcs after seting player posiotion
-
-        sword.pos.x = player.rp;
-        sword.pos.y = player.tp;
 
         npcs.update(player, sword);
         drawNpcsLayer(ctx, npcs.rects, camera, sprite);

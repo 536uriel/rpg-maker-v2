@@ -5,7 +5,6 @@ export function overlap(subject, rect) {
         && subject.rp > rect.l
         && subject.lp < rect.r;
 }
-
 /* Iterate over all obstables that overlap subject and execute the function. */
 export function intersection(subject, obstacles, fn) {
 
