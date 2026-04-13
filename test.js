@@ -602,13 +602,20 @@ sprite.set_sprites().then(() => {
     player.level = 0;
     player.life = 10;
 
+    player.flip = false;
+
     player.attack = function () {
-        sword.x = this.r;
+        if (this.flip) {
+            sword.x = this.l - this.w;
+        } else {
+            sword.x = this.r;
+        }
+
         sword.y = this.t;
         sword.attackDuration = 2;
     }
 
-    player.flip = false;
+
 
     player.toFlip = function () {
         if (this.velocity.x < 0) {
@@ -678,7 +685,12 @@ sprite.set_sprites().then(() => {
         player.velocity.y += player.gravity / 60;
 
         if (sword.attackDuration > 0) {
-            sword.deg += 7;
+            if (player.flip) {
+                sword.deg -= 7;
+            } else {
+                sword.deg += 7;
+            }
+
             //draw sword with rotation
             rotate_in_center(ctx, sword, sword.deg)
             sword.attackDuration -= 0.1;
