@@ -108,7 +108,6 @@ var commands = [
 
 var commands2 = [
     "nextCustume()      /* התלבושת הבאה */",
-    "nextBlock()        /* הבלוק הבא */",
     "setVariable(varName, value)    /*   יצירת - או - החלפת משתנה עם ערך */",
     "getVariable(varName)   /* קבלת ערך המשתנה על פי השם */",
     "addNpc(250, 250, 1, 0)       /* (x,y,speedx,speedy) הוסף אוייב */",
@@ -139,7 +138,9 @@ var commands2 = [
     "deleteLastLevel()      /* מחק שלב האחרון שנוצר */",
     "drawLevelBlocksByNumber(n)     /* צייר שלב לפי מספרו */",
     "showCurrentLevel(100, 100, fontSize = 30, color = 'black')     /* הדפס מספר שלב נוכחי */",
-    "player.gravity = 3     /* הוסף כוח נפילה לשחקן */"
+    "player.gravity = 3     /* הוסף כוח נפילה לשחקן */",
+    "nextBlock()        /* הבלוק הבא */"
+
 ]
 
 
