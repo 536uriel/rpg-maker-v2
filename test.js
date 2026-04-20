@@ -127,7 +127,7 @@ var commands2 = [
     "isCollideWithNpc(0)",
     "isCollideWithAnyNpcs()",
     "isSwordAttcksNpcs()",
-    "deleteNpc(0)",
+    "deleteNpc()",
     "player.pos.x = 200     /* מיקום שחקן ברוחב */",
     "player.pos.y = 200     /* מיקום שחקן בגובה */",
     "player.level       /* מספר שלב של השחקן */",

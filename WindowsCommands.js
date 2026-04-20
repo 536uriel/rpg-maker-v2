@@ -553,8 +553,10 @@ export function setWindowsCommandsInsideUpdate(sprite, board, npcs,
     }
 
     window.deleteNpc = function (npcNumber) {
-        if (npcs.rects.length >= 1) {
+        if (npcs.rects.length >= 1 && npcNumber != null) {
             npcs.rects.splice(npcNumber, 1);
+        }else{
+            npcs.rects.length = 0;
         }
     }
 
