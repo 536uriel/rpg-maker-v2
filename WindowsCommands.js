@@ -450,7 +450,13 @@ export function setWindowsCommandsInsideUpdate(sprite, board, npcs,
         }
     }
 
-    window.rect = function (x, y) {
+    window.rect = function (x, y, squerName = "ground") {
+
+        squere_sprite = sprite.sprites.get(squerName);
+
+        if(!squere_sprite){
+            return;
+        }
 
         x = Math.round(x / rectW);
         y = Math.round(y / rectH);

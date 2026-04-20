@@ -86,7 +86,7 @@ var commands = [
     "addGiantHouse(100,100)         /* (x,y) צור בית ענק במיקום*/",
     "addBigHouse(100,100)        /* (x,y) צור בית גדול במיקום*/",
     "addDoor(100,100)      /* (x,y) צור דלת במיקום */",
-    "rect(100, 100)     /*  (x,y) צור בלוק במיקום */",
+    "rect(100, 100)     /*  (x,y,('ground'||'grass'||'water')) צור בלוק אדמה במיקום */",
     "createPool(100, 100)       /* (x,y) צור בריכה */",
     "createBlueHouse(100, 100)      /* (x,y) צור בית כחול */",
     "createOrangeHouse(100, 100)        /* צור בית כתום */",
