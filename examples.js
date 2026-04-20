@@ -208,6 +208,8 @@ addNpc(x, y, 0, 0)
 
 export function example4(editor1, editor2) {
   const c1 = `clearBackground()      /* נקה רקע */
+bg("aliceblue")     /* צבע רקע בצבע */
+clearBackground()      /* נקה רקע */
 bg("DarkTurquoise")     /* צבע רקע בצבע */
 addShootingBoss(2, 100,100)        /* (difficulty ,x, y) הוסף אוייב מכשף */
 setNpcCostume(0, 6)       /* (npc_number, costum_number)הגדר מספר תלבושת לאוייב */
@@ -215,16 +217,39 @@ addShootingBoss(2, 200,300)        /* (difficulty ,x, y) הוסף אוייב מ�
 setNpcCostume(1, 4)       /* (npc_number, costum_number)הגדר מספר תלבושת לאוייב */
 addBigHouse(200,200)        /* (x,y) צור בית גדול במיקום*/
 
+text = "שלום לך"
+font = 20
+color = "purple"
+
+text2 = "שלום לך"
+font2 = 20
+color2 = "green"
+
+
 `
   editor1.setValue(editor1.getValue() + "\n" + c1);
 
-  const c2 = `setNpcDetination(0, 1, 400, 100)      /* (npcNumber, destNum, x, y) הגדר מיקום הגעה לאוייב */
+  const c2 = `
+setNpcDetination(0, 1, 400, 100)      /* (npcNumber, destNum, x, y) הגדר מיקום הגעה לאוייב */
 setNpcDetination(0, 2, 100, 200)      /* (npcNumber, destNum, x, y) הגדר מיקום הגעה לאוייב */
 setNpcDetination(0, 3, 350, 350)      /* (npcNumber, destNum, x, y) הגדר מיקום הגעה לאוייב */
 
 setNpcDetination(1, 1, 400, 100)      /* (npcNumber, destNum, x, y) הגדר מיקום הגעה לאוייב */
 setNpcDetination(1, 2, 100, 200)      /* (npcNumber, destNum, x, y) הגדר מיקום הגעה לאוייב */
 setNpcDetination(1, 3, 350, 350)      /* (npcNumber, destNum, x, y) הגדר מיקום הגעה לאוייב */
+printTextToNpc(0,text, font, color)  /*(npcNum = 0, text = 'text', font = 20, color = red)*/
+if(player.pos.x > 400){
+  	text = "לאן אתה בורח?"; font = 40;color = "red"
+}else{
+    text = "שלום"; font = 20; color = "purple"
+}
+
+printTextToNpc(1,text2, font2, color2)  /*(npcNum = 0, text = 'text', font = 20, color = red)*/
+if(player.pos.x > 400){
+  	text2 = "פחדן!!, תפוס אותו"; font2 = 30;color2 = "pink"
+}else{
+    text2 = "מי אתה?"; font2 = 20; color2 = "green"
+}
 
     `
 
