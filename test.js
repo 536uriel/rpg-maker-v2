@@ -112,6 +112,7 @@ var commands2 = [
     "getVariable(varName)   /* קבלת ערך המשתנה על פי השם */",
     "addNpc(250, 250, 1, 0)       /* (x,y,speedx,speedy) הוסף אוייב */",
     "addShootingBoss(2, 100,100)        /* (difficulty ,x, y) הוסף אוייב מכשף */",
+    "printTextToNpc(0, 'text', 20, 'red')  /*(npcNum = 0, text = 'text', font = 20, color = red)*/",
     "setNpc(0, 250, 250, 1, 0)        /* (npc_number,x,y,speedx,speedy)הגדר אוייב */",
     "setNpcCostume(0, 1)       /* (npc_number, costum_number)הגדר מספר תלבושת לאוייב */",
     "setNpcDetination(0, 1, 100, 100)      /* (npcNumber, destNum, x, y) הגדר מיקום הגעה לאוייב */",

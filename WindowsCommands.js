@@ -414,11 +414,27 @@ export function setWindowsCommandsInsideUpdate(sprite, board, npcs,
     }
 
     window.getNpcPosX = function (npcNumber) {
-        return npcs.rects[npcNumber].pos.x;
+        if (npcs.rects.length >= 1) {
+            if (!npcs.rects[npcNumber]) {
+                return 0;
+            }
+            return npcs.rects[npcNumber].pos.x;
+        } else {
+            return 0;
+        }
     }
 
     window.getNpcPosY = function (npcNumber) {
-        return npcs.rects[npcNumber].pos.y;
+        if (npcs.rects.length >= 1) {
+
+            if (!npcs.rects[npcNumber]) {
+                return 0;
+            }
+
+            return npcs.rects[npcNumber].pos.y;
+        } else {
+            return 0;
+        }
     }
 
     window.nextCustume = function nextCustume() {
@@ -454,7 +470,7 @@ export function setWindowsCommandsInsideUpdate(sprite, board, npcs,
 
         squere_sprite = sprite.sprites.get(squerName);
 
-        if(!squere_sprite){
+        if (!squere_sprite) {
             return;
         }
 
@@ -541,6 +557,13 @@ export function setWindowsCommandsInsideUpdate(sprite, board, npcs,
             npcs.rects.splice(npcNumber, 1);
         }
     }
+
+    window.printTextToNpc = function (npcNum = 0, text = "text", font = 20, color = red) {
+        if (npcs.rects.length >= 1) {
+            window.print(text, getNpcPosX(npcNum) - player.pos.x + player.x, getNpcPosY(npcNum) - player.pos.y + player.y, font, color);
+        }
+    }
+
 
 
 }
