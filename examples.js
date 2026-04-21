@@ -130,76 +130,132 @@ print("חיים : " + player.life, 100, 50, 30, 'red')     /* ('text',x,y,font_w
 
 
 export function example3(editor1, editor2) {
+
+  let addStrLevelCode1 = `
+addShootingBoss(2, 100,100)        /* (difficulty ,x, y) הוסף אוייב מכשף */
+setNpcCostume(0, 6)       /* (npc_number, costum_number)הגדר מספר תלבושת לאוייב */
+addShootingBoss(2, 200,300)        /* (difficulty ,x, y) הוסף אוייב מכשף */
+setNpcCostume(1, 4)       /* (npc_number, costum_number)הגדר מספר תלבושת לאוייב */
+addBigHouse(50,300)        /* (x,y) צור בית גדול במיקום*/
+
+text = "שלום לך"
+font = 20
+color = "purple"
+
+text2 = "שלום לך"
+font2 = 20
+color2 = "green"
+  `
+
   const c1 = `
 // כתוב כאן קוד שיפעל פעם אחת 
 clearBackground()
-x = 100
-y = 100
-sx = 1
-sy = 0
-addNpc(x, y, 0, 0)
-addNpc(100, 100, 2, 0)
+bg("DarkTurquoise")     /* צבע רקע בצבע */
 
-createPool(350, 100)
-createPool(500, 100)
-createPool(650, 100)
+player.pos.x = 200     /* מיקום שחקן ברוחב */
+player.pos.y = 100     /* מיקום שחקן בגובה */
 
-addBridge(350, 150)
-addBridge(350, 200)
-addBridge(400, 200)
-addBridge(450, 200)
+addGiantHouse(300,150)         /* (x,y) צור בית ענק במיקום*/
 
-addBridge(500, 200)
-addBridge(550, 200)
-addBridge(550, 250)
-addBridge(600, 200)
+addDoor(350,300)      /* (x,y) צור דלת במיקום */
+
+addThisLevel()     /* הוסף בלוקים במסך לשלב נפרד */
+clearBackground()      /* נקה רקע */
 
 
-createBlueHouse(350,300)
-createOrangeHouse(450,300)
-createRedHouse(600,300)
+createGridFloor(50,50,5,5)        /* צור רצפה מרוצפת */
 
-addBridge(550, 300)
-addBridge(550, 350)
+createBlueWall(50,50, 1, 6)     /* הוסף קיר כחול */
+createBlueWall(50,200, 1, 4)     /* הוסף קיר כחול */
 
-bg("MediumTurquoise")
+
+createBlueWall(100, 50, 2, 1)     /* הוסף קיר כחול */
+createBlueWall(200, 50, 1, 1)     /* הוסף קיר כחול */
+createBlueWall(250, 50, 2, 1)     /* הוסף קיר כחול */
+
+createBlueWall(350,50, 1, 6)     /* הוסף קיר כחול */
+createBlueWall(350,200, 1, 4)     /* הוסף קיר כחול */
+
+createBlueWall(100, 350, 2, 1)     /* הוסף קיר כחול */
+createBlueWall(200, 350, 2, 1)     /* הוסף קיר כחול */
+createBlueWall(250, 350, 2, 1)     /* הוסף קיר כחול */
+
+
+addDownstairs(300,300)       /* הוסף מדרגות למטה */
+
+addShelf(100,100)     /* הוסף מדף */
+addShelf(100,300)     /* הוסף מדף */
+
+
+addThisLevel()     /* הוסף בלוקים במסך לשלב נפרד */
+clearBackground()      /* נקה רקע */
+
+drawLevelBlocksByNumber(0)
+
+player.level = 0      /* מספר שלב של השחקן */
+player.life = 20       /* קבע חיים של שחקן ל20 */
+
+${addStrLevelCode1}
 
 `
   editor1.setValue(editor1.getValue() + "\n" + c1);
 
-  const c2 = `// כתוב כאן קוד שיפעל לעולמים 
 
-print("e1 pos x: " + getNpcPosX(0) + " , e1 pos y: " +getNpcPosY(0),50,50, 20, "red")
+  let addStrLevelCode2 = `
+  setNpcDetination(0, 1, 400, 100)      /* (npcNumber, destNum, x, y) הגדר מיקום הגעה לאוייב */
+setNpcDetination(0, 2, 100, 200)      /* (npcNumber, destNum, x, y) הגדר מיקום הגעה לאוייב */
+setNpcDetination(0, 3, 350, 350)      /* (npcNumber, destNum, x, y) הגדר מיקום הגעה לאוייב */
 
-if(!isBlocksCollideWithAnyNpcs()){
-x += sx
-y += sy
-setNpc(0, x, y, 0, 0)
+setNpcDetination(1, 1, 400, 100)      /* (npcNumber, destNum, x, y) הגדר מיקום הגעה לאוייב */
+setNpcDetination(1, 2, 100, 200)      /* (npcNumber, destNum, x, y) הגדר מיקום הגעה לאוייב */
+setNpcDetination(1, 3, 350, 350)      /* (npcNumber, destNum, x, y) הגדר מיקום הגעה לאוייב */
+printTextToNpc(0,text, font, color)  /*(npcNum = 0, text = 'text', font = 20, color = red)*/
+if(player.pos.x > 400){
+  	text = "לאן אתה בורח?"; font = 40;color = "red"
+}else{
+    text = "שלום"; font = 20; color = "purple"
 }
 
-
-if(x > 298){
-  sx = 0
-  sy = 1
+printTextToNpc(1,text2, font2, color2)  /*(npcNum = 0, text = 'text', font = 20, color = red)*/
+if(player.pos.x > 400){
+  	text2 = "פחדן!!, תפוס אותו"; font2 = 30;color2 = "pink"
+}else{
+    text2 = "מי אתה?"; font2 = 20; color2 = "green"
 }
 
-if(y >= 200){
-  y = 200
-  sx = 1
-  sy = 0
-}
+  `;
 
-print("p1", player.x , player.y , 20, "blue")
-print("e1", x - player.pos.x + player.x, y - player.pos.y  + player.y, 20, "red")
+  const c2 = `
+  if(isCollideWithDoor()){
+  deleteNpc();
+  player.pos.x = 200     /* מיקום שחקן ברוחב */
+  player.pos.y = 250     /* מיקום שחקן בגובה */
+  clearBackground()      /* נקה רקע */
+  player.level += 1;
+  drawLevelBlocksByNumber(player.level)
+  addShootingBoss(2, 250, 100)        /* (difficulty ,x, y) הוסף אוייב מכשף */
+}    
 
-whenAttackDeleteNpc()
-if(getNpcsLen() < 1){
-x = 100
-y = 100
-sx = 1
-sy
-addNpc(x, y, 0, 0)
-}
+if(isCollideWithDownstairs()){
+  deleteNpc();
+  player.pos.x = 200     /* מיקום שחקן ברוחב */
+  player.pos.y = 100     /* מיקום שחקן בגובה */
+  clearBackground()      /* נקה רקע */
+  player.level -= 1;
+  drawLevelBlocksByNumber(player.level)
+
+  ${addStrLevelCode1}
+}  
+  
+showCurrentLevel(100,100, fontSize = 25, color = 'purple');
+
+if(player.level == 0){ bg("LightGreen")
+ ${addStrLevelCode2} 
+ }else{bg("aqua")}
+
+whenAttackDeleteNpc()      /* כאשר שחקן תוקף מחק אוייב */
+print("חיים : " + player.life, 100, 50, 30, 'red')     /* ('text',x,y,font_width, 'color')הדפס כיתוב */
+
     `
 
   editor2.setValue(editor2.getValue() + "\n" + c2);
