@@ -171,7 +171,6 @@ var commands2 = [
     "player.pos.x = 200     /* מיקום שחקן ברוחב */",
     "player.pos.y = 200     /* מיקום שחקן בגובה */",
     "player.level       /* מספר שלב של השחקן */",
-    "missionsPopup()    /*(missionNumber = 1, missionDetails = '')*/",
     "popupStrted",
     "isMissionAccepted",
     "isBlocksCollideWithAnyNpcs()",
