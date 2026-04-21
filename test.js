@@ -18,6 +18,44 @@ function isEmptyOrNull(str) {
     return str == null || (typeof str === 'string' && str.trim().length === 0);
 }
 
+var defaultExample = `
+// דוגמה לקוד מוכן:
+clearBackground()      /* נקה רקע */
+bg("#3ed652")     /* צבע רקע בצבע */
+
+for(let i = 2;i < 11;i++){
+	for(let j of ([1,5])){
+  		rect(50 * i, j * 50)     /*  (x,y,('ground'||'grass'||'water')) צור בלוק אדמה במיקום */
+	}
+  
+  	for(let j of ([2,3,4])){
+  		rect(50 * i, j * 50, "water")     /*  (x,y,('ground'||'grass'||'water')) צור בלוק אדמה במיקום */
+	}
+  
+}
+
+for(let a = 1;a < 6;a++){
+	for(let b of ([1,10])){
+  	rect(50 * b, 50 * a, "grass")     /*  (x,y,('ground'||'grass'||'water')) צור בלוק אדמה במיקום */
+	}
+  	for(let b of ([2,9])){
+  	rect(50 * b, 50 * a, "ground")     /*  (x,y,('ground'||'grass'||'water')) צור בלוק אדמה במיקום */
+	}
+}
+
+addBridge(300, 250)        /* הוסף גשר */
+addBridge(250, 250)        /* הוסף גשר */
+createPool(550, 50)       /* (x,y) צור בריכה */
+createOrangetree(550, 250)     /* הוסף עץ תפוזים */
+
+for(let a = 9;a < 14;a++){
+  for(let b of ([2,3])){
+    addBridge(50 * a, 50 * b)        /* הוסף גשר */
+  }
+}
+addBigHouse(450,300)        /* (x,y) צור בית גדול במיקום*/
+`;
+
 // Initialize CodeMirror
 //editors for the precode 
 var editor1 = CodeMirror.fromTextArea(document.getElementById("editor1"), {
@@ -81,6 +119,8 @@ divtxt.innerText = "size " + canvas.width + " X " + canvas.height;
 editor1.setSize((cwidth / 2) - 30, 120);
 editor2.setSize((cwidth / 2) - 30, 200);
 
+//$add default example
+editor1.setValue(defaultExample);
 
 var commands = [
     "addGiantHouse(100,100)         /* (x,y) צור בית ענק במיקום*/",
@@ -220,7 +260,7 @@ document.getElementById("e3").addEventListener("click", () => {
 });
 
 document.getElementById("e4").addEventListener("click", () => {
-    example4(editor1, editor2);
+    editor1.setValue(defaultExample);
 });
 
 
