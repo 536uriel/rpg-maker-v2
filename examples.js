@@ -265,6 +265,46 @@ print("חיים : " + player.life, 100, 50, 30, 'red')     /* ('text',x,y,font_w
 export function example4(editor1, editor2) {
   const c1 = `
 
+// דוגמה לקוד מוכן:
+clearBackground()      /* נקה רקע */
+bg("#3ed652")     /* צבע רקע בצבע */
+
+deleteNpc()
+
+for(let i = 2;i < 11;i++){
+	for(let j of ([1,5])){
+  		rect(50 * i, j * 50)     /*  (x,y,('ground'||'grass'||'water')) צור בלוק אדמה במיקום */
+	}
+  
+  	for(let j of ([2,3,4])){
+  		rect(50 * i, j * 50, "water")     /*  (x,y,('ground'||'grass'||'water')) צור בלוק אדמה במיקום */
+	}
+  
+}
+
+for(let a = 1;a < 6;a++){
+	for(let b of ([1,10])){
+  	rect(50 * b, 50 * a, "grass")     /*  (x,y,('ground'||'grass'||'water')) צור בלוק אדמה במיקום */
+	}
+  	for(let b of ([2,9])){
+  	rect(50 * b, 50 * a, "ground")     /*  (x,y,('ground'||'grass'||'water')) צור בלוק אדמה במיקום */
+	}
+}
+
+addBridge(300, 250)        /* הוסף גשר */
+addBridge(250, 250)        /* הוסף גשר */
+createPool(550, 50)       /* (x,y) צור בריכה */
+createOrangetree(550, 250)     /* הוסף עץ תפוזים */
+
+for(let a = 9;a < 14;a++){
+  for(let b of ([2,3])){
+    addBridge(50 * a, 50 * b)        /* הוסף גשר */
+  }
+}
+addBigHouse(450,300)        /* (x,y) צור בית גדול במיקום*/
+
+
+
 clearBackground()      /* נקה רקע */
 bg("#3ed652")     /* צבע רקע בצבע */
 
@@ -319,8 +359,19 @@ npcFontText= 20
 
 helpToNpc = false
 
+startMission3 = false
+
 
 setNpcCostume(0, 6)       /* (npc_number, costum_number)הגדר מספר תלבושת לאוייב */
+
+
+
+time = 0
+lastTime = 0
+posTime = false
+
+makeActionOnce = true
+
 
 
 
@@ -328,6 +379,7 @@ setNpcCostume(0, 6)       /* (npc_number, costum_number)הגדר מספר תלב
   editor1.setValue(editor1.getValue() + "\n" + c1);
 
   const c2 = `
+  
 // כתוב כאן קוד ולחץ על הפעל קוד 
  print(playerText , player.x, player.y, playerFontText, playerColorText)     /* ('text',x,y,font_width, 'color')הדפס כיתוב */
 printTextToNpc(0, npcText, npcFontText, npcColorText)  /*(npcNum = 0, text = 'text', font = 20, color = red)*/
@@ -398,8 +450,34 @@ if(isMission2Started == true){
   npcText = "יש לי גנב בבית ואני מפחד"
 	npcColorText = "red"
 	npcFontText= 30
+	posTime = true
     
   }
+}
+
+if(!posTime){
+    lastTime = time;
+	time += 1/60
+}
+    print('time: ' + Math.round(time), 100, 100, 20, 'red')     /* ('text',x,y,font_width, 'color')הדפס כיתוב */
+
+if(posTime == true && makeActionOnce == true){
+  addNpc(250, 250, 0, 1)       /* (x,y,speedx,speedy) הוסף אוייב */
+  makeActionOnce = false;
+}
+if(getNpcsLen() >= 1 && posTime == true && startMission3 == false){
+	if(isSwordAttcksNpcs() == 1){
+		deleteNpc(1);
+       posTime = false
+        startMission3 = true
+
+	}
+}
+
+if(startMission3 == true){
+	npcText = "שוב תודה לך"
+	npcColorText = "blue"
+	npcFontText= 23
 }
 
     `
