@@ -171,6 +171,9 @@ var commands2 = [
     "player.pos.x = 200     /* מיקום שחקן ברוחב */",
     "player.pos.y = 200     /* מיקום שחקן בגובה */",
     "player.level       /* מספר שלב של השחקן */",
+    "missionsPopup()    /*(missionNumber = 1, missionDetails = '')*/",
+    "popupStrted",
+    "isMissionAccepted",
     "isBlocksCollideWithAnyNpcs()",
     "isCollideWithUpstairs()        /* האם השחקן נוגע במדרגה למעלה */",
     "isCollideWithDownstairs()      /* האם השחקן נוגע במדרגה למטה */",
@@ -260,7 +263,7 @@ document.getElementById("e3").addEventListener("click", () => {
 });
 
 document.getElementById("e4").addEventListener("click", () => {
-    editor1.setValue(defaultExample);
+    example4(editor1, editor2);
 });
 
 

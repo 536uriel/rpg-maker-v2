@@ -263,48 +263,143 @@ print("חיים : " + player.life, 100, 50, 30, 'red')     /* ('text',x,y,font_w
 }
 
 export function example4(editor1, editor2) {
-  const c1 = `clearBackground()      /* נקה רקע */
-bg("aliceblue")     /* צבע רקע בצבע */
+  const c1 = `
+
 clearBackground()      /* נקה רקע */
-bg("DarkTurquoise")     /* צבע רקע בצבע */
-addShootingBoss(2, 100,100)        /* (difficulty ,x, y) הוסף אוייב מכשף */
+bg("#3ed652")     /* צבע רקע בצבע */
+
+for(let i = 2;i < 11;i++){
+	for(let j of ([1,5])){
+  		rect(50 * i, j * 50)     /*  (x,y,('ground'||'grass'||'water')) צור בלוק אדמה במיקום */
+	}
+  
+  	for(let j of ([2,3,4])){
+  		rect(50 * i, j * 50, "water")     /*  (x,y,('ground'||'grass'||'water')) צור בלוק אדמה במיקום */
+	}
+  
+}
+
+for(let a = 1;a < 6;a++){
+	for(let b of ([1,10])){
+  	rect(50 * b, 50 * a, "grass")     /*  (x,y,('ground'||'grass'||'water')) צור בלוק אדמה במיקום */
+	}
+  	for(let b of ([2,9])){
+  	rect(50 * b, 50 * a, "ground")     /*  (x,y,('ground'||'grass'||'water')) צור בלוק אדמה במיקום */
+	}
+}
+
+addBridge(300, 250)        /* הוסף גשר */
+addBridge(250, 250)        /* הוסף גשר */
+createPool(550, 50)       /* (x,y) צור בריכה */
+createOrangetree(550, 250)     /* הוסף עץ תפוזים */
+
+for(let a = 9;a < 14;a++){
+  for(let b of ([2,3])){
+    addBridge(50 * a, 50 * b)        /* הוסף גשר */
+  }
+}
+addBigHouse(450,300)        /* (x,y) צור בית גדול במיקום*/
+
+deleteNpc()
+
+addNpc(350, 150,1,0)       /* (x,y,speedx,speedy) הוסף אוייב */
+rect(650, 150, "grass")     /*  (x,y,('ground'||'grass'||'water')) צור בלוק אדמה במיקום */
+rect(650, 200, "grass")     /*  (x,y,('ground'||'grass'||'water')) צור בלוק אדמה במיקום */
+
+playerText = "בוא אחרי"
+playerColorText = "yellow"
+playerFontText = 20
+
+isMission1Complete = false
+isMission2Started = false
+
+npcText = "אני בא"
+npcColorText = "blue"
+npcFontText= 20
+
+helpToNpc = false
+
+
 setNpcCostume(0, 6)       /* (npc_number, costum_number)הגדר מספר תלבושת לאוייב */
-addShootingBoss(2, 200,300)        /* (difficulty ,x, y) הוסף אוייב מכשף */
-setNpcCostume(1, 4)       /* (npc_number, costum_number)הגדר מספר תלבושת לאוייב */
-addBigHouse(200,200)        /* (x,y) צור בית גדול במיקום*/
 
-text = "שלום לך"
-font = 20
-color = "purple"
-
-text2 = "שלום לך"
-font2 = 20
-color2 = "green"
 
 
 `
   editor1.setValue(editor1.getValue() + "\n" + c1);
 
   const c2 = `
-setNpcDetination(0, 1, 400, 100)      /* (npcNumber, destNum, x, y) הגדר מיקום הגעה לאוייב */
-setNpcDetination(0, 2, 100, 200)      /* (npcNumber, destNum, x, y) הגדר מיקום הגעה לאוייב */
-setNpcDetination(0, 3, 350, 350)      /* (npcNumber, destNum, x, y) הגדר מיקום הגעה לאוייב */
+// כתוב כאן קוד ולחץ על הפעל קוד 
+ print(playerText , player.x, player.y, playerFontText, playerColorText)     /* ('text',x,y,font_width, 'color')הדפס כיתוב */
+printTextToNpc(0, npcText, npcFontText, npcColorText)  /*(npcNum = 0, text = 'text', font = 20, color = red)*/
 
-setNpcDetination(1, 1, 400, 100)      /* (npcNumber, destNum, x, y) הגדר מיקום הגעה לאוייב */
-setNpcDetination(1, 2, 100, 200)      /* (npcNumber, destNum, x, y) הגדר מיקום הגעה לאוייב */
-setNpcDetination(1, 3, 350, 350)      /* (npcNumber, destNum, x, y) הגדר מיקום הגעה לאוייב */
-printTextToNpc(0,text, font, color)  /*(npcNum = 0, text = 'text', font = 20, color = red)*/
-if(player.pos.x > 400){
-  	text = "לאן אתה בורח?"; font = 40;color = "red"
+if(player.pos.x > 700){
+  playerText = "למה נשארת מאחור?"
+  playerColorText = "red"
+  playerFontText = 25
 }else{
-    text = "שלום"; font = 20; color = "purple"
+  if(getNpcPosX(0) < 550){
+  playerText = "בוא אחרי"
+  playerColorText = "yellow"
+  playerFontText = 20
+  }
 }
 
-printTextToNpc(1,text2, font2, color2)  /*(npcNum = 0, text = 'text', font = 20, color = red)*/
-if(player.pos.x > 400){
-  	text2 = "פחדן!!, תפוס אותו"; font2 = 30;color2 = "pink"
-}else{
-    text2 = "מי אתה?"; font2 = 20; color2 = "green"
+if(getNpcPosX(0) > 550){
+    npcText = "אני תקוע"
+    npcColorText = "purple"
+	npcFontText= 30
+  
+  if(isCollideWithNpc(0)){
+  	helpToNpc = true
+  }
+  
+  if(player.pos.x > 700){
+    	playerText = "חכה אני בא"
+    	playerColorText = "green"
+    	playerFontText = 27
+	}
+}
+
+if(helpToNpc == true && isMission1Complete == false){
+  if(player.pos.x < 800){
+  	setNpc(0, player.pos.x - 50, player.pos.y, 1, 0)        /* (npc_number,x,y,speedx,speedy)הגדר אוייב */
+  	}else{      
+      helpToNpc = false
+      isMission1Complete = true;
+    }
+  }
+  
+if(isMission1Complete == true){
+    npcText = "תודה רבה לך"
+    npcColorText = "blue"
+	npcFontText= 30
+  
+    playerText = "משימה 1 הושלמה"
+	playerColorText = "purple"
+	playerFontText = 25
+  if(getNpcPosY(0) < 400){
+  		setNpcDetination(0, 1, 600, 450)      /* (npcNumber, destNum, x, y) הגדר מיקום הגעה לאוייב */
+  	}else{
+      setNpc(0, 600, 450, 0, 0)        /* (npc_number,x,y,speedx,speedy)הגדר אוייב */
+      isMission2Started = true
+    }
+  }
+
+if(isMission2Started == true){
+    npcText = "יש לי משימה בשבילך"
+	npcColorText = "red"
+	npcFontText= 25
+  
+  if(player.pos.y > 350){
+    playerText = "מה אתה צריך?"
+	  playerColorText = "yellow"
+	  playerFontText = 25
+    
+  npcText = "יש לי גנב בבית ואני מפחד"
+	npcColorText = "red"
+	npcFontText= 30
+    
+  }
 }
 
     `

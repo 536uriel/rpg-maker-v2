@@ -1,11 +1,11 @@
 import Rect from "./Rect.js";
 import SITE_URL from "./production-config.js";
 
-export function setVariable(varName, value){
+export function setVariable(varName, value) {
     window[varName] = value;
 }
 
-export function getVariable(varName){
+export function getVariable(varName) {
     return window[varName];
 }
 
@@ -232,7 +232,7 @@ export function createRedHouse(spriteSheet, blockWidth, blockHeight, hx, hy, cam
 export function popup(str = "") {
 
     //safty check
-    if(SITE_URL === undefined){
+    if (SITE_URL === undefined) {
         SITE_URL = "";
     }
 
@@ -269,6 +269,68 @@ export function popup(str = "") {
 
     popup.querySelector("button").onclick = () => overlay.remove();
     overlay.onclick = e => { if (e.target === overlay) overlay.remove(); };
+
+};
+
+export function missionsPopup(missionNumber = 1, missionDetails = "") {
+
+    if (window.popupStrted == true) {
+
+
+        window.isMissionAccepted = false;
+
+        //safty check
+        if (SITE_URL === undefined) {
+            SITE_URL = "";
+        }
+
+        let srcImg = SITE_URL + "/assets/wasd-btns.jpeg";
+
+        const overlay = document.createElement("div");
+        overlay.style.cssText = `
+    position:fixed; inset:0; background:rgba(0,0,0,0.5);
+    display:flex; align-items:center; justify-content:center; z-index:9999;
+  `;
+
+        const popup = document.createElement("div");
+        popup.style.cssText = `
+    background:white; padding:20px; border-radius:10px; 
+    box-shadow:0 0 20px rgba(0,0,0,0.3); text-align:center; 
+    max-width:300px; font-family:sans-serif;
+  `;
+        popup.innerHTML = `
+    <h3 style="margin-top:0"> ${missionNumber} משימה </h3>
+    <p>${missionDetails}</p>
+   
+    <h3 style="margin-top:0"> מקבל משימה?</h3>
+
+    <button data-mission="true" style="
+      background:#007bff; color:white; border:none; margin-top: 2rem;
+      padding:8px 14px; border-radius:6px; cursor:pointer;
+    ">כן</button>
+
+    <button data-mission="false" style="
+      background:#007bff; color:white; border:none; margin-top: 2rem;
+      padding:8px 14px; border-radius:6px; cursor:pointer;
+    ">כן</button>
+  `;
+
+        overlay.appendChild(popup);
+        document.body.appendChild(overlay);
+
+        popup.querySelectorAll("button").forEach(btn => {
+            btn.onclick = (e) => {
+                window.isMissionAccepted = this.dataset.mission;
+                window.popupStrted = false;
+                overlay.remove();
+            }
+
+            overlay.onclick = e => { if (e.target === overlay) overlay.remove(); };
+        });
+
+    }
+
+    return;
 
 };
 

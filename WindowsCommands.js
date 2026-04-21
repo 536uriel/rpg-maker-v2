@@ -1,6 +1,6 @@
 import Rect from "./Rect.js";
 import { overlap } from "./collision.js";
-import { createPoolBg, createBlueHouse, createOrangeHouse, createRedHouse, createOrangetreeBg, createTreeBg, getRandomIntInclusive, setVariable, getVariable } from "./helpers.js";
+import { createPoolBg, createBlueHouse, createOrangeHouse, createRedHouse, createOrangetreeBg, createTreeBg, getRandomIntInclusive, setVariable, getVariable, missionsPopup} from "./helpers.js";
 
 export function setWindowsCommandsAfterSetSprites(sprite, board, npcs,
     levels, rectW, rectH, camera, player) {
@@ -566,6 +566,10 @@ export function setWindowsCommandsInsideUpdate(sprite, board, npcs,
         }
     }
 
+    window.missionsPopup = missionsPopup;
 
+    window.popupStrted = false;
+
+    window.isMissionAccepted = false;
 
 }
