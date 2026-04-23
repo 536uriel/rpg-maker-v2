@@ -272,33 +272,32 @@ export function popup(str = "") {
 
 };
 
-export function missionsPopup(missionNumber = 1, missionDetails = "") {
+let callbacktmp = () => { }
 
-    if (window.popupStrted == true) {
+export async function missionsPopup(missionNumber = 1, missionDetails = "", callback = callbacktmp) {
 
+    window.isMissionAccepted = false;
 
-        window.isMissionAccepted = false;
+    //safty check
+    if (SITE_URL === undefined) {
+        SITE_URL = "";
+    }
 
-        //safty check
-        if (SITE_URL === undefined) {
-            SITE_URL = "";
-        }
+    let srcImg = SITE_URL + "/assets/wasd-btns.jpeg";
 
-        let srcImg = SITE_URL + "/assets/wasd-btns.jpeg";
-
-        const overlay = document.createElement("div");
-        overlay.style.cssText = `
+    const overlay = document.createElement("div");
+    overlay.style.cssText = `
     position:fixed; inset:0; background:rgba(0,0,0,0.5);
     display:flex; align-items:center; justify-content:center; z-index:9999;
   `;
 
-        const popup = document.createElement("div");
-        popup.style.cssText = `
+    const popup = document.createElement("div");
+    popup.style.cssText = `
     background:white; padding:20px; border-radius:10px; 
     box-shadow:0 0 20px rgba(0,0,0,0.3); text-align:center; 
     max-width:300px; font-family:sans-serif;
   `;
-        popup.innerHTML = `
+    popup.innerHTML = `
     <h3 style="margin-top:0"> ${missionNumber} משימה </h3>
     <p>${missionDetails}</p>
    
@@ -312,15 +311,23 @@ export function missionsPopup(missionNumber = 1, missionDetails = "") {
     <button data-mission="false" style="
       background:#007bff; color:white; border:none; margin-top: 2rem;
       padding:8px 14px; border-radius:6px; cursor:pointer;
-    ">כן</button>
+    ">לא</button>
   `;
 
-        overlay.appendChild(popup);
-        document.body.appendChild(overlay);
+    overlay.appendChild(popup);
+    document.body.appendChild(overlay);
+
+    return new Promise(resolve => {
+
 
         popup.querySelectorAll("button").forEach(btn => {
             btn.onclick = (e) => {
-                window.isMissionAccepted = this.dataset.mission;
+                window.isMissionAccepted = (btn.dataset.mission == "true") ? true : false;
+                if (btn.dataset.mission == "true") {
+                    resolve(callback());
+                } else {
+                    resolve(() => { });
+                }
                 window.popupStrted = false;
                 overlay.remove();
             }
@@ -328,9 +335,9 @@ export function missionsPopup(missionNumber = 1, missionDetails = "") {
             overlay.onclick = e => { if (e.target === overlay) overlay.remove(); };
         });
 
-    }
+    })
 
-    return;
+
 
 };
 
