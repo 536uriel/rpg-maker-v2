@@ -523,7 +523,14 @@ if(getNpcsLen() >= 1 && posTime == true && startMission3 == false){
 if(startMission3 == true){
         npcText = "שוב תודה לך"
 		npcColorText = "blue"
-		npcFontText= 23  
+		npcFontText= 23;
+
+      posTime = false;
+  
+  		if(posTime == false){
+    		lastTime = time;
+			  time += 1/60
+		}
 }
     `
 
