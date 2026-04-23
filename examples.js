@@ -411,6 +411,8 @@ posTime = false
 makeActionOnce = true
 makeAction2Once = true
 
+textOfMission2 = " סלק את הגנב "
+
 // הגדירו כאן משימה 2
 makeActionsAtMission = function(){    
   			addNpc(250, 250, 0, 1)
@@ -503,7 +505,7 @@ if(!posTime){
     print('time: ' + Math.round(time), 100, 100, 20, 'red')     /* ('text',x,y,font_width, 'color')הדפס כיתוב */
 
 if(posTime == true && makeActionOnce == true){
-  missionsPopup(2, "האם מקבל משימה?", makeActionsAtMission).then(func => {
+  missionsPopup(2, textOfMission2, makeActionsAtMission).then(func => {
   	func();
   })
   makeActionOnce = false;

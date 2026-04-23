@@ -272,9 +272,9 @@ export function popup(str = "") {
 
 };
 
-let callbacktmp = () => { }
 
-export async function missionsPopup(missionNumber = 1, missionDetails = "", callback = callbacktmp) {
+
+export async function missionsPopup(missionNumber = 1, missionDetails = "", callback = ()=>{}) {
 
     window.isMissionAccepted = false;
 
@@ -324,7 +324,7 @@ export async function missionsPopup(missionNumber = 1, missionDetails = "", call
             btn.onclick = (e) => {
                 window.isMissionAccepted = (btn.dataset.mission == "true") ? true : false;
                 if (btn.dataset.mission == "true") {
-                    resolve(callback());
+                    resolve(callback);
                 } else {
                     resolve(() => { });
                 }
