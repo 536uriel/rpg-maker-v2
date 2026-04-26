@@ -811,6 +811,10 @@ function setElementVisabilitytoBlock(elem) {
     elem.style.display = "block";
 }
 
+function setElementVisabilityto_Inline_Block(elem) {
+    elem.style.display = "inline-block";
+}
+
 function setElementStyleDisplayData(elem) {
     elem.setAttribute("style-display-data", getComputedStyle(elem, null).display);
 }
@@ -875,6 +879,7 @@ var playModeBtn = document.getElementById("switch-to-play-mode-btn");
 
 playModeBtn.addEventListener("click", (e) => {
 
+    // #play mode
     if (playModeBtn.dataset.id == "false") {
 
         setElementVisabilitytoNone(sidenav);
@@ -888,6 +893,10 @@ playModeBtn.addEventListener("click", (e) => {
         setElementVisabilitytoNone(editorsContainer);
         setElementVisabilitytoNone(runBlocksBtn);
 
+        //$new
+        setElementVisabilitytoNone(switchComponentsBtn);
+
+
         playModeBtn.innerText = "עבור למצב עורך קוד";
         playModeBtn.dataset.id = "true";
 
@@ -897,14 +906,28 @@ playModeBtn.addEventListener("click", (e) => {
         setElementVisabilitytoBlock(cmdlist1);
         setElementVisabilitytoBlock(cmdlist2);
         setElementVisabilitytoBlock(outputElem);
-        setElementVisabilitytoBlock(runBtn);
+
+        //@change
+        setElementVisabilityto_Inline_Block(runBtn);
 
         setElementVisabilitytoBlock(navbarElement);
         setElementVisabilitytoBlock(editorsContainer);
 
+        //$new
+        setElementVisabilityto_Inline_Block(switchComponentsBtn);
+
+
         playModeBtn.innerText = "עבור למצב משחק";
         playModeBtn.dataset.id = "false";
 
+    }
+
+    //$new
+    //switch switchComponentsBtn inner text 
+    if (inputBlocksContainer.style.display == "none") {
+        switchComponentsBtn.innerText = "עבור למצב בלוקים"
+    } else {
+        switchComponentsBtn.innerText = "עבור למצב עורך קוד"
     }
 
     runCode();
