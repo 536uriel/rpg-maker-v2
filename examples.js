@@ -415,13 +415,20 @@ textOfMission2 = " סלק את הגנב "
 
 // הגדירו כאן משימה 2
 makeActionsAtMission = function(){    
-  			addNpc(250, 250, 0, 1)
-      }
+  startMission3 = true;
+
+  addNpc(250, 250, 0, 1);
+  // כאן אפשר להוסיף עוד אוייבים למשימה
+
+  
+}
 
 `
   editor1.setValue(editor1.getValue() + "\n" + c1);
 
   const c2 = `
+
+
 
 // כתוב כאן קוד ולחץ על הפעל קוד 
  print(playerText , player.x, player.y, playerFontText, playerColorText)     /* ('text',x,y,font_width, 'color')הדפס כיתוב */
@@ -511,27 +518,26 @@ if(posTime == true && makeActionOnce == true){
   makeActionOnce = false;
 }
 
-if(getNpcsLen() >= 1 && posTime == true && startMission3 == false){
-	if(isSwordAttcksNpcs() == 1){
-		deleteNpc(1);
-		startMission3 = true
-        posTime = false
-
-	}
+if(startMission3 == true){
+  let npcNumTmp = isSwordAttcksNpcs()
+	if(npcNumTmp != -1 && npcNumTmp != 0){     
+		  deleteNpc(npcNumTmp);
+    }
 }
 
-if(startMission3 == true){
-        npcText = "שוב תודה לך"
+if(startMission3 == true && getNpcsLen() == 1){
+    npcText = "שוב תודה לך"
 		npcColorText = "blue"
 		npcFontText= 23;
 
-      posTime = false;
+    posTime = false;
   
-  		if(posTime == false){
+  	if(posTime == false){
     		lastTime = time;
 			  time += 1/60
 		}
 }
+
     `
 
   editor2.setValue(editor2.getValue() + "\n" + c2);
